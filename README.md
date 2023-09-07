@@ -1,4 +1,4 @@
-# Welcome to [Project Title] 
+# Welcome to ATARA
 Describe the project -  the inspiriation, limitations, scope, contibutors, etc
 
 ##  Deployment
@@ -7,7 +7,7 @@ Describe the project -  the inspiriation, limitations, scope, contibutors, etc
 
 
 ##  Technologies Used
-[Project Name] leverages the following technologies and frameworks:
+ATARA leverages the following technologies and frameworks:
 
 - Vite
 - React
