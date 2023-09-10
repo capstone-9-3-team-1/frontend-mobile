@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignUpScreen({ navigation }) {
-  const { isLoaded, signUp, setActive } = useSignUp();
-
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const { isLoaded, signUp, setActive } = useSignUp();
+  const passwordInput = useRef(null);
   const [pendingVerification, setPendingVerification] = useState(false);
   const [code, setCode] = useState("");
 
@@ -59,11 +59,16 @@ export default function SignUpScreen({ navigation }) {
           </TouchableOpacity>
 
           <Text className="text-3xl self-center">Sign Up</Text>
+
           <View>
             <Text className="text-xl">Email</Text>
             <TextInput
               autoCapitalize="none"
               value={emailAddress}
+              keyboardType="email-address"
+              returnKeyType="Next"
+              autoFocus={true}
+              onSubmitEditing={() => passwordInput.current.focus()}
               placeholder="Email..."
               onChangeText={(email) => setEmailAddress(email)}
               className="border p-2 rounded border-green-900 "
@@ -78,6 +83,9 @@ export default function SignUpScreen({ navigation }) {
               secureTextEntry={true}
               onChangeText={(password) => setPassword(password)}
               className="border p-2 rounded border-green-900 "
+              returnKeyType="Submit"
+              ref={passwordInput}
+              onSubmitEditing={onSignUpPress}
             />
           </View>
 

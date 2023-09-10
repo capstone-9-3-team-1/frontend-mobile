@@ -1,18 +1,13 @@
-import { useState } from "react";
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  SafeAreaView,
-} from "react-native";
+import { useState, useRef } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useSignIn } from "@clerk/clerk-expo";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignInScreen({ navigation }) {
-  const { signIn, setActive, isLoaded } = useSignIn();
-
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const { signIn, setActive, isLoaded } = useSignIn();
+  const passwordInput = useRef(null);
 
   const onSignInPress = async () => {
     if (!isLoaded) {
@@ -46,6 +41,10 @@ export default function SignInScreen({ navigation }) {
           <TextInput
             autoCapitalize="none"
             value={emailAddress}
+            keyboardType="email-address"
+            returnKeyType="next"
+            autoFocus={true}
+            onSubmitEditing={() => passwordInput.current.focus()}
             placeholder="Email..."
             onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
             className="border p-2 rounded border-green-900 "
@@ -60,6 +59,8 @@ export default function SignInScreen({ navigation }) {
             secureTextEntry={true}
             className="border p-2 rounded border-green-900"
             onChangeText={(password) => setPassword(password)}
+            ref={passwordInput}
+            onSubmitEditing={onSignInPress}
           />
         </View>
 
