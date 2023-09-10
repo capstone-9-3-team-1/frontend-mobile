@@ -71,6 +71,7 @@ export default function MainContainer() {
                     <Ionicons name={"camera"} size={size * 1.5} color={color} />
                   </View>
                 ),
+                tabBarStyle: { display: "none" },
               }}
             />
             <Tab.Screen
@@ -111,6 +112,7 @@ const Auth = () => {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName="Welcome"
     >
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />

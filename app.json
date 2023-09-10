@@ -23,6 +23,14 @@
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow ATARA to access your camera."
+        }
+      ]
+    ]
   }
 }
