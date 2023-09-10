@@ -13,14 +13,14 @@ export default function Welcome({ navigation }) {
           <Button
             title="Get Started"
             color="white"
-            onPress={() => navigation.navigate("App")}
+            onPress={() => navigation.navigate("SignUp")}
           />
         </View>
         <View className="rounded-xl border border-green-700 w-60">
           <Button
             title="Sign In"
             color="green"
-            onPress={() => navigation.navigate("App")}
+            onPress={() => navigation.navigate("SignIn")}
           />
         </View>
       </View>
