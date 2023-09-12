@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { ClerkProvider } from "@clerk/clerk-expo";
 import Constants from "expo-constants";
 import React from "react";
-import MainContainer from "./src/navigation/MainContainer";
+import MainContainer from "./src/navigation/mainContainer/MainContainer";
 import { getItemAsync, setItemAsync } from "expo-secure-store";
 
 const tokenCache = {
