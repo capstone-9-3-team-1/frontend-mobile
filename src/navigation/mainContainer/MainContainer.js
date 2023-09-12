@@ -5,14 +5,14 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 // Screens
-import HomeScreen from "./tabs/HomeScreen";
-import RewardsScreen from "./tabs/RewardsScreen";
-import QuestsScreen from "./tabs/QuestsScreen";
-import UserScreen from "./tabs/UserScreen";
-import CameraScreen from "./tabs/CameraScreen";
-import Welcome from "../screens/Welcome";
-import SignUpScreen from "../screens/SignUpScreen";
-import SignInScreen from "../screens/SignInScreen";
+import HomeScreen from "../tabs/HomeScreen";
+import RewardsScreen from "../tabs/RewardsScreen";
+import QuestsScreen from "../tabs/QuestsScreen";
+import UserScreen from "../tabs/UserScreen";
+import CameraScreen from "../tabs/CameraScreen";
+import Welcome from "../mainContainer/screens/Welcome";
+import SignUpScreen from "../mainContainer/screens/SignUpScreen";
+import SignInScreen from "../mainContainer/screens/SignInScreen";
 
 export default function MainContainer() {
   const Tab = createBottomTabNavigator();
