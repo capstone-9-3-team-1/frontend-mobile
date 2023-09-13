@@ -1,8 +1,9 @@
 import { View, Text, TextInput, SafeAreaView, ScrollView } from "react-native";
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8];
-const articleBox = [1, 2, 3, 4];
-const products = [1, 2, 3, 4, 5, 6];
+
+const array = [1, 2, 3, 4, 5, 6, 7, 8]
+const articleBox= [1, 2, 3, 4]
+const products= [1, 2, 3, 4, 5, 6] // hi
 
 export default function HomeScreen({ navigation }) {
   return (
