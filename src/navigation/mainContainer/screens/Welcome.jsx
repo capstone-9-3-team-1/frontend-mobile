@@ -1,6 +1,7 @@
 import { Button, View, Text, SafeAreaView } from "react-native";
 
 export default function Welcome({ navigation }) {
+  //comment
   return (
     <SafeAreaView className="bg-white flex">
       <View className=" h-full  justify-center items-center">
