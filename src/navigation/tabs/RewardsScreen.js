@@ -11,10 +11,9 @@ export default function RewardsScreen({ navigation }) {
     {/* User Circle, Name, and Rewards History Button*/}
       
     <View className="flex flex-row items-center m-5">
-        <View className="w-20 h-20 rounded-full bg-blue-500"></View>
-        {/* <View className="ml-5"> */}
-          <Text className="text-2xl font-semibold items-center"> John Doe</Text> 
-          {/* <Text className="text-lg">Your Rewards{userPoints}</Text> */}
+        <View className="w-20 h-20 rounded-full ml-5 bg-blue-500"></View>
+          <TextInput className="text-2xl font-semibold items-center"> John Doe</TextInput> 
+          {/* <TextInput className="text-lg">Your Rewards{userPoints}</TextInput> */}
       {/* </View>  */}
       </View>
       {/* </View> */}

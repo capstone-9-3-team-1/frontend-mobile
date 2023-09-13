@@ -25,10 +25,10 @@ export default function HomeScreen({ navigation }) {
         <TextInput placeholder="text"></TextInput>
         </View>)}
     </ScrollView>
-n
+
     {/* featured products */}
     <Text className= "text-2xl font-semibold">  New Arrivals</Text>
-    <View className="flex-row w-screen flex-wrap m-1">
+    <View className="flex-row w-full flex-wrap m-1">
       {products.map(() => <View className="border flex box-content h-44 w-44 m-2 "></View>)}
     </View>
     </ScrollView>
