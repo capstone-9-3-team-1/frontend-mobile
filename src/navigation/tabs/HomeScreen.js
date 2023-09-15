@@ -16,7 +16,7 @@ export default function HomeScreen({ navigation }) {
     {/* categories */}
     <Text className= "text-2xl font-semibold"> Categories</Text>
     <ScrollView horizontal>
-      {array.map(() =>  <View className="border p-16 rounded-full m-5"></View>)}
+      {array.map(() =>  <View className="border p-16 m-2 rounded-full"></View>)}
     </ScrollView>
 
     {/* rectangle boxes- articles? */}
@@ -26,10 +26,10 @@ export default function HomeScreen({ navigation }) {
         </View>)}
     </ScrollView>
 
-    {/* featured products */}
+    {/* featured products- New Arrivals */}
     <Text className= "text-2xl font-semibold">  New Arrivals</Text>
     <View className="flex-row w-full flex-wrap m-1">
-      {products.map(() => <View className="border flex box-content h-44 w-44 m-2 "></View>)}
+      {products.map(() => <View className="border flex box-content h-48 w-48 m-2 "></View>)}
     </View>
     </ScrollView>
   </SafeAreaView>
