@@ -4,6 +4,7 @@ import Constants from "expo-constants";
 import React from "react";
 import MainContainer from "./src/navigation/mainContainer/MainContainer";
 import { getItemAsync, setItemAsync } from "expo-secure-store";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 const tokenCache = {
   async getToken(key) {
@@ -22,6 +23,8 @@ const tokenCache = {
   },
 };
 
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <ClerkProvider
@@ -29,7 +32,9 @@ export default function App() {
       tokenCache={tokenCache}
     >
       <NavigationContainer>
-        <MainContainer />
+        <QueryClientProvider client={queryClient}>
+          <MainContainer />
+        </QueryClientProvider>
       </NavigationContainer>
     </ClerkProvider>
   );

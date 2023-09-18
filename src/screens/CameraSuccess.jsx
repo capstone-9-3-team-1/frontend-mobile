@@ -9,6 +9,7 @@ const products = [
 
 export default function ReceiptSummaryPage() {
     return (
+        // 
       <SafeAreaView className="flex items-center justify-center h-full">
         <View className="flex items-center">
           <Text className="text-3xl font-semibold text-center">Congrats!</Text>
