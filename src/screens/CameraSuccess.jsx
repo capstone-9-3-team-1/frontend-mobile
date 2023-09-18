@@ -9,14 +9,16 @@ const products = [
 
 export default function ReceiptSummaryPage() {
     return (
-        // 
+        // Congrats
       <SafeAreaView className="flex items-center justify-center h-full">
         <View className="flex items-center">
           <Text className="text-3xl font-semibold text-center">Congrats!</Text>
+          {/* Celebration Icon */}
           <Image
             source={require("./celebratory-icon.png")} // Replace with your celebratory icon
             className="mt-4 w-32 h-32"
           />
+          {/* Products that got points in this transaction */}
           <Text className="text-2xl font-semibold mt-4">Receipt Summary</Text>
           <ScrollView className="max-h-40 mt-2">
             {products.map((product, index) => (
@@ -26,6 +28,24 @@ export default function ReceiptSummaryPage() {
               </View>
             ))}
           </ScrollView>
+
+        {/* Button to return to Rewards Screen */}
+        <TouchableOpacity
+            className="bg-green-500 p-2 rounded-lg "
+            onPress={() => {
+              // Route for the Rewards History
+            }}>
+            <Text className="text-white text-sm"> Confirm</Text>
+        </TouchableOpacity>
+          
+          {/* FAQ Button */}
+          <TouchableOpacity
+            className="bg-green-500 p-2 rounded-lg "
+            onPress={() => {
+              // Route for the FAQ page
+            }}>
+            <Text className="text-white text-sm"> FAQ</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
     );
