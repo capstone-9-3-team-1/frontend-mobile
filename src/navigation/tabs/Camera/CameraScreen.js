@@ -15,6 +15,10 @@ export default function CameraScreen({ navigation }) {
   const [photo, setPhoto] = useState();
   let cameraRef = useRef();
 
+  const navigateToSuccess = () => {
+    navigation.navigate("Success");
+  };
+
   if (!permission) {
     return <View />;
   }
@@ -35,7 +39,13 @@ export default function CameraScreen({ navigation }) {
   }
 
   if (photo) {
-    return <SubmitPhotoScreen photo={photo} setPhoto={setPhoto} />;
+    return (
+      <SubmitPhotoScreen
+        photo={photo}
+        setPhoto={setPhoto}
+        navigation={navigateToSuccess}
+      />
+    );
   }
 
   return (
@@ -82,11 +92,14 @@ const OpenCamera = ({ navigation, cameraRef, setPhoto }) => {
   );
 };
 
-const SubmitPhotoScreen = ({ photo, setPhoto }) => {
+const SubmitPhotoScreen = ({ photo, setPhoto, navigation }) => {
   return (
     <SafeAreaView className="flex items-center space-y-3">
       <Image className=" h-5/6 w-5/6 mt-5" source={{ uri: photo }} />
-      <Pressable className="items-center bg-green-500 text-white min-w-[150] px-5 py-3 rounded-md">
+      <Pressable
+        className="items-center bg-green-500 text-white min-w-[150] px-5 py-3 rounded-md"
+        onPress={navigation}
+      >
         <Text className="text-white">Submit</Text>
       </Pressable>
       <Pressable
