@@ -9,10 +9,10 @@ import HomeScreen from "../tabs/HomeScreen";
 import RewardsScreen from "../tabs/RewardsScreen";
 import QuestsScreen from "../tabs/QuestsScreen";
 import UserScreen from "../tabs/UserScreen";
-import CameraScreen from "../tabs/CameraScreen";
 import Welcome from "../mainContainer/screens/Welcome";
 import SignUpScreen from "../mainContainer/screens/SignUpScreen";
 import SignInScreen from "../mainContainer/screens/SignInScreen";
+import CameraRouter from "../tabs/Camera/CameraRouter";
 
 export default function MainContainer() {
   const Tab = createBottomTabNavigator();
@@ -63,7 +63,7 @@ export default function MainContainer() {
             />
             <Tab.Screen
               name={"Camera"}
-              component={CameraScreen}
+              component={CameraRouter}
               options={{
                 tabBarLabel: "Camera",
                 tabBarIcon: ({ focused, color, size }) => (
