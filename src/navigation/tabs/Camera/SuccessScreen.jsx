@@ -24,8 +24,8 @@ export default function SuccessScreen({ navigation }) {
         </SafeAreaView>
       ) : (
         <>
-          <Text>no</Text>
           <Text>Back</Text>
+          <Text>This is where the sucess screen will go!</Text>
         </>
       )}
       <Pressable onPress={() => navigation.navigate("LiveCamera")}></Pressable>
