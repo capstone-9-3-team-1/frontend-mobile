@@ -1,17 +1,23 @@
 import { View, Text, TextInput, SafeAreaView, ScrollView } from "react-native";
 
+
 const array = [1, 2, 3, 4, 5, 6, 7, 8]
 const articleBox= [1, 2, 3, 4]
-const products= [1, 2, 3, 4, 5, 6]
+const products= [1, 2, 3, 4, 5, 6] // hi
 
 export default function HomeScreen({ navigation }) {
-  return <SafeAreaView className="flex items-start">
-    <ScrollView>
-    {/* Search bar and User Circle */}
-      <View className= "flex flex-row items-center">
-        <TextInput placeholder="Search" className="flex-1 h-12 rounded lg m-5 border rounded-lg px-3"></TextInput>
-    <View className="border p-10 rounded-full m-5"></View>
-    </View>
+  return (
+    <SafeAreaView className="flex items-start">
+      <ScrollView>
+        {/* Search bar and User Circle */}
+        <View className="flex flex-row items-center">
+          <TextInput
+            placeholder="Search"
+            className="flex-1 h-12 rounded lg m-5 border rounded-lg px-3"
+          ></TextInput>
+          <View className="border p-10 rounded-full m-5"></View>
+        </View>
+
 
     {/* categories */}
     <Text className= "text-2xl font-semibold"> Categories</Text>
@@ -19,12 +25,14 @@ export default function HomeScreen({ navigation }) {
       {array.map(() =>  <View className="border p-16 m-2 rounded-full"></View>)}
     </ScrollView>
 
-    {/* rectangle boxes- articles? */}
-    <ScrollView horizontal>
-      {articleBox.map(() =>  <View className="border flex box-content h-56 w-80 m-2">
-        <TextInput placeholder="text"></TextInput>
-        </View>)}
-    </ScrollView>
+        {/* Rectangle boxes- articles? */}
+        <ScrollView horizontal>
+          {articleBox.map(() => (
+            <View className="border flex box-content h-56 w-80 m-2">
+              <TextInput placeholder="text"></TextInput>
+            </View>
+          ))}
+        </ScrollView>
 
     {/* featured products- New Arrivals */}
     <Text className= "text-2xl font-semibold">  New Arrivals</Text>
@@ -33,4 +41,4 @@ export default function HomeScreen({ navigation }) {
     </View>
     </ScrollView>
   </SafeAreaView>
-}
+)};
