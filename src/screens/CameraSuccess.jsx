@@ -28,23 +28,23 @@ export default function ReceiptSummaryPage() {
               </View>
             ))}
           </ScrollView>
-          
+
         {/* Button to return to Rewards Screen */}
         <TouchableOpacity
             className="bg-green-500 p-2 rounded-lg "
             onPress={() => {
               // Route for the Rewards History
             }}>
-            <Text className="text-white text-sm">Confirm</Text>
+            <Text className="text-white text-sm"> Confirm</Text>
         </TouchableOpacity>
           
           {/* FAQ Button */}
           <TouchableOpacity
             className="bg-green-500 p-2 rounded-lg "
             onPress={() => {
-              // Route for the Rewards History
+              // Route for the FAQ page
             }}>
-            <Text className="text-white text-sm">FAQ</Text>
+            <Text className="text-white text-sm"> FAQ</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
