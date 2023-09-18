@@ -1,5 +1,11 @@
-import { View, Text, TextInput, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
-
+import {
+  View,
+  Text,
+  TextInput,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
 const articleBox = [1, 2, 3, 4];
@@ -25,7 +31,8 @@ export default function RewardsScreen({ navigation }) {
             className="bg-green-500 p-2 rounded-lg ml-16"
             onPress={() => {
               // Route for the Rewards History
-            }}>
+            }}
+          >
             <Text className="text-white text-sm">Your Rewards</Text>
           </TouchableOpacity>
         </View>
@@ -33,13 +40,15 @@ export default function RewardsScreen({ navigation }) {
         {/* Top Categories */}
         <Text className="text-2xl font-semibold">Top Categories</Text>
         <ScrollView horizontal>
-          {array.map(() => <View className="border p-16 rounded-full m-2"></View>)}
+          {array.map((num) => (
+            <View key={num} className="border p-16 rounded-full m-2"></View>
+          ))}
         </ScrollView>
 
         {/* Rectangle boxes - You can include them if needed */}
         <ScrollView horizontal>
-          {articleBox.map(() => (
-            <View className="border flex box-content h-56 w-80 m-2">
+          {articleBox.map((num) => (
+            <View key={num} className="border flex box-content h-56 w-80 m-2">
               <TextInput placeholder="text"></TextInput>
             </View>
           ))}
@@ -48,8 +57,11 @@ export default function RewardsScreen({ navigation }) {
         {/* New Rewards */}
         <Text className="text-2xl font-semibold">New Rewards</Text>
         <View className="flex-row w-screen flex-wrap m-1">
-          {products.map(() => (
-            <View className="border flex box-content h-48 w-48 m-2"></View>
+          {products.map((num) => (
+            <View
+              key={num}
+              className="border flex box-content h-48 w-48 m-2"
+            ></View>
           ))}
         </View>
       </ScrollView>
