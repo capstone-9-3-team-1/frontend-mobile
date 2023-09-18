@@ -1,9 +1,8 @@
 import { View, Text, TextInput, SafeAreaView, ScrollView } from "react-native";
 
-
-const array = [1, 2, 3, 4, 5, 6, 7, 8]
-const articleBox= [1, 2, 3, 4]
-const products= [1, 2, 3, 4, 5, 6] // hi
+const array = [1, 2, 3, 4, 5, 6, 7, 8];
+const articleBox = [1, 2, 3, 4];
+const products = [1, 2, 3, 4, 5, 6]; // hi
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -18,12 +17,13 @@ export default function HomeScreen({ navigation }) {
           <View className="border p-10 rounded-full m-5"></View>
         </View>
 
-
-    {/* categories */}
-    <Text className= "text-2xl font-semibold"> Categories</Text>
-    <ScrollView horizontal>
-      {array.map(() =>  <View className="border p-16 m-2 rounded-full"></View>)}
-    </ScrollView>
+        {/* categories */}
+        <Text className="text-2xl font-semibold"> Categories</Text>
+        <ScrollView horizontal>
+          {array.map(() => (
+            <View className="border p-16 m-2 rounded-full"></View>
+          ))}
+        </ScrollView>
 
         {/* Rectangle boxes- articles? */}
         <ScrollView horizontal>
@@ -34,11 +34,14 @@ export default function HomeScreen({ navigation }) {
           ))}
         </ScrollView>
 
-    {/* featured products- New Arrivals */}
-    <Text className= "text-2xl font-semibold">  New Arrivals</Text>
-    <View className="flex-row w-full flex-wrap m-1">
-      {products.map(() => <View className="border flex box-content h-48 w-48 m-2 "></View>)}
-    </View>
-    </ScrollView>
-  </SafeAreaView>
+        {/* featured products- New Arrivals */}
+        <Text className="text-2xl font-semibold"> New Arrivals</Text>
+        <View className="flex-row w-full flex-wrap m-1">
+          {products.map(() => (
+            <View className="border flex box-content h-48 w-48 m-2 "></View>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
