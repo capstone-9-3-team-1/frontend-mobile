@@ -24,7 +24,9 @@ export default function SuccessScreen({ navigation }) {
         </SafeAreaView>
       ) : (
         <>
-          <Text>Back</Text>
+          <Pressable onPress={() => navigation.navigate("Home")}>
+            <Text>Back</Text>
+          </Pressable>
           <Text>This is where the sucess screen will go!</Text>
         </>
       )}
