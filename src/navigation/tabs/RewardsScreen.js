@@ -1,5 +1,6 @@
 import {
   View,
+  Image,
   Text,
   TextInput,
   SafeAreaView,
@@ -17,11 +18,18 @@ const userPoints = 100;
 
 export default function RewardsScreen({ navigation }) {
   return (
-    <SafeAreaView className="flex items-start">
+    <SafeAreaView className="flex items-start bg-slate-100 ">
       <ScrollView>
         {/* User Circle, Name, and Points */}
         <View className="flex flex-row items-center m-5">
-          <View className="w-20 h-20 rounded-full bg-blue-500"></View>
+        <View className="rounded-full bg-white drop-shadow-lg">
+            <Image
+              source={{
+                uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
+              }}
+              className="w-20 h-20 rounded-full"
+            />
+          </View>
           <View className="ml-3">
             <Text className="text-2xl font-semibold">{userName}</Text>
             <Text className="text-lg font-semibold">{userPoints} Points</Text>
@@ -38,17 +46,17 @@ export default function RewardsScreen({ navigation }) {
         </View>
 
         {/* Top Categories */}
-        <Text className="text-2xl font-semibold">Top Categories</Text>
+        <Text className="text-2xl font-semibold mx-3">Top Categories</Text>
         <ScrollView horizontal>
           {array.map((num) => (
-            <View key={num} className="border p-16 rounded-full m-2"></View>
+            <View key={num} className=" p-16 rounded-full m-2 bg-white"></View>
           ))}
         </ScrollView>
 
         {/* Rectangle boxes - You can include them if needed */}
         <ScrollView horizontal>
           {articleBox.map((num) => (
-            <View key={num} className="border flex box-content h-56 w-80 m-2">
+            <View key={num} className="flex box-content h-56 w-80 m-2 rounded-3xl bg-white">
               <TextInput placeholder="text"></TextInput>
             </View>
           ))}
@@ -60,7 +68,7 @@ export default function RewardsScreen({ navigation }) {
           {products.map((num) => (
             <View
               key={num}
-              className="border flex box-content h-48 w-48 m-2"
+              className="flex box-content h-48 w-48 m-2 rounded-3xl bg-white"
             ></View>
           ))}
         </View>
