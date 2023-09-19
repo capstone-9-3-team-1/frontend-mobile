@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
-import CameraScreen from "./CameraScreen";
-import SuccessScreen from "./SuccessScreen";
+import CameraScreen from "./Screens/CameraScreen";
+import SuccessScreen from "./Screens/SuccessScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export default function CameraRouter() {
