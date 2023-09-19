@@ -5,6 +5,7 @@ import {
   TextInput,
   SafeAreaView,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 
 import { FlatList } from "react-native-gesture-handler";
@@ -13,7 +14,6 @@ const array = [1, 2, 3, 4, 5, 6, 7, 8];
 const articleBox = [1, 2, 3, 4];
 const products = [1, 2, 3, 4, 5, 6]; //
 
-import three from "../../assets/category-icons/3.jpg";
 import useProducts from "../../hooks/queries/useProducts";
 
 const categories = [
@@ -24,8 +24,9 @@ const categories = [
 ];
 
 export default function HomeScreen({ navigation }) {
-  const { sLoading, isError, data, error } = useProducts();
-  
+  const { isLoading, isError, data, error } = useProducts();
+  console.log(data)
+
   return (
     <SafeAreaView className="flex  bg-slate-100">
       <ScrollView className="p-4">
@@ -71,7 +72,9 @@ export default function HomeScreen({ navigation }) {
         {/* featured products- New Arrivals */}
         <Text className="text-2xl font-semibold mx-3 mt-3"> New Arrivals</Text>
         <View className="flex-row w-screen flex-wrap m-1">
-          {data.map((item, i) => (
+          { isLoading ? <ActivityIndicator/> : null}
+          {
+          data?.map((item, i) => (
             <View
               key={i}
               className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"

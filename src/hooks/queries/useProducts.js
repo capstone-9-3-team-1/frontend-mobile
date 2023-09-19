@@ -12,8 +12,6 @@ export default function useProducts(){
     const {isLoading, isError, data, error} = useQuery({
         queryKey: ["products"], // keeps track of this fetch
         queryFn: fetchProducts
-    })
-
-    
+    }) 
     return {isLoading, isError, data, error}
 }
