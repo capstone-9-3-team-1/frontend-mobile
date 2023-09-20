@@ -5,9 +5,13 @@ export default function Welcome({ navigation }) {
   return (
     <SafeAreaView className="bg-white flex">
       <View className=" h-full  justify-center items-center">
+      
         <Image source={require("../../../assets/atara_logo.png")} 
         resizeMode="contain"
-        className="h-12"/>
+        className="h-12 my-3 ml-[-150px]"/>
+
+
+       
 
         <View className="mb-20">
           <Text className="text-4xl self-start">Saving the planet</Text>

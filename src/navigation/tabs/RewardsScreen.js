@@ -46,7 +46,7 @@ export default function RewardsScreen({ navigation }) {
         </View>
 
         {/* Top Categories */}
-        <Text className="text-2xl font-semibold mx-3">Top Categories</Text>
+        <Text className="text-2xl font-semibold mx-3">  Top Categories</Text>
         <ScrollView horizontal>
           {array.map((num) => (
             <View key={num} className=" p-16 rounded-full m-2 bg-white"></View>
@@ -63,7 +63,7 @@ export default function RewardsScreen({ navigation }) {
         </ScrollView>
 
         {/* New Rewards */}
-        <Text className="text-2xl font-semibold">New Rewards</Text>
+        <Text className="text-2xl font-semibold">  New Rewards</Text>
         <View className="flex-row w-screen flex-wrap m-1">
           {products.map((num) => (
             <View
