@@ -1,9 +1,18 @@
-import { Button, View, Text, SafeAreaView } from "react-native";
+import { Button, View, Text, SafeAreaView, Image } from "react-native";
 
 export default function Welcome({ navigation }) {
+  //comment
   return (
     <SafeAreaView className="bg-white flex">
       <View className=" h-full  justify-center items-center">
+      
+        <Image source={require("../../../assets/atara_logo.png")} 
+        resizeMode="contain"
+        className="h-12 my-3 ml-[-150px]"/>
+
+
+       
+
         <View className="mb-20">
           <Text className="text-4xl self-start">Saving the planet</Text>
           <Text className="text-4xl self-start">while saving you</Text>
