@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -39,14 +40,16 @@ export default function HomeScreen({ navigation }) {
             placeholder="Search products"
             className="flex-1 h-12 lg m-5 rounded-lg px-3 bg-white"
           ></TextInput>
-          <View className="rounded-full m-5 bg-white drop-shadow-lg">
-            <Image
-              source={{
-                uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
-              }}
-              className="w-20 h-20 rounded-full"
-            />
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <View className="rounded-full m-5 bg-white drop-shadow-lg">
+              <Image
+                source={{
+                  uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
+                }}
+                className="w-20 h-20 rounded-full"
+              />
+            </View>
+          </TouchableOpacity>
         </View>
         {/* categories */}
         <Text className="text-2xl font-semibold mx-3">Categories</Text>
