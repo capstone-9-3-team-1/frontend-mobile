@@ -8,30 +8,28 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
 const articleBox = [1, 2, 3, 4];
 const products = [1, 2, 3, 4, 5, 6]; //
 
-import useProducts from "../../hooks/queries/useProducts";
-import useCategories from "../../hooks/queries/useCategories";
+import useProducts from "../../../../hooks/queries/useProducts";
+import useCategories from "../../../../hooks/queries/useCategories";
 
 const categories = [
-  require("../../assets/badges/Biodegradability.png"),
-  require("../../assets/badges/CarbonFootprint.png"),
-  require("../../assets/badges/EnergyEfficiency.png"),
-  require("../../assets/badges/MinimalPackaging.png"),
-  require("../../assets/badges/Non-toxic.png"),
-  require("../../assets/badges/ReducedEmissions.png"),
-  require("../../assets/badges/SustainableMaterials.png"),
-  require("../../assets/badges/WaterConservation.png"),
+  require("../../../../assets/badges/Biodegradability.png"),
+  require("../../../../assets/badges/CarbonFootprint.png"),
+  require("../../../../assets/badges/EnergyEfficiency.png"),
+  require("../../../../assets/badges/MinimalPackaging.png"),
+  require("../../../../assets/badges/Non-toxic.png"),
+  require("../../../../assets/badges/ReducedEmissions.png"),
+  require("../../../../assets/badges/SustainableMaterials.png"),
+  require("../../../../assets/badges/WaterConservation.png"),
 ];
 
 export default function HomeScreen({ navigation }) {
   const { isLoading, isError, data, error } = useProducts();
   const categoriesData = useCategories();
-  
-  
+
   return (
     <SafeAreaView className="flex  bg-slate-100">
       <ScrollView className="p-4">
@@ -53,15 +51,22 @@ export default function HomeScreen({ navigation }) {
         {/* categories */}
         <Text className="text-2xl font-semibold mx-3">Categories</Text>
         <ScrollView horizontal>
-          {categoriesData.data.map((item) => {
+          {categoriesData.data?.map((item) => {
             return (
               <View className="columns-1 mb-3">
-               <View key={item.id} className=" rounded-full m-3 drop-shadow-lg bg-white mb-1">
-                <Image source={{uri:item.imageUrl}} className="h-32 w-32 rounded-full" />
+                <View
+                  key={item.id}
+                  className=" rounded-full m-3 drop-shadow-lg bg-white mb-1"
+                >
+                  <Image
+                    source={{ uri: item.imageUrl }}
+                    className="h-32 w-32 rounded-full"
+                  />
+                </View>
+                <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">
+                  {item.name}
+                </Text>
               </View>
-              <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">{item.name}</Text>
-              </View>
-             
             );
           })}
         </ScrollView>
@@ -81,9 +86,8 @@ export default function HomeScreen({ navigation }) {
         {/* featured products- New Arrivals */}
         <Text className="text-2xl font-semibold mx-3 mt-3"> New Arrivals</Text>
         <View className="flex-row w-screen flex-wrap m-1">
-          { isLoading ? <ActivityIndicator/> : null}
-          {
-          data?.map((item, i) => (
+          {isLoading ? <ActivityIndicator /> : null}
+          {data?.map((item, i) => (
             <View
               key={i}
               className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
