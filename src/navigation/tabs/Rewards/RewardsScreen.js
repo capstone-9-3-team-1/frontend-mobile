@@ -22,20 +22,20 @@ export default function RewardsScreen({ navigation }) {
       <ScrollView>
         {/* User Circle, Name, and Points */}
         <View className="flex flex-row items-center m-5">
-          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-            <View className="rounded-full bg-white drop-shadow-lg">
+          <View className="rounded-full bg-white drop-shadow-lg">
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <Image
                 source={{
                   uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
                 }}
                 className="w-20 h-20 rounded-full"
               />
-            </View>
-            <View className="ml-3">
-              <Text className="text-2xl font-semibold">{userName}</Text>
-              <Text className="text-lg font-semibold">{userPoints} Points</Text>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
+          <View className="ml-3">
+            <Text className="text-2xl font-semibold">{userName}</Text>
+            <Text className="text-lg font-semibold">{userPoints} Points</Text>
+          </View>
           {/* Redeemed Rewards History Button */}
           <TouchableOpacity
             className="bg-green-500 p-2 rounded-lg ml-16"
@@ -69,7 +69,7 @@ export default function RewardsScreen({ navigation }) {
 
         {/* New Rewards */}
         <Text className="text-2xl font-semibold">New Rewards</Text>
-        <View className="flex-row w-screen flex-wrap m-1">
+        <View className="flex-row w-screen flex-wrap">
           {products.map((num) => (
             <View
               key={num}
