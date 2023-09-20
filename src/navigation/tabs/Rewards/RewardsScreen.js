@@ -19,7 +19,7 @@ const userPoints = 100;
 export default function RewardsScreen({ navigation }) {
   return (
     <SafeAreaView className="flex items-start bg-slate-100 ">
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* User Circle, Name, and Points */}
         <View className="flex flex-row items-center m-5">
           <View className="rounded-full bg-white drop-shadow-lg">
@@ -49,20 +49,20 @@ export default function RewardsScreen({ navigation }) {
 
         {/* Top Categories */}
         <Text className="text-2xl font-semibold mx-3"> Top Categories</Text>
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {array.map((num) => (
             <View key={num} className=" p-16 rounded-full m-2 bg-white"></View>
           ))}
         </ScrollView>
 
         {/* Rectangle boxes - You can include them if needed */}
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {articleBox.map((num) => (
             <View
               key={num}
               className="flex box-content h-56 w-80 m-2 rounded-3xl bg-white"
             >
-              <TextInput placeholder="text"></TextInput>
+              <Text></Text>
             </View>
           ))}
         </ScrollView>
