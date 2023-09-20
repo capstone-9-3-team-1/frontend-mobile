@@ -1,52 +1,68 @@
 import React from "react";
-import { View, Text, Image, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const products = [
-    { name: "Product A", points: 50 },
-    { name: "Product B", points: 30 },
-    { name: "Product C", points: 20 },
+  { name: "Product A", points: 50 },
+  { name: "Product B", points: 30 },
+  { name: "Product C", points: 20 },
 ];
 
-export default function ReceiptSummaryPage() {
-    return (
-        // Congrats
-      <SafeAreaView className="flex items-center justify-center h-full">
-        <View className="flex items-center">
-          <Text className="text-3xl font-semibold text-center">Congrats!</Text>
-          {/* Celebration Icon */}
-          <Image
-            source={require("./celebratory-icon.png")} // Replace with your celebratory icon
-            className="mt-4 w-32 h-32"
-          />
-          {/* Products that got points in this transaction */}
-          <Text className="text-2xl font-semibold mt-4">Receipt Summary</Text>
-          <ScrollView className="max-h-40 mt-2">
-            {products.map((product, index) => (
-              <View key={index} className="flex flex-row justify-between py-2 border-b">
-                <Text className="text-lg">{product.name}</Text>
-                <Text className="text-lg font-semibold">{product.points} Points</Text>
-              </View>
-            ))}
-          </ScrollView>
+export default function ReceiptSummaryPage({ navigateFn }) {
+  return (
+    // Congrats
+    <SafeAreaView className="flex items-center justify-center h-full">
+      <View className="flex items-center">
+        <Text className="text-3xl font-semibold text-center">Congrats!</Text>
+        {/* Celebration Icon */}
+        <MaterialIcons
+          name={"celebration"}
+          size={150}
+          color={"rgb(34 197 94)"}
+        />
+        {/* Products that got points in this transaction */}
+        <Text className="text-2xl font-semibold mt-4 mb-4">
+          Receipt Summary
+        </Text>
+        <ScrollView className="max-h-40 flex w-60 mt-2">
+          {products.map((product, index) => (
+            <View
+              key={index}
+              className="flex flex-row justify-between py-2 border-b"
+            >
+              <Text className="text-lg">{product.name}</Text>
+              <Text className="text-lg font-semibold">
+                {product.points} Points
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
 
         {/* Button to return to Rewards Screen */}
         <TouchableOpacity
-            className="bg-green-500 p-2 rounded-lg "
-            onPress={() => {
-              // Route for the Rewards History
-            }}>
-            <Text className="text-white text-sm"> Confirm</Text>
+          className="bg-green-500 p-2 rounded-lg "
+          onPress={navigateFn}
+        >
+          <Text className="text-white text-sm"> Confirm</Text>
         </TouchableOpacity>
-          
-          {/* FAQ Button */}
-          <TouchableOpacity
-            className="bg-green-500 p-2 rounded-lg "
-            onPress={() => {
-              // Route for the FAQ page
-            }}>
-            <Text className="text-white text-sm"> FAQ</Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  }
+
+        {/* FAQ Button */}
+        <TouchableOpacity
+          className="bg-green-500 p-2 rounded-lg "
+          onPress={() => {
+            // Route for the FAQ page
+          }}
+        >
+          <Text className="text-white text-sm"> FAQ</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+}

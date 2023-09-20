@@ -1,36 +1,37 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Pressable,
-  ActivityIndicator,
-} from "react-native";
+import { SafeAreaView, ActivityIndicator } from "react-native";
+import { CommonActions } from "@react-navigation/native";
 import { useState, useEffect } from "react";
+import ReceiptSummaryPage from "../../../../screens/CameraSuccess";
 export default function SuccessScreen({ navigation }) {
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
-    let timer1 = setTimeout(() => setShowLoading(false), 3000);
+    let timer1 = setTimeout(() => setShowLoading(false), 1000);
     return () => {
       clearTimeout(timer1);
     };
   }, []);
 
+  const navigateAfterSummary = () => {
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [{ name: "Home" }, { name: "Rewards" }],
+      })
+    );
+  };
+
   return (
     <SafeAreaView>
       {showLoading ? (
-        <SafeAreaView className="">
-          <ActivityIndicator></ActivityIndicator>
+        <SafeAreaView className="h-full flex justify-center items-center">
+          <ActivityIndicator size="large"></ActivityIndicator>
         </SafeAreaView>
       ) : (
         <>
-          <Pressable onPress={() => navigation.navigate("Home")}>
-            <Text>Back</Text>
-          </Pressable>
-          <Text>This is where the sucess screen will go!</Text>
+          <ReceiptSummaryPage navigateFn={navigateAfterSummary} />
         </>
       )}
-      <Pressable onPress={() => navigation.navigate("LiveCamera")}></Pressable>
     </SafeAreaView>
   );
 }
