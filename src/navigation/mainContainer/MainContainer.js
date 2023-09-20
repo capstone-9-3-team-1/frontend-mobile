@@ -5,18 +5,15 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 // Screens
-import HomeScreen from "../tabs/HomeScreen";
-import RewardsScreen from "../tabs/RewardsScreen";
-import QuestsScreen from "../tabs/QuestsScreen";
-import UserScreen from "../tabs/UserScreen";
+import HomeScreen from "../tabs/Home/Screens/HomeScreen";
+import HomeRouter from "../tabs/Home/HomeRouter";
+import RewardsScreen from "../tabs/Rewards/RewardsScreen";
 import Welcome from "../mainContainer/screens/Welcome";
 import SignUpScreen from "../mainContainer/screens/SignUpScreen";
 import SignInScreen from "../mainContainer/screens/SignInScreen";
 import CameraRouter from "../tabs/Camera/CameraRouter";
 
 export default function MainContainer() {
-  const Tab = createBottomTabNavigator();
-
   return (
     <>
       <SignedOut>
@@ -24,81 +21,7 @@ export default function MainContainer() {
       </SignedOut>
       <SignedIn>
         <View className="h-full">
-          <Tab.Navigator
-            initialRouteName={"Home"}
-            screenOptions={{
-              tabBarShowLabel: false,
-              tabBarLabelPosition: "below-icon",
-              tabBarActiveTintColor: "green",
-              tabBarInactiveTintColor: "grey",
-              tabBarLabelStyle: {
-                fontSize: 11,
-              },
-              headerShown: false,
-            }}
-          >
-            <Tab.Screen
-              name={"Home"}
-              component={HomeScreen}
-              options={{
-                tabBarLabel: "Home",
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName = focused ? "home" : "home-outline";
-
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-              }}
-            />
-            <Tab.Screen
-              name={"Rewards"}
-              component={RewardsScreen}
-              options={{
-                tabBarLabel: "Rewards",
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName = focused ? "gift" : "gift-outline";
-
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-              }}
-            />
-            <Tab.Screen
-              name={"Camera"}
-              component={CameraRouter}
-              options={{
-                tabBarLabel: "Camera",
-                tabBarIcon: ({ focused, color, size }) => (
-                  <View className=" w-20 h-20 bg-white flex justify-center items-center rounded-full shadow-md">
-                    <Ionicons name={"camera"} size={size * 1.5} color={color} />
-                  </View>
-                ),
-                tabBarStyle: { display: "none" },
-              }}
-            />
-            <Tab.Screen
-              name={"Quests"}
-              component={QuestsScreen}
-              options={{
-                tabBarLabel: "Quests",
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName = focused ? "trophy" : "trophy-outline";
-
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-              }}
-            />
-            <Tab.Screen
-              name={"Dashboard"}
-              component={UserScreen}
-              options={{
-                tabBarLabel: "Dashboard",
-                tabBarIcon: ({ focused, color, size }) => {
-                  let iconName = focused ? "person" : "person-outline";
-
-                  return <Ionicons name={iconName} size={size} color={color} />;
-                },
-              }}
-            />
-          </Tab.Navigator>
+          <AppNavigator />
         </View>
       </SignedIn>
     </>
@@ -118,5 +41,70 @@ const Auth = () => {
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="SignIn" component={SignInScreen} />
     </Stack.Navigator>
+  );
+};
+
+const AppNavigator = () => {
+  const tabStyle =
+    (name) =>
+    ({ focused, color, size }) => {
+      let iconName = focused ? name : `${name}-outline`;
+      return <Ionicons name={iconName} size={size} color={color} />;
+    };
+
+  const tabInfo = [
+    {
+      name: "Home",
+      component: HomeRouter,
+      tabBarIcon: tabStyle("home"),
+      tabBarStyle: {},
+    },
+    {
+      name: "Camera",
+      component: CameraRouter,
+      tabBarIcon: ({ color, size }) => {
+        return (
+          <View className=" w-20 h-20 bg-white flex justify-center items-center rounded-full shadow-md">
+            <Ionicons name={"camera"} size={size * 1.5} color={color} />
+          </View>
+        );
+      },
+      tabBarStyle: { display: "none" },
+    },
+    {
+      name: "Rewards",
+      component: RewardsScreen,
+      tabBarIcon: tabStyle("gift"),
+      tabBarStyle: {},
+    },
+  ];
+
+  const Tab = createBottomTabNavigator();
+
+  return (
+    <Tab.Navigator
+      initialRouteName={"Home"}
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarLabelPosition: "below-icon",
+        tabBarActiveTintColor: "green",
+        tabBarInactiveTintColor: "grey",
+        tabBarLabelStyle: {
+          fontSize: 11,
+        },
+        headerShown: false,
+      }}
+    >
+      {tabInfo.map(({ name, component, tabBarIcon, tabBarStyle }) => (
+        <Tab.Screen
+          name={name}
+          component={component}
+          options={{
+            tabBarIcon: tabBarIcon,
+            tabBarStyle: tabBarStyle,
+          }}
+        />
+      ))}
+    </Tab.Navigator>
   );
 };
