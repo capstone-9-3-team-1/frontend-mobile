@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -12,24 +12,26 @@ import Welcome from "../mainContainer/screens/Welcome";
 import SignUpScreen from "../mainContainer/screens/SignUpScreen";
 import SignInScreen from "../mainContainer/screens/SignInScreen";
 import CameraRouter from "../tabs/Camera/CameraRouter";
+import UserScreen from "../../screens/UserScreen";
 
 export default function MainContainer() {
+  const Stack = createNativeStackNavigator();
   return (
     <>
       <SignedOut>
-        <Auth />
+        <Auth stack={Stack} />
       </SignedOut>
       <SignedIn>
         <View className="h-full">
-          <AppNavigator />
+          <AppNavigator stack={Stack} />
         </View>
       </SignedIn>
     </>
   );
 }
 
-const Auth = () => {
-  const Stack = createNativeStackNavigator();
+const Auth = ({ stack }) => {
+  const Stack = stack;
   return (
     <Stack.Navigator
       screenOptions={{
@@ -44,7 +46,24 @@ const Auth = () => {
   );
 };
 
-const AppNavigator = () => {
+const AppNavigator = ({ stack }) => {
+  const Stack = stack;
+  return (
+    <>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName="Tabs"
+      >
+        <Stack.Screen name="Tabs" component={TabNav} />
+        <Stack.Screen name="Profile" component={UserScreen} />
+      </Stack.Navigator>
+    </>
+  );
+};
+
+const TabNav = () => {
   const tabStyle =
     (name) =>
     ({ focused, color, size }) => {
@@ -78,9 +97,7 @@ const AppNavigator = () => {
       tabBarStyle: {},
     },
   ];
-
   const Tab = createBottomTabNavigator();
-
   return (
     <Tab.Navigator
       initialRouteName={"Home"}

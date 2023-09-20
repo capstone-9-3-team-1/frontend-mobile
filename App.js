@@ -31,11 +31,11 @@ export default function App() {
       publishableKey={Constants.expoConfig.extra.clerkPublishableKey}
       tokenCache={tokenCache}
     >
-      <NavigationContainer>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
           <MainContainer />
-        </QueryClientProvider>
-      </NavigationContainer>
+        </NavigationContainer>
+      </QueryClientProvider>
     </ClerkProvider>
   );
 }
