@@ -15,6 +15,7 @@ const products = [1, 2, 3, 4, 5, 6]; //
 
 import useProducts from "../../../../hooks/queries/useProducts";
 import useCategories from "../../../../hooks/queries/useCategories";
+import ProductCard from "./ProductCard";
 
 const categories = [
   require("../../../../assets/badges/Biodegradability.png"),
@@ -91,17 +92,18 @@ export default function HomeScreen({ navigation }) {
         <View className="flex-row w-screen flex-wrap m-1">
           {isLoading ? <ActivityIndicator /> : null}
           {data?.map((item, i) => (
-            <View
-              key={i}
-              className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
-            >
-              <Image
-                source={{
-                  uri: item.imageUrl,
-                }}
-                className="h-full rounded-3xl"
-              />
-            </View>
+            <ProductCard item={item} key={item.id} />
+            // <View
+            //   key={i}
+            //   className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
+            // >
+            //   <Image
+            //     source={{
+            //       uri: item.imageUrl,
+            //     }}
+            //     className="h-full rounded-3xl"
+            //   />
+            // </View>
           ))}
         </View>
       </ScrollView>
