@@ -1,21 +1,43 @@
 import { View, Text, Button, Image, SafeAreaView, ScrollView, TouchableOpacity} from "react-native";
 import { useAuth } from "@clerk/clerk-expo";
 import FAQScreen from "./FAQScreen";
-import FavoriteItemsScreen from "./FavoriteItemsScreen";
+import FavoriteItemsScreen from "./FavoriteItemsScreen"
+import { useState } from "react";
 
 const userName = "John Doe";
 const userPoints = 100;
 
-const AccordionList = ({ items }) => {
-  const [activeIndex, setActiveIndex] = useState(-1);
-  // ^ is UseState even necessary here?
+// Mock data
+const items = [
+{
+  id: 0,
+  title: "A",
+  bodyText: "Blah blah blah"
+},
+{
+  id: 1,
+  title: "B",
+  bodyText: "Woop woop"
+},
+{
+  id: 2,
+  title: "C",
+  bodyText: "I'm running out of words and sounds"
+},
+{
+  id: 3,
+  title: "D",
+  bodyText: "Welp you'll be alright... for now."
 }
+]
 
-const toggleAccordion = (index) => {
-  setActiveIndex(activeIndex === index ? -1 : index);
-};
 
-export default function UserScreen({}) {
+export default function UserScreen() {
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex===index ? -1: index);
+  }
   return (
     <SafeAreaView>
       <ScrollView>
@@ -36,10 +58,14 @@ export default function UserScreen({}) {
         </View>
 
 
-          {/* Tabs for Favorites and FAQ */}
+          {/* Tabs for Favorites, History,and FAQ */}
           {/* <View className="w-20 h-20">
           <Image source={require(
             // Insert url for Fave Icon
+          )}>
+          </Image>
+          <Image source={require(
+            // Insert url for History Icon
           )}>
           </Image>
           <Image source={require(
@@ -65,23 +91,25 @@ export default function UserScreen({}) {
     </View> */}
 
          {/* Accordion List of stuff */}
-         {/* <View>
-      {items.map((item, index) => (
-        <View key={index}>
-          <TouchableOpacity onPress={() => toggleAccordion(index)}>
-            <View className="flex-row items-center">
-              <Text>{item.title}</Text>
-              <Text>{activeIndex === index ? " -" : " +"}</Text>
+        <View className="border p-2">
+          {items.map((item, index) => (
+            <View key={index}>
+              <TouchableOpacity onPress={() => toggleAccordion(index)}>
+                <View className="border">
+                  <Text>{item.title}</Text>
+                  <Text className="">
+                    {activeIndex === index ? " -" : " +"}</Text>
+                </View>
+              </TouchableOpacity>
+              {activeIndex === index && (
+                <View>
+                  <Text>{item.bodyText}</Text>
+                </View>
+              )}
             </View>
-          </TouchableOpacity>
-          {activeIndex === index && (
-            <View>
-              <Text>{item.content}</Text>
-            </View>
-          )}
+          ))}
         </View>
-      ))}
-    </View> */}
+
 
           {/* Sign out */}
           <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

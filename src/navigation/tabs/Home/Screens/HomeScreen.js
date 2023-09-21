@@ -16,17 +16,8 @@ const products = [1, 2, 3, 4, 5, 6]; //
 
 import useProducts from "../../../../hooks/queries/useProducts";
 import useCategories from "../../../../hooks/queries/useCategories";
+import ProductCard from "./ProductCard";
 
-const categories = [
-  require("../../../../assets/badges/Biodegradability.png"),
-  require("../../../../assets/badges/CarbonFootprint.png"),
-  require("../../../../assets/badges/EnergyEfficiency.png"),
-  require("../../../../assets/badges/MinimalPackaging.png"),
-  require("../../../../assets/badges/Non-toxic.png"),
-  require("../../../../assets/badges/ReducedEmissions.png"),
-  require("../../../../assets/badges/SustainableMaterials.png"),
-  require("../../../../assets/badges/WaterConservation.png"),
-];
 
 export default function HomeScreen({ navigation }) {
   const { isLoading, isError, data, error } = useProducts();
@@ -34,7 +25,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <SafeAreaView className="flex  bg-slate-100">
-      <ScrollView className="p-4">
+      <ScrollView className="">
         {/* Search bar and User Circle */}
         <View className="flex flex-row items-center">
           <TextInput
@@ -57,7 +48,7 @@ export default function HomeScreen({ navigation }) {
         <ScrollView horizontal>
           {categoriesData.data?.map((item) => {
             return (
-              <View className="columns-1 mb-3">
+              <View key={item.id} className="columns-1 mb-3">
                 <View
                   key={item.id}
                   className=" rounded-full m-3 drop-shadow-lg bg-white mb-1"
@@ -89,20 +80,21 @@ export default function HomeScreen({ navigation }) {
 
         {/* featured products- New Arrivals */}
         <Text className="text-2xl font-semibold mx-3 mt-3"> New Arrivals</Text>
-        <View className="flex-row w-screen flex-wrap m-1">
+        <View className="flex-row w-screen px-auto flex-wrap m-1">
           {isLoading ? <ActivityIndicator /> : null}
           {data?.map((item, i) => (
-            <View
-              key={i}
-              className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
-            >
-              <Image
-                source={{
-                  uri: item.imageUrl,
-                }}
-                className="h-full rounded-3xl"
-              />
-            </View>
+            <ProductCard item={item} key={item.id} />
+            // <View
+            //   key={i}
+            //   className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
+            // >
+            //   <Image
+            //     source={{
+            //       uri: item.imageUrl,
+            //     }}
+            //     className="h-full rounded-3xl"
+            //   />
+            // </View>
           ))}
         </View>
       </ScrollView>
