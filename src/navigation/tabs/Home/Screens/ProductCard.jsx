@@ -12,8 +12,6 @@ function addBadge(item) {
   item.category === "carbon" ? badge="https://storage.googleapis.com/atara_images/CarbonFootprint.png" : null;
   item.category === "emision" ? badge="https://storage.googleapis.com/atara_images/ReducedEmissions.png" : null;
 
-
-
     return (
       <Image
         source={{uri: badge}}
