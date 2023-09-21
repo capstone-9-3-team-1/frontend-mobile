@@ -47,7 +47,7 @@ export default function HomeScreen({ navigation }) {
         <ScrollView horizontal>
           {categoriesData.data?.map((item) => {
             return (
-              <View className="columns-1 mb-3">
+              <View key={item.id} className="columns-1 mb-3">
                 <View
                   key={item.id}
                   className=" rounded-full m-3 drop-shadow-lg bg-white mb-1"
