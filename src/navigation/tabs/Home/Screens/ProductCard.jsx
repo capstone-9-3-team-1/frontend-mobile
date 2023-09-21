@@ -12,7 +12,7 @@ export default function ProductCard({ item }) {
         className="rounded-t-lg h-48"
       />
       <View className="p-3 bg-slate-200 rounded-b-2xl ">
-        <Text className="pt-0 font-semibold text-base">{item.name}</Text>
+        <Text className="font-semibold text-base">{item.name}</Text>
         <Text className="">{item.business}</Text>
         <View className="flex-row gap-1">
           <Image
