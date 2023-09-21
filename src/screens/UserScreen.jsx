@@ -11,22 +11,22 @@ const userPoints = 100;
 const items = [
 {
   id: 0,
-  title: "A",
+  title: "Favorites",
   bodyText: "Blah blah blah"
 },
 {
   id: 1,
-  title: "B",
+  title: "History",
   bodyText: "Woop woop"
 },
 {
   id: 2,
-  title: "C",
+  title: "FAQ",
   bodyText: "I'm running out of words and sounds"
 },
 {
   id: 3,
-  title: "D",
+  title: "Something else",
   bodyText: "Welp you'll be alright... for now."
 }
 ]
@@ -73,22 +73,6 @@ export default function UserScreen() {
           )}>
           </Image>
          </View> */}
-
-      {/* I'm not entirely sure how to make these icons show up on
-        the screen and how to make them be pressable buttons.
-        I wrote out some of this code tho and i've been trying to
-        jigsaw puzzle it all together.*/}
-
-      {/* <TouchableOpacity
-        onPress={() => {
-          // Navigate to the FAQ screen
-          navigation.navigate("FAQScreen");
-        }}
-      >
-        <Icon name="question-circle" size={50} color="blue" />
-        <Text>FAQ</Text>
-      </TouchableOpacity>
-    </View> */}
 
          {/* Accordion List of stuff */}
         <View className="border p-2">
