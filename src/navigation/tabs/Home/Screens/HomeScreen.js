@@ -17,10 +17,13 @@ const products = [1, 2, 3, 4, 5, 6]; //
 import useProducts from "../../../../hooks/queries/useProducts";
 import useCategories from "../../../../hooks/queries/useCategories";
 import ProductCard from "./ProductCard";
+import ProductShow from "./ProductShow";
 
 export default function HomeScreen({ navigation }) {
   const { isLoading, isError, data, error } = useProducts();
   const categoriesData = useCategories();
+
+  
 
   return (
     <SafeAreaView className="flex  bg-slate-100">
@@ -82,18 +85,24 @@ export default function HomeScreen({ navigation }) {
         <View className="flex-row w-screen px-auto flex-wrap m-1">
           {isLoading ? <ActivityIndicator /> : null}
           {data?.map((item, i) => (
-            <ProductCard item={item} key={item.id} />
-            // <View
-            //   key={i}
-            //   className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
-            // >
-            //   <Image
-            //     source={{
-            //       uri: item.imageUrl,
-            //     }}
-            //     className="h-full rounded-3xl"
-            //   />
-            // </View>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("ProductShow", {
+                  id: item.id,
+                  image: item.imageUrl,
+                  name: item.name,
+                  spec: item.spec,
+                  category: item.category,
+                  business: item.business,
+                  description: item.description, 
+                  price: item.price,
+                  tokenValue: item.tokenValue,
+                })
+              }
+              key={item.id}
+            >
+              <ProductCard item={item}/>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
