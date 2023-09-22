@@ -32,13 +32,14 @@ export default function RewardsScreen({ navigation }) {
               />
             </TouchableOpacity>
           </View>
-          <View className="ml-3">
+          <View className="ml-2">
             <Text className="text-2xl font-semibold">{userName}</Text>
             <Text className="text-lg font-semibold">{userPoints} Points</Text>
           </View>
+
           {/* Redeemed Rewards History Button */}
           <TouchableOpacity
-            className="bg-green-500 p-2 rounded-lg ml-16"
+            className="bg-green-500 p-2 rounded-lg ml-40"
             onPress={() => {
               // Route for the Rewards History
             }}
