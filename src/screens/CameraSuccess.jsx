@@ -10,9 +10,9 @@ import {
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const products = [
-  { name: "Product A", points: 50 },
-  { name: "Product B", points: 30 },
-  { name: "Product C", points: 20 },
+  { name: "Mod Papayas Towels", points: 50 },
+  { name: "Dr. Bronner's Magic Soaps ", points: 30 },
+  { name: "Pure Silk Eco Floss", points: 20 },
 ];
 
 export default function ReceiptSummaryPage({ navigateFn }) {
