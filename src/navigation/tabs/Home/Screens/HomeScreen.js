@@ -18,14 +18,13 @@ import useProducts from "../../../../hooks/queries/useProducts";
 import useCategories from "../../../../hooks/queries/useCategories";
 import ProductCard from "./ProductCard";
 
-
 export default function HomeScreen({ navigation }) {
   const { isLoading, isError, data, error } = useProducts();
   const categoriesData = useCategories();
 
   return (
     <SafeAreaView className="flex  bg-slate-100">
-      <ScrollView className="">
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* Search bar and User Circle */}
         <View className="flex flex-row items-center">
           <TextInput
@@ -45,7 +44,7 @@ export default function HomeScreen({ navigation }) {
         </View>
         {/* categories */}
         <Text className="text-2xl font-semibold mx-3">Categories</Text>
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {categoriesData.data?.map((item) => {
             return (
               <View key={item.id} className="columns-1 mb-3">
@@ -67,7 +66,7 @@ export default function HomeScreen({ navigation }) {
         </ScrollView>
 
         {/* Rectangle boxes- articles? */}
-        <ScrollView horizontal>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {articleBox.map((num) => (
             <View
               key={num}
