@@ -22,7 +22,7 @@ function addBadge(item) {
 }
 
 export default function ProductCard({ item }) {
-  console.log(item.imageUrl);
+
   return (
     <View className="w-48 h-fit m-2 border border-gray-200 rounded-2xl">
       <View className="relative">

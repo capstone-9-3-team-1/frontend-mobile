@@ -23,7 +23,7 @@ export default function RewardsScreen({ navigation }) {
         {/* User Circle, Name, and Points */}
         <View className="flex flex-row items-center m-5">
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-            <View className="rounded-full bg-white drop-shadow-lg">
+            <View className="rounded-full drop-shadow-lg">
               <Image
                 source={{
                   uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
