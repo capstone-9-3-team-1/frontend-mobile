@@ -38,8 +38,9 @@ export default function RewardsScreen({ navigation }) {
           </View>
 
           {/* Redeemed Rewards History Button */}
+          <View className="flex-1"></View>
           <TouchableOpacity
-            className="bg-green-500 p-2 rounded-lg ml-40"
+            className="bg-green-500 p-2 rounded-lg"
             onPress={() => {
               // Route for the Rewards History
             }}
@@ -70,7 +71,7 @@ export default function RewardsScreen({ navigation }) {
 
         {/* New Rewards */}
         <Text className="text-2xl font-semibold">New Rewards</Text>
-        <View className="flex-row w-screen flex-wrap">
+        <View className="flex-row flex-wrap">
           {products.map((num) => (
             <View
               key={num}
