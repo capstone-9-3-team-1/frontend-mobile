@@ -48,8 +48,18 @@ export default function HomeScreen({ navigation }) {
         {/* categories */}
         <Text className="text-2xl font-semibold mx-3">Categories</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {categoriesData.isLoading ? <ActivityIndicator /> : null}
           {categoriesData.data?.map((item) => {
             return (
+              <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("CategoryShow", {
+                  id: item.id,
+                  image: item.imageUrl
+                })
+              }
+              key={item.id}
+            >
               <View key={item.id} className="columns-1 mb-3">
                 <View
                   key={item.id}
@@ -64,6 +74,7 @@ export default function HomeScreen({ navigation }) {
                   {item.name}
                 </Text>
               </View>
+            </TouchableOpacity>       
             );
           })}
         </ScrollView>
