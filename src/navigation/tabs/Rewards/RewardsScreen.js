@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import Rewards from "./screens/Rewards";
+
 const array = [1, 2, 3, 4, 5, 6, 7, 8];
-const articleBox = [1, 2, 3, 4];
 const products = [1, 2, 3, 4, 5, 6];
 
 const userName = "John Doe";
@@ -28,7 +29,7 @@ export default function RewardsScreen({ navigation }) {
                 source={{
                   uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
                 }}
-                className="w-20 h-20 rounded-full"
+                className="w-8 h-8 rounded-full"
               />
             </TouchableOpacity>
           </View>
@@ -53,32 +54,22 @@ export default function RewardsScreen({ navigation }) {
         <Text className="text-2xl font-semibold mx-3"> Top Categories</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {array.map((num) => (
-            <View key={num} className=" p-16 rounded-full m-2 bg-white"></View>
+            <View key={num} className=" p-8 rounded-full m-2 bg-white"></View>
           ))}
         </ScrollView>
-
-        {/* Rectangle boxes - You can include them if needed */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {articleBox.map((num) => (
-            <View
-              key={num}
-              className="flex box-content h-56 w-80 m-2 rounded-3xl bg-white"
-            >
-              <Text></Text>
-            </View>
-          ))}
-        </ScrollView>
-
         {/* New Rewards */}
         <Text className="text-2xl font-semibold">New Rewards</Text>
-        <View className="flex-row flex-wrap">
-          {products.map((num) => (
-            <View
-              key={num}
-              className="flex box-content h-48 w-48 m-2 rounded-3xl bg-white"
-            ></View>
-          ))}
-        </View>
+        <ScrollView horizontal>
+          <View className="flex-row flex-wrap">
+            {products.map((num) => (
+              <View
+                key={num}
+                className="flex box-content h-48 w-48 m-2 rounded-3xl bg-white"
+              ></View>
+            ))}
+          </View>
+        </ScrollView>
+       <Rewards/>     
       </ScrollView>
     </SafeAreaView>
   );

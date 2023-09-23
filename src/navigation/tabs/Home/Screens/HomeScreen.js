@@ -2,26 +2,40 @@ import {
   View,
   Image,
   Text,
-  TextInput,
   SafeAreaView,
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8];
+import { useState } from "react";
+import axios from "axios";
+import SearchBar from "../reusable-components/SearchBar";
+import SearchResults from "../reusable-components/SearchResults";
+
 const articleBox = [1, 2, 3, 4];
-const products = [1, 2, 3, 4, 5, 6]; //
 
+// queries
 import useProducts from "../../../../hooks/queries/useProducts";
 import useCategories from "../../../../hooks/queries/useCategories";
 import ProductCard from "./ProductCard";
-import ProductShow from "./ProductShow";
 
 export default function HomeScreen({ navigation }) {
-  const { isLoading, isError, data, error } = useProducts();
+  const { isLoading, data, error } = useProducts();
   const categoriesData = useCategories();
+
+
+
+  const [results, setResults] = useState([]);
+
+  const handleSearch = async (query) => {
+    try {
+      const response = await axios.get(`${API_URL}?q=${query}`);
+      setResults(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   
 
@@ -30,10 +44,11 @@ export default function HomeScreen({ navigation }) {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Search bar and User Circle */}
         <View className="flex flex-row items-center">
-          <TextInput
-            placeholder="Search products"
-            className="flex-1 h-12 lg m-5 rounded-lg px-3 bg-white"
-          ></TextInput>
+          <View>
+            <SearchBar onSearch={handleSearch}/>
+            <SearchResults results={results} />
+          </View>
+
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <View className="rounded-full m-5 bg-white drop-shadow-lg">
               <Image
@@ -48,33 +63,35 @@ export default function HomeScreen({ navigation }) {
         {/* categories */}
         <Text className="text-2xl font-semibold mx-3">Categories</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {categoriesData.isLoading ? <ActivityIndicator /> : null}
+          {categoriesData.isLoading ? <ActivityIndicator /> : null}
           {categoriesData.data?.map((item) => {
             return (
               <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("CategoryShow", {
-                  id: item.id,
-                  image: item.imageUrl
-                })
-              }
-              key={item.id}
-            >
-              <View key={item.id} className="columns-1 mb-3">
-                <View
-                  key={item.id}
-                  className=" rounded-full m-3 drop-shadow-lg bg-white mb-1"
-                >
-                  <Image
-                    source={{ uri: item.imageUrl }}
-                    className="h-32 w-32 rounded-full"
-                  />
+                onPress={() =>
+                  navigation.navigate("CategoryShow", {
+                    id: item.id,
+                    image: item.imageUrl,
+                    name: item.name,
+                    description: item.description,
+                  })
+                }
+                key={item.id}
+              >
+                <View key={item.id} className="columns-1 mb-3">
+                  <View
+                    key={item.id}
+                    className=" rounded-full m-3 drop-shadow-lg bg-white mb-1"
+                  >
+                    <Image
+                      source={{ uri: item.imageUrl }}
+                      className="h-32 w-32 rounded-full"
+                    />
+                  </View>
+                  <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">
+                    {item.name}
+                  </Text>
                 </View>
-                <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">
-                  {item.name}
-                </Text>
-              </View>
-            </TouchableOpacity>       
+              </TouchableOpacity>
             );
           })}
         </ScrollView>
@@ -105,14 +122,14 @@ export default function HomeScreen({ navigation }) {
                   spec: item.spec,
                   category: item.category,
                   business: item.business,
-                  description: item.description, 
+                  description: item.description,
                   price: item.price,
                   tokenValue: item.tokenValue,
                 })
               }
               key={item.id}
             >
-              <ProductCard item={item}/>
+              <ProductCard item={item} />
             </TouchableOpacity>
           ))}
         </View>

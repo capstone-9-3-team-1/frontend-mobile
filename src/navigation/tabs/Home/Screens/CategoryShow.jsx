@@ -25,9 +25,11 @@ export default function CategoryShow({ route, navigation }) {
   const {
     id,
     image,
+    name,
+    description
   } = route.params;
   
-  console.log(image)
+  console.log(name)
   
   return (
     <SafeAreaView>
@@ -42,9 +44,11 @@ export default function CategoryShow({ route, navigation }) {
               uri: image,
             }}
             resizeMode="contain"
-            className="h-fit"
+            className=""
           /> 
-        </View>    
+        <Text className="text-slate-600 text-3xl p-5">{name}</Text> 
+        <Text>{description}</Text>
+        </View>   
     </ScrollView>
   </SafeAreaView>
   );
