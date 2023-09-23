@@ -21,8 +21,8 @@ import useCategories from "../../../../hooks/queries/useCategories";
 import ProductCard from "./ProductCard";
 
 export default function HomeScreen({ navigation }) {
-  const { isLoading, data, error } = useProducts();
-  const categoriesData = useCategories();
+  const products = useProducts();
+  const categories = useCategories();
 
 
 
@@ -63,8 +63,9 @@ export default function HomeScreen({ navigation }) {
         {/* categories */}
         <Text className="text-2xl font-semibold mx-3">Categories</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {categoriesData.isLoading ? <ActivityIndicator /> : null}
-          {categoriesData.data?.map((item) => {
+          {categories.isLoading ? <ActivityIndicator /> : null}
+          {categories.error ? <p>{categories.error.message}</p> : null}
+          {categories.data?.map((item) => {
             return (
               <TouchableOpacity
                 onPress={() =>
@@ -111,8 +112,8 @@ export default function HomeScreen({ navigation }) {
         {/* featured products- New Arrivals */}
         <Text className="text-2xl font-semibold mx-3 mt-3"> New Arrivals</Text>
         <View className="flex-row w-screen px-auto flex-wrap m-1">
-          {isLoading ? <ActivityIndicator /> : null}
-          {data?.map((item, i) => (
+          {products.isLoading ? <ActivityIndicator /> : null}
+          {products.data?.map((item, i) => (
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("ProductShow", {
