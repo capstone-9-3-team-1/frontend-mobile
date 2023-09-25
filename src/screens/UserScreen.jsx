@@ -3,6 +3,7 @@ import { useAuth } from "@clerk/clerk-expo";
 import FAQScreen from "./FAQScreen";
 import FavoriteItemsScreen from "./FavoriteItemsScreen"
 import { useState } from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const userName = "John Doe";
 const userPoints = 100;
@@ -76,15 +77,22 @@ export default function UserScreen() {
             <View key={index}>
               <TouchableOpacity onPress={() => toggleAccordion(index)}>
                 <View className="flex-row border rounded-lg m-3 justify-between bg-green-200">
-                  <Text className="text-2xl font-semibold p-5">{item.title}
-                  <Text className="items-end">
-                    {activeIndex === index ? " -" : " +"}</Text>
-                </Text>
+                  <Text className="text-2xl font-semibold p-5">
+                    {item.title}</Text>
+                    <View className="flex-grow justify-items-center" />
+                    <View className="rounded-full bg-white p-3 h-14">
+                    <Ionicons
+            name={activeIndex === index ? "ios-arrow-up" : "ios-arrow-down"} 
+            size={30} 
+            color="black" />
+                </View>
                 </View>
               </TouchableOpacity>
               {activeIndex === index && (
-                <View>
-                  <Text>{item.bodyText}</Text>
+                <View className="flex-row border rounded-lg m-3 justify-between">
+                  <Text className="text-lg font-semibold p-5">
+                    {item.bodyText}
+                    </Text>
                 </View>
               )}
             </View>
