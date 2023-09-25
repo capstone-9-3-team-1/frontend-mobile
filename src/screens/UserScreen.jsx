@@ -55,14 +55,14 @@ export default function UserScreen() {
               <Text className="text-2xl font-semibold">{userName}</Text>
               <Text className="text-lg font-semibold">{userPoints} Points</Text>
             </View>
-            <View className="justify-items-end">
+            <View className="flex-1 flex-row-reverse">
           <TouchableOpacity
-            className="bg-green-500 p-2 rounded-lg items-end"
+            className="bg-green-500 p-3 rounded-xl"
             onPress={() => {
               // Route for Home
             }}
           >
-            <Text className="text-white text-base"> Home </Text>
+            <Text className="text-white text-base font-bold text-xl"> Home </Text>
           </TouchableOpacity>
         </View>
         </View>
