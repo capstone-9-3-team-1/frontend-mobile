@@ -11,22 +11,22 @@ const userPoints = 100;
 const items = [
 {
   id: 0,
-  title: "Favorites",
+  title: "Your Favorites",
   bodyText: "Blah blah blah"
 },
 {
   id: 1,
-  title: "History",
+  title: "Purchase History",
   bodyText: "Woop woop"
 },
 {
   id: 2,
-  title: "FAQ",
+  title: "FAQ (Frequently Asked Questions)",
   bodyText: "I'm running out of words and sounds"
 },
 {
   id: 3,
-  title: "Something else",
+  title: "Help",
   bodyText: "Welp you'll be alright... for now."
 }
 ]
@@ -55,34 +55,31 @@ export default function UserScreen() {
               <Text className="text-2xl font-semibold">{userName}</Text>
               <Text className="text-lg font-semibold">{userPoints} Points</Text>
             </View>
+            <View className="justify-items-end">
+          <TouchableOpacity
+            className="bg-green-500 p-2 rounded-lg items-end"
+            onPress={() => {
+              // Route for Home
+            }}
+          >
+            <Text className="text-white text-base"> Home </Text>
+          </TouchableOpacity>
         </View>
-
+        </View>
+        
 
           {/* Tabs for Favorites, History,and FAQ */}
-          {/* <View className="w-20 h-20">
-          <Image source={require(
-            // Insert url for Fave Icon
-          )}>
-          </Image>
-          <Image source={require(
-            // Insert url for History Icon
-          )}>
-          </Image>
-          <Image source={require(
-            // Insert url for FAQ Icon
-          )}>
-          </Image>
-         </View> */}
 
          {/* Accordion List of stuff */}
-        <View className="border p-2">
+        <View className="border p-2 rounded-lg bg-pink-100">
           {items.map((item, index) => (
             <View key={index}>
               <TouchableOpacity onPress={() => toggleAccordion(index)}>
-                <View className="border">
-                  <Text>{item.title}</Text>
-                  <Text className="">
+                <View className="flex-row border rounded-lg m-3 justify-between bg-green-200">
+                  <Text className="text-2xl font-semibold p-5">{item.title}
+                  <Text className="items-end">
                     {activeIndex === index ? " -" : " +"}</Text>
+                </Text>
                 </View>
               </TouchableOpacity>
               {activeIndex === index && (
