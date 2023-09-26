@@ -114,6 +114,7 @@ const TabNav = () => {
     >
       {tabInfo.map(({ name, component, tabBarIcon, tabBarStyle }) => (
         <Tab.Screen
+          key={name}
           name={name}
           component={component}
           options={{
