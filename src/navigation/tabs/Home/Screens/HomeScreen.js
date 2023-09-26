@@ -8,47 +8,32 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-import { useState } from "react";
-import axios from "axios";
-import SearchBar from "../reusable-components/SearchBar";
-import SearchResults from "../reusable-components/SearchResults";
+
+
 
 const articleBox = [1, 2, 3, 4];
 
 // queries
 import useProducts from "../../../../hooks/queries/useProducts";
 import useCategories from "../../../../hooks/queries/useCategories";
+
+//components
+import Search from "../components/Search"
 import ProductCard from "./ProductCard";
 
-export default function HomeScreen({ navigation }) {
+
+export default function HomeScreen({ navigation }) { 
   const products = useProducts();
   const categories = useCategories();
-
-
-
-  const [results, setResults] = useState([]);
-
-  const handleSearch = async (query) => {
-    try {
-      const response = await axios.get(`${API_URL}?q=${query}`);
-      setResults(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
   
-
   return (
     <SafeAreaView className="flex  bg-slate-100">
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Search bar and User Circle */}
         <View className="flex flex-row items-center">
-          <View>
-            <SearchBar onSearch={handleSearch}/>
-            <SearchResults results={results} />
-          </View>
-
+         
+            {/* <Search/>   */}
+         
           <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
             <View className="rounded-full m-5 bg-white drop-shadow-lg">
               <Image
