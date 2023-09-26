@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
           {isLoading ? <></> : <></>}
           {/* Search bar and User Circle */}
           <View className="flex flex-row items-center">
-            <Search/>
+            <Search />
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <View className="rounded-full m-5 bg-white drop-shadow-lg">
                 <Image
@@ -44,22 +44,31 @@ export default function HomeScreen({ navigation }) {
           {/* categories */}
           <Text className="text-2xl font-semibold mx-3">Categories</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {categories.isLoading ? <ActivityIndicator /> : null}
             {categories?.map((item) => {
               return (
-                <View key={item.id} className="columns-1 mb-3">
-                  <View
-                    key={item.id}
-                    className=" rounded-full m-3 drop-shadow-lg bg-white mb-1"
-                  >
-                    <Image
-                      source={{ uri: item.imageUrl }}
-                      className="h-32 w-32 rounded-full"
-                    />
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("CategoryShow", {
+                      id: item.id,
+                      image: item.imageUrl,
+                      name: item.name,
+                      description: item.description,
+                    })
+                  }
+                >
+                  <View key={item.id} className="columns-1 mb-3">
+                    <View className=" rounded-full m-3 drop-shadow-lg bg-white mb-1">
+                      <Image
+                        source={{ uri: item.imageUrl }}
+                        className="h-32 w-32 rounded-full"
+                      />
+                    </View>
+                    <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">
+                      {item.name}
+                    </Text>
                   </View>
-                  <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">
-                    {item.name}
-                  </Text>
-                </View>
+                </TouchableOpacity>
               );
             })}
           </ScrollView>
@@ -78,7 +87,7 @@ export default function HomeScreen({ navigation }) {
 
           {/* featured products- New Arrivals */}
           <Text className="text-2xl font-semibold mx-3 mt-3">New Arrivals</Text>
-          <View className="flex-row w-screen px-auto flex-wrap m-1">
+          <View className="flex px-auto  m-1">
             {products.map((item, i) => (
               <TouchableOpacity
                 onPress={() =>
