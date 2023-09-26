@@ -12,8 +12,6 @@ function addBadge(item) {
   item.category === "carbon" ? badge="https://storage.googleapis.com/atara_images/CarbonFootprint.png" : null;
   item.category === "emision" ? badge="https://storage.googleapis.com/atara_images/ReducedEmissions.png" : null;
 
-
-
     return (
       <Image
         source={{uri: badge}}
@@ -24,7 +22,7 @@ function addBadge(item) {
 }
 
 export default function ProductCard({ item }) {
-  console.log(item.imageUrl);
+
   return (
     <View className="w-48 h-fit m-2 border border-gray-200 rounded-2xl">
       <View className="relative">

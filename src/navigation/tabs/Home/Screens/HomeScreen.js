@@ -12,6 +12,7 @@ import {
 // import useCategories from "../../../../utils/hooks/queries/useCategories";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import ProductCard from "./ProductCard";
+import ProductShow from "./ProductShow";
 
 const articleBox = [1, 2, 3, 4];
 
@@ -19,6 +20,8 @@ export default function HomeScreen({ navigation }) {
   // const { isLoading, isError, data, error } = useProducts();
   // const categoriesData = useCategories();
   const { isLoading, isError, products, categories } = useHomeData();
+
+  
 
   return (
     <SafeAreaView className="flex  bg-slate-100">
@@ -79,30 +82,44 @@ export default function HomeScreen({ navigation }) {
             ))}
           </ScrollView>
 
-          {/* featured products- New Arrivals */}
-          <Text className="text-2xl font-semibold mx-3 mt-3">
-            {" "}
-            New Arrivals
-          </Text>
-          <View className="flex-row w-screen px-auto flex-wrap m-1">
-            {products?.map((item, i) => (
-              <ProductCard item={item} key={item.id} />
-            ))}
-          </View>
-        </ScrollView>
-      )}
+        {/* featured products- New Arrivals */}
+        <Text className="text-2xl font-semibold mx-3 mt-3"> New Arrivals</Text>
+        <View className="flex-row w-screen px-auto flex-wrap m-1">
+          {isLoading ? <ActivityIndicator /> : null}
+          {data?.map((item, i) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("ProductShow", {
+                  id: item.id,
+                  image: item.imageUrl,
+                  name: item.name,
+                  spec: item.spec,
+                  category: item.category,
+                  business: item.business,
+                  description: item.description, 
+                  price: item.price,
+                  tokenValue: item.tokenValue,
+                })
+              }
+              key={item.id}
+            >
+              <ProductCard item={item}/>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
-// <View
-//   key={i}
-//   className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
-// >
-//   <Image
-//     source={{
-//       uri: item.imageUrl,
-//     }}
-//     className="h-full rounded-3xl"
-//   />
-// </View>
+{/* <View
+  key={i}
+  className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
+>
+  <Image
+    source={{
+      uri: item.imageUrl,
+    }}
+    className="h-full rounded-3xl"
+  />
+</View> */}
