@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { View, TextInput, Button } from 'react-native';
-import useSearchProducts from "../../../../hooks/queries/useSearchProducts"
+import useSearchProducts from "../../../../utils/hooks/queries/useSearchProducts"
 
 
 const Search = () => {
@@ -9,16 +9,15 @@ const Search = () => {
    const [results, setResults] = useState([]);
 
   
-   
 
-   useEffect(() => {
-    const getData = setTimeout(() => {
-      const searchProducts = useSearchProducts(searchTerm);
-     setResult(searchProducts);
-    }, 2000)
+  //  useEffect(() => {
+  //   const getData = setTimeout(() => {
+  //     const searchProducts = useSearchProducts(searchTerm);
+  //    setResult(searchProducts);
+  //   }, 2000)
 
-    return () => clearTimeout(getData)
-  }, [searchTerm])
+  //   return () => clearTimeout(getData)
+  // }, [searchTerm])
 
   // const handleSearch = async (searchTerm) => {
   //   try {
@@ -39,7 +38,7 @@ const Search = () => {
         value={searchTerm}
         onChangeText={setSearchTerm}
       />
-      <Button title="Search" onPress={handleSearch} />
+      {/* <Button title="Search" onPress={handleSearch} /> */}
     </View>
   );
 };

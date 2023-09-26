@@ -1,10 +1,11 @@
 import { useQuery } from "react-query";
 import axios from "axios";
+import { API } from "../../constants";
 
 const useProducts = (searchTerm) => {
   const fetchProducts = (searchTerm) =>
     axios
-      .get(`${process.env.EXPO_PUBLIC_API_URL}/search/products/${searchTerm}`)
+      .get(`${API}/search/products/${searchTerm}`)
       .then((res) => res.data);
 
   return useQuery({

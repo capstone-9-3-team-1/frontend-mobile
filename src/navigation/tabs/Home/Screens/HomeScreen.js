@@ -10,6 +10,7 @@ import {
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import ProductCard from "./ProductCard";
 import { useUser } from "@clerk/clerk-expo";
+import Search from "../components/Search";
 
 const articleBox = [1, 2, 3, 4];
 
@@ -28,10 +29,7 @@ export default function HomeScreen({ navigation }) {
           {isLoading ? <></> : <></>}
           {/* Search bar and User Circle */}
           <View className="flex flex-row items-center">
-            <TextInput
-              placeholder="Search products"
-              className="flex-1 h-12 lg m-5 rounded-lg px-3 bg-white"
-            ></TextInput>
+            <Search/>
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <View className="rounded-full m-5 bg-white drop-shadow-lg">
                 <Image
