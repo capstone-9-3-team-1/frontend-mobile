@@ -8,25 +8,22 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-// import useProducts from "../../../../utils/hooks/queries/useProducts";
-// import useCategories from "../../../../utils/hooks/queries/useCategories";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import ProductCard from "./ProductCard";
-import ProductShow from "./ProductShow";
+import { useUser } from "@clerk/clerk-expo";
 
 const articleBox = [1, 2, 3, 4];
 
 export default function HomeScreen({ navigation }) {
-  // const { isLoading, isError, data, error } = useProducts();
-  // const categoriesData = useCategories();
-  const { isLoading, isError, products, categories } = useHomeData();
-
-  
+  const { isLoading, products, categories } = useHomeData();
+  const { user } = useUser();
 
   return (
     <SafeAreaView className="flex  bg-slate-100">
       {isLoading ? (
-        <ActivityIndicator />
+        <View className="flex h-full justify-center items-center w-full">
+          <ActivityIndicator size="large" />
+        </View>
       ) : (
         <ScrollView showsVerticalScrollIndicator={false}>
           {isLoading ? <></> : <></>}
@@ -40,7 +37,7 @@ export default function HomeScreen({ navigation }) {
               <View className="rounded-full m-5 bg-white drop-shadow-lg">
                 <Image
                   source={{
-                    uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
+                    uri: user?.imageUrl,
                   }}
                   className="w-20 h-20 rounded-full"
                 />
@@ -82,37 +79,38 @@ export default function HomeScreen({ navigation }) {
             ))}
           </ScrollView>
 
-        {/* featured products- New Arrivals */}
-        <Text className="text-2xl font-semibold mx-3 mt-3"> New Arrivals</Text>
-        <View className="flex-row w-screen px-auto flex-wrap m-1">
-          {isLoading ? <ActivityIndicator /> : null}
-          {data?.map((item, i) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("ProductShow", {
-                  id: item.id,
-                  image: item.imageUrl,
-                  name: item.name,
-                  spec: item.spec,
-                  category: item.category,
-                  business: item.business,
-                  description: item.description, 
-                  price: item.price,
-                  tokenValue: item.tokenValue,
-                })
-              }
-              key={item.id}
-            >
-              <ProductCard item={item}/>
-            </TouchableOpacity>
-          ))}
-        </View>
-      </ScrollView>
+          {/* featured products- New Arrivals */}
+          <Text className="text-2xl font-semibold mx-3 mt-3">New Arrivals</Text>
+          <View className="flex-row w-screen px-auto flex-wrap m-1">
+            {products.map((item, i) => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("ProductShow", {
+                    id: item.id,
+                    image: item.imageUrl,
+                    name: item.name,
+                    spec: item.spec,
+                    category: item.category,
+                    business: item.business,
+                    description: item.description,
+                    price: item.price,
+                    tokenValue: item.tokenValue,
+                  })
+                }
+                key={item.id}
+              >
+                <ProductCard item={item} />
+              </TouchableOpacity>
+            ))}
+          </View>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 }
 
-{/* <View
+{
+  /* <View
   key={i}
   className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
 >
@@ -122,4 +120,5 @@ export default function HomeScreen({ navigation }) {
     }}
     className="h-full rounded-3xl"
   />
-</View> */}
+</View> */
+}
