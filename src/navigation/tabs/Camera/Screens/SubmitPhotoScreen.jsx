@@ -1,4 +1,4 @@
-import { Pressable, SafeAreaView, Text, Image, Alert } from "react-native";
+import { Pressable, SafeAreaView, Text, Image } from "react-native";
 
 export default function SubmitPhotoScreen({ route, navigation }) {
   const { photo } = route.params;
@@ -7,7 +7,7 @@ export default function SubmitPhotoScreen({ route, navigation }) {
       <Image className=" h-5/6 w-5/6 mt-5" source={{ uri: photo }} />
       <Pressable
         className="items-center bg-green-500 text-white min-w-[150] px-5 py-3 rounded-md"
-        onPress={() => navigation.navigate("Success")}
+        onPress={() => navigation.navigate("Success", { photo: photo })}
       >
         <Text className="text-white">Submit</Text>
       </Pressable>

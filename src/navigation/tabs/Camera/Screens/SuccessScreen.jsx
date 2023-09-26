@@ -1,16 +1,17 @@
-import { SafeAreaView, ActivityIndicator } from "react-native";
+import { SafeAreaView, ActivityIndicator, Text } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import ReceiptSummaryPage from "../../../../screens/CameraSuccess";
-export default function SuccessScreen({ navigation }) {
-  const [showLoading, setShowLoading] = useState(true);
+import useCreateReceipt from "../../../../utils/hooks/mutations/useCreateReceipt";
+
+export default function SuccessScreen({ route, navigation }) {
+  const { photo } = route.params;
+  const { newRecieptIsLoading, newRecieptIsError, data, mutate, error } =
+    useCreateReceipt();
 
   useEffect(() => {
-    let timer1 = setTimeout(() => setShowLoading(false), 1000);
-    return () => {
-      clearTimeout(timer1);
-    };
-  }, []);
+    mutate(photo);
+  }, [photo]);
 
   const navigateAfterSummary = () => {
     navigation.dispatch(
@@ -23,13 +24,20 @@ export default function SuccessScreen({ navigation }) {
 
   return (
     <SafeAreaView>
-      {showLoading ? (
+      {newRecieptIsLoading ? (
         <SafeAreaView className="h-full flex justify-center items-center">
           <ActivityIndicator size="large"></ActivityIndicator>
         </SafeAreaView>
       ) : (
         <>
-          <ReceiptSummaryPage navigateFn={navigateAfterSummary} />
+          {newRecieptIsError ? (
+            <Text>Error!</Text>
+          ) : (
+            <ReceiptSummaryPage
+              newRecieptData={data}
+              navigateFn={navigateAfterSummary}
+            />
+          )}
         </>
       )}
     </SafeAreaView>
