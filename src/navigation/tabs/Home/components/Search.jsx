@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import useSearchProducts from "../../../../utils/hooks/queries/useSearchProducts"
 
+import axios from 'axios';
+import { API } from '../../../../utils/constants';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
-   const [results, setResults] = useState([]);
-
-  
+   
 
   //  useEffect(() => {
   //   const getData = setTimeout(() => {
@@ -19,14 +19,15 @@ const Search = () => {
   //   return () => clearTimeout(getData)
   // }, [searchTerm])
 
-  // const handleSearch = async (searchTerm) => {
-  //   try {
-  //     const response = await axios.get(`${API_URL}?q=${searchTerm}`);
-  //     setResults(response.data);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
+  const handleSearch = async (searchTerm) => {
+    try {
+      const response = await axios.get(`${API}/search/products/${searchTerm}`);
+      setResult(response.data);
+      console.log(result)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
 
 
@@ -38,7 +39,10 @@ const Search = () => {
         value={searchTerm}
         onChangeText={setSearchTerm}
       />
-      {/* <Button title="Search" onPress={handleSearch} /> */}
+      <Button title="Search" onPress={handleSearch} />
+      <View>
+        {result}
+      </View>
     </View>
   );
 };

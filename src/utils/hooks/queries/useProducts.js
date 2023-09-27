@@ -1,18 +1,19 @@
 import { useQuery } from "react-query";
 import { API } from "../../constants";
 
-const fetchProducts = async () => {
-  const res = await fetch(`${API}/products`);
-  if (!res.ok) {
-    throw new Error("network error");
-  }
-  return res.json();
-};
+import axios from "axios";
 
-export default function useProducts() {
-  const { isLoading, isError, data, error } = useQuery({
-    queryKey: ["products"], // keeps track of this fetch
-    queryFn: fetchProducts,
-  });
-  return { isLoading, isError, data, error };
-}
+const useProducts = () => {
+    const fetchProducts = () =>
+      axios
+        .get(`${API}/products`)
+        .then((res) => res.data);
+  
+    return useQuery({
+      queryKey: ["products"],
+      queryFn: fetchProducts,
+    });
+  };
+  
+  export default useProducts;
+

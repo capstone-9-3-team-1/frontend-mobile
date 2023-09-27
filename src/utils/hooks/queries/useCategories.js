@@ -1,18 +1,19 @@
 import { useQuery } from "react-query";
 import { API } from "../../constants";
+import axios from "axios";
 
-const fetchCategories = async () => {
-  const res = await fetch(`${API}/categories`);
-  if (!res.ok) {
-    throw new Error("network error");
-  }
-  return res.json();
-};
+const useCategories = () => {
+    const fetchCategories = () =>
+      axios
+        .get(`${API}/categories`)
+        .then((res) => res.data);
+  
+    return useQuery({
+      queryKey: ["categories"],
+      queryFn: fetchCategories,
+    });
+  };
+  
+  export default useCategories;
 
-export default function useCategories() {
-  const { isLoading, isError, data, error } = useQuery({
-    queryKey: ["categories"], // keeps track of this fetch
-    queryFn: fetchCategories,
-  });
-  return { isLoading, isError, data, error };
-}
+

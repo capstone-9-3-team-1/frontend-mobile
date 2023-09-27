@@ -86,9 +86,11 @@ export default function HomeScreen({ navigation }) {
           </ScrollView>
 
           {/* featured products- New Arrivals */}
+
           <Text className="text-2xl font-semibold mx-3 mt-3">New Arrivals</Text>
-          <View className="flex px-auto  m-1">
-            {products.map((item, i) => (
+          <View className="flex flex-row flex-wrap justify-start m-1">
+          <ScrollView>
+          {products.map((item, i) => (
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("ProductShow", {
@@ -108,6 +110,10 @@ export default function HomeScreen({ navigation }) {
                 <ProductCard item={item} />
               </TouchableOpacity>
             ))}
+
+          </ScrollView>
+          
+           
           </View>
         </ScrollView>
       )}
