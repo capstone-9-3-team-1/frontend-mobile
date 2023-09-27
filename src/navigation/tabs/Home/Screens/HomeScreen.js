@@ -10,7 +10,7 @@ import {
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import ProductCard from "./ProductCard";
 import { useUser } from "@clerk/clerk-expo";
-import Search from "../components/Search";
+import Search from "./Search";
 
 const articleBox = [1, 2, 3, 4];
 
@@ -27,10 +27,10 @@ export default function HomeScreen({ navigation }) {
       ) : (
         <ScrollView showsVerticalScrollIndicator={false}>
           {isLoading ? <></> : <></>}
-          {/* Search bar and User Circle */}
+          {/*  User Circle and Logo, and Search below  */}
           <View className="flex">
             <Image
-              className="h-10 flex"
+              className="h-10"
               source={{
                 uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
               }}
@@ -47,8 +47,9 @@ export default function HomeScreen({ navigation }) {
                 />
               </View>
             </TouchableOpacity>
-            <Search />
           </View>
+          <Search />
+
           {/* categories */}
           <Text className="text-2xl font-semibold mx-3">Categories</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
