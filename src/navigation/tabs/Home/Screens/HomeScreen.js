@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
   const { user } = useUser();
 
   return (
-    <SafeAreaView className="flex  bg-slate-100">
+    <SafeAreaView className="  bg-slate-100">
       {isLoading ? (
         <View className="flex h-full justify-center items-center w-full">
           <ActivityIndicator size="large" />
@@ -28,9 +28,10 @@ export default function HomeScreen({ navigation }) {
         <ScrollView showsVerticalScrollIndicator={false}>
           {isLoading ? <></> : <></>}
           {/*  User Circle and Logo, and Search below  */}
-          <View className="flex">
+          <View className="flex flex-row items-center">
+            {/* logo */}
             <Image
-              className="h-10"
+              className="h-10 flex-1 ml-[-40%] shadow-lg"
               source={{
                 uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
               }}
@@ -38,7 +39,7 @@ export default function HomeScreen({ navigation }) {
             />
 
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-              <View className=" m-5 drop-shadow-lg">
+              <View className=" m-5 shadow-lg">
                 <Image
                   source={{
                     uri: user?.imageUrl,

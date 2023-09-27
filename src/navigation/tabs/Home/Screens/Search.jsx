@@ -25,8 +25,8 @@ const Search = ({ navigation }) => {
   }, [searchTerm]);
 
   return (
-    <View>
-      <View className=" mx-3 bg-white rounded-full p-2 shadow-md">
+    <View className="mb-5">
+      <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
         <View className="flex-1 flex-row">
           <Ionicons name="search" size={20} className="flex-1"></Ionicons>
           <TextInput
