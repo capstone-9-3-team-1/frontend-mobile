@@ -4,46 +4,48 @@ import useSearchProducts from "../../../../utils/hooks/queries/useSearchProducts
 
 import axios from 'axios';
 import { API } from '../../../../utils/constants';
+import ProductCard from '../Screens/ProductCard';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
    
-
-  //  useEffect(() => {
-  //   const getData = setTimeout(() => {
-  //     const searchProducts = useSearchProducts(searchTerm);
-  //    setResult(searchProducts);
-  //   }, 2000)
-
-  //   return () => clearTimeout(getData)
-  // }, [searchTerm])
-
-  const handleSearch = async (searchTerm) => {
-    try {
-      const response = await axios.get(`${API}/search/products/${searchTerm}`);
-      setResult(response.data);
-      console.log(result)
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  //console.log(useSearchProducts(searchTerm))
 
 
+
+  useEffect(() => {
+    const getData = setTimeout(() => {
+      axios
+     .get(`${API}/search/products/${searchTerm}`)
+      .then((res) => {
+        console.log(res.data);
+        setResult(res.data)
+      });
+    }, 1000)
+
+    return () => clearTimeout(getData)
+  }, [searchTerm])
 
   return (
     <View>
+      <View className=" mx-3 bg-white rounded-full p-4 shadow-md">
+      <View className="relative">
       <TextInput
-        className="flex-1 h-12 lg m-5 rounded-lg px-3 bg-red-300"
-        placeholder="Enter search searchTerm"
+        className="bg-white "
+        placeholder="Search..."
         value={searchTerm}
-        onChangeText={setSearchTerm}
+        onChangeText={text => setSearchTerm(text)}
       />
-      <Button title="Search" onPress={handleSearch} />
-      <View>
-        {result}
-      </View>
+     
     </View>
+    </View>
+    {result.map(item => <ProductCard item={item} />)}
+
+    </View>
+    
+    
+
   );
 };
 

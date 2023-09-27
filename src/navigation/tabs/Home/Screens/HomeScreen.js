@@ -28,18 +28,26 @@ export default function HomeScreen({ navigation }) {
         <ScrollView showsVerticalScrollIndicator={false}>
           {isLoading ? <></> : <></>}
           {/* Search bar and User Circle */}
-          <View className="flex flex-row items-center">
-            <Search />
+          <View className="flex">
+            <Image
+              className="h-10 flex"
+              source={{
+                uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
+              }}
+              resizeMode="contain"
+            />
+
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-              <View className="rounded-full m-5 bg-white drop-shadow-lg">
+              <View className=" m-5 drop-shadow-lg">
                 <Image
                   source={{
                     uri: user?.imageUrl,
                   }}
-                  className="w-20 h-20 rounded-full"
+                  className="w-12 h-12 rounded-full"
                 />
               </View>
             </TouchableOpacity>
+            <Search />
           </View>
           {/* categories */}
           <Text className="text-2xl font-semibold mx-3">Categories</Text>
@@ -89,31 +97,28 @@ export default function HomeScreen({ navigation }) {
 
           <Text className="text-2xl font-semibold mx-3 mt-3">New Arrivals</Text>
           <View className="flex flex-row flex-wrap justify-start m-1">
-          <ScrollView>
-          {products.map((item, i) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("ProductShow", {
-                    id: item.id,
-                    image: item.imageUrl,
-                    name: item.name,
-                    spec: item.spec,
-                    category: item.category,
-                    business: item.business,
-                    description: item.description,
-                    price: item.price,
-                    tokenValue: item.tokenValue,
-                  })
-                }
-                key={item.id}
-              >
-                <ProductCard item={item} />
-              </TouchableOpacity>
-            ))}
-
-          </ScrollView>
-          
-           
+            <ScrollView>
+              {products.map((item, i) => (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("ProductShow", {
+                      id: item.id,
+                      image: item.imageUrl,
+                      name: item.name,
+                      spec: item.spec,
+                      category: item.category,
+                      business: item.business,
+                      description: item.description,
+                      price: item.price,
+                      tokenValue: item.tokenValue,
+                    })
+                  }
+                  key={item.id}
+                >
+                  <ProductCard item={item} />
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
           </View>
         </ScrollView>
       )}
@@ -121,16 +126,4 @@ export default function HomeScreen({ navigation }) {
   );
 }
 
-{
-  /* <View
-  key={i}
-  className="flex box-content h-48 w-48 m-2 rounded-3xl bg-blue-100"
->
-  <Image
-    source={{
-      uri: item.imageUrl,
-    }}
-    className="h-full rounded-3xl"
-  />
-</View> */
-}
+
