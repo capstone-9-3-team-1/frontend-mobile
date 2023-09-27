@@ -11,7 +11,6 @@ const Search = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
 
-  //console.log(useSearchProducts(searchTerm))
 
   useEffect(() => {
     const getData = setTimeout(() => {

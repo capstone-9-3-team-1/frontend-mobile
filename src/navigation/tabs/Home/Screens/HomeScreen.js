@@ -18,6 +18,10 @@ export default function HomeScreen({ navigation }) {
   const { isLoading, products, categories } = useHomeData();
   const { user } = useUser();
 
+  function insertBreaksAtSpaces(inputString) {
+    return inputString.replace(/[ \-]/g, "\n");
+  }
+
   return (
     <SafeAreaView className="  bg-slate-100">
       {isLoading ? (
@@ -27,7 +31,7 @@ export default function HomeScreen({ navigation }) {
       ) : (
         <ScrollView showsVerticalScrollIndicator={false}>
           {isLoading ? <></> : <></>}
-          {/*  User Circle and Logo, and Search below  */}
+          {/*  header: logo and profile circle  */}
           <View className="flex flex-row items-center">
             {/* logo */}
             <Image
@@ -37,7 +41,7 @@ export default function HomeScreen({ navigation }) {
               }}
               resizeMode="contain"
             />
-
+            {/* profile circle  */}
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <View className=" m-5 shadow-lg">
                 <Image
@@ -52,8 +56,13 @@ export default function HomeScreen({ navigation }) {
           <Search />
 
           {/* categories */}
-          <Text className="text-2xl font-semibold mx-3">Categories</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Text className="my-auto ml-3 mr-3">
+              Search by{"\n"}
+              <Text className="font-bold text-base text-slate-700">
+                Category
+              </Text>
+            </Text>
             {categories.isLoading ? <ActivityIndicator /> : null}
             {categories?.map((item) => {
               return (
@@ -66,16 +75,20 @@ export default function HomeScreen({ navigation }) {
                       description: item.description,
                     })
                   }
+                  className="mx-1"
                 >
-                  <View key={item.id} className="columns-1 mb-3">
-                    <View className=" rounded-full m-3 drop-shadow-lg bg-white mb-1">
+                  <View
+                    key={item.id}
+                    className="columns-1 mb-3 flex items-center justify-center"
+                  >
+                    <View className="h-14 w-14 rounded-full m-3 drop-shadow-lg bg-white mb-1 ">
                       <Image
                         source={{ uri: item.imageUrl }}
-                        className="h-32 w-32 rounded-full"
+                        className="h-14 w-14 rounded-full justify-center"
                       />
                     </View>
-                    <Text className="text-slate-500 h-5 mx-auto font-semibold text-base">
-                      {item.name}
+                    <Text className="text-slate-500 text-center font-semibold text-xs px-auto">
+                      {insertBreaksAtSpaces(item.name)}
                     </Text>
                   </View>
                 </TouchableOpacity>
@@ -84,11 +97,12 @@ export default function HomeScreen({ navigation }) {
           </ScrollView>
 
           {/* Rectangle boxes- articles? */}
+          <View className="bg-green-100">
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {articleBox.map((num) => (
               <View
                 key={num}
-                className=" flex box-content h-56 w-80 m-2 rounded-3xl bg-green-200"
+                className=" flex box-content h-56 w-80 m-2 rounded-3xl bg-white"
               >
                 <Text>{num}</Text>
               </View>
@@ -122,6 +136,9 @@ export default function HomeScreen({ navigation }) {
               ))}
             </ScrollView>
           </View>
+            
+          </View>
+          
         </ScrollView>
       )}
     </SafeAreaView>
