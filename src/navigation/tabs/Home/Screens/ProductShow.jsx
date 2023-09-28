@@ -14,7 +14,7 @@ export default function ProductShow({ route, navigation }) {
     tokenValue,
   } = route.params;
   
-  console.log(spec)
+
   return (
     <SafeAreaView>
       <ScrollView>

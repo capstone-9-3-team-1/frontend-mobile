@@ -9,8 +9,6 @@ export default function CategoryShow({ route, navigation }) {
     description
   } = route.params;
   
-  console.log(name)
-  
   return (
     <SafeAreaView>
     <ScrollView>
