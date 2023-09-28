@@ -24,8 +24,8 @@ function addBadge(item) {
 export default function ProductCard({ item }) {
 
   return (
-    <View className="w-48 h-fit m-2 border border-gray-200 rounded-2xl">
-      <View className="relative bg-white rounded-t-2xl">
+    <View className="m-2 w-44 border border-gray-200 rounded-2xl">
+      <View className=" relative bg-white rounded-t-2xl">
         <Image
           source={{
             uri: item.imageUrl,

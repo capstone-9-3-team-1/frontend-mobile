@@ -53,7 +53,7 @@ export default function HomeScreen({ navigation }) {
               </View>
             </TouchableOpacity>
           </View>
-          <Search navigation={navigation}/>
+          <Search navigation={navigation} />
 
           {/* categories */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -98,24 +98,26 @@ export default function HomeScreen({ navigation }) {
 
           {/* Rectangle boxes- articles? */}
           <View className="bg-green-100">
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {articleBox.map((num) => (
-              <View
-                key={num}
-                className=" flex box-content h-56 w-80 m-2 rounded-3xl bg-white"
-              >
-                <Text>{num}</Text>
-              </View>
-            ))}
-          </ScrollView>
-
-          {/* featured products- New Arrivals */}
-
-          <Text className="text-2xl font-semibold mx-3 mt-3">New Arrivals</Text>
-          <View className="flex flex-row flex-wrap justify-start m-1">
-            <ScrollView>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {articleBox.map((num) => (
+                <View
+                  key={num}
+                  className=" flex box-content h-56 w-80 m-2 rounded-3xl bg-white"
+                >
+                  <Text>{num}</Text>
+                </View>
+              ))}
+            </ScrollView>
+            {/* featured products- New Arrivals */}
+            <Text className="text-2xl font-semibold mx-3 mt-3">
+              New Arrivals
+            </Text>
+            <View  className="flex-1 flex-row flex-wrap ">
               {products.map((item, i) => (
                 <TouchableOpacity
+                className="w-48"
+                
+                 
                   onPress={() =>
                     navigation.navigate("ProductShow", {
                       id: item.id,
@@ -134,11 +136,8 @@ export default function HomeScreen({ navigation }) {
                   <ProductCard item={item} />
                 </TouchableOpacity>
               ))}
-            </ScrollView>
+            </View>
           </View>
-            
-          </View>
-          
         </ScrollView>
       )}
     </SafeAreaView>

@@ -5,7 +5,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import { API } from "../../../../utils/constants";
 import ProductCard from "./ProductCard";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const Search = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -15,7 +14,6 @@ const Search = ({ navigation }) => {
   useEffect(() => {
     const getData = setTimeout(() => {
       axios.get(`${API}/search/products/${searchTerm}`).then((res) => {
-        console.log(res.data);
         setResult(res.data);
       });
     }, 1000);
