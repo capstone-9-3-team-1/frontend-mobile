@@ -53,7 +53,7 @@ export default function HomeScreen({ navigation }) {
               </View>
             </TouchableOpacity>
           </View>
-          <Search />
+          <Search navigation={navigation}/>
 
           {/* categories */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
