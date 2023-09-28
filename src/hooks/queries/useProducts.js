@@ -1,12 +1,10 @@
 import { useQuery } from "react-query";
-import { API } from "../../constants";
-
 import axios from "axios";
 
 const useProducts = () => {
     const fetchProducts = () =>
       axios
-        .get(`${API}/products`)
+        .get(`${process.env.EXPO_PUBLIC_API_URL}/products`)
         .then((res) => res.data);
   
     return useQuery({
@@ -16,4 +14,3 @@ const useProducts = () => {
   };
   
   export default useProducts;
-
