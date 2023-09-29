@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { View, TextInput, TouchableOpacity, Image, Button } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -10,7 +10,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Search = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
+  const inputRef = useRef(null);
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   useEffect(() => {
     const getData = setTimeout(() => {
@@ -23,12 +27,14 @@ const Search = ({ navigation }) => {
   }, [searchTerm]);
 
   return (
-    <SafeAreaView className="h-screen" >
-      
-      <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
+    <SafeAreaView className="h-screen" > 
+    <View className="flex flex-row items-center mx-2">
+    <Ionicons name="arrow-back" size={20}/> 
+      <View className="h-10 mx-1 bg-white rounded-full p-2 shadow-md flex-grow">
         <View className="flex-1 flex-row">
-          <Ionicons name="search" size={20} className="flex-1"></Ionicons>
+          <Ionicons name="search" size={20} className="flex-1"/>
           <TextInput
+            ref={inputRef}
             className="flex-3 px-2"
             placeholder="Search products ..."
             value={searchTerm}
@@ -36,6 +42,8 @@ const Search = ({ navigation }) => {
           />
         </View>
       </View>
+      </View>  
+   
       <View className="flex-1 flex-row flex-wrap pl-1">
         {searchTerm
           ? result.map((item) => (
@@ -60,8 +68,6 @@ const Search = ({ navigation }) => {
             ))
           : null}
       </View>
-   
-
     </SafeAreaView>
 
    

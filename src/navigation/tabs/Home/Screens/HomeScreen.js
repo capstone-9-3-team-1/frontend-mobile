@@ -58,20 +58,16 @@ export default function HomeScreen({ navigation }) {
           </View>
           {/* Search simulation  */}
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-          <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">           
-            <View className="flex-1 flex-row items-center">
-              <Ionicons name="search" size={20} className="flex-1"></Ionicons>
-              <Text className="px-2 text-slate-300">Search products ...</Text>
+            <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
+              <View className="flex-1 flex-row items-center">
+                <Ionicons name="search" size={20} className="flex-1"></Ionicons>
+                <Text className="px-2 text-slate-300">Search products ...</Text>
+              </View>
             </View>
-          </View>
           </TouchableOpacity>
-          
-
-          {/* <Search navigation={navigation} /> */}
-
           {/* categories */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <Text className="my-auto ml-3 mr-3">
+            <Text className="my-auto ml-3 mr-3 ">
               Search by{"\n"}
               <Text className="font-bold text-base text-slate-700">
                 Category
