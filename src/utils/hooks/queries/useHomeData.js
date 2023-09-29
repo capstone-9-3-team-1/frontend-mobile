@@ -1,5 +1,6 @@
 import useProducts from "./useProducts";
 import useCategories from "./useCategories";
+import useArticles from "./useArticles";
 
 export default function useHomeData() {
   const {
@@ -15,17 +16,27 @@ export default function useHomeData() {
     data: categories,
     error: categoriesError,
   } = useCategories();
-  let isLoading = isProductsLoading || isCategoriesLoading;
-  let isError = isProductsError || isCategoriesError;
+
+  const {
+    isLoading: isArticlesLoading,
+    isError: isArticlesError,
+    data: articles,
+    error: articlesError,
+  } = useArticles();
+
+  let isLoading = isProductsLoading || isCategoriesLoading || isArticlesLoading;
+  let isError = isProductsError || isCategoriesError || isArticlesError;
 
   return {
     isLoading,
     isError,
     products,
     categories,
+    articles,
     error: {
       productsError,
       categoriesError,
+      articlesError
     },
   };
 }
