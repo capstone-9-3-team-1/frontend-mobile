@@ -36,7 +36,7 @@ export default function ProductCard({ item }) {
         <View className="absolute bottom-1 right-1">{addBadge(item)}</View>
       </View>
       <View className="p-3 bg-[#f3fcf0] rounded-b-2xl ">
-        <Text className="font-semibold text-base">{item.name}</Text>
+        <Text className="font-semibold text-sm">{item.name}</Text>
         <Text className="">{item.business}</Text>
         <View className="flex-row gap-1">
           <Image

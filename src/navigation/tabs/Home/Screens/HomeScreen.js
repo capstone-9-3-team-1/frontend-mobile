@@ -6,11 +6,14 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import ProductCard from "./ProductCard";
 import { useUser } from "@clerk/clerk-expo";
 import Search from "./Search";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
 
 const articleBox = [1, 2, 3, 4];
 
@@ -23,7 +26,7 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView className="  bg-slate-100">
+    <SafeAreaView className="bg-slate-100">
       {isLoading ? (
         <View className="flex h-full justify-center items-center w-full">
           <ActivityIndicator size="large" />
@@ -53,7 +56,18 @@ export default function HomeScreen({ navigation }) {
               </View>
             </TouchableOpacity>
           </View>
-          <Search navigation={navigation} />
+          {/* Search simulation  */}
+          <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+          <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">           
+            <View className="flex-1 flex-row items-center">
+              <Ionicons name="search" size={20} className="flex-1"></Ionicons>
+              <Text className="px-2 text-slate-300">Search products ...</Text>
+            </View>
+          </View>
+          </TouchableOpacity>
+          
+
+          {/* <Search navigation={navigation} /> */}
 
           {/* categories */}
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -112,12 +126,10 @@ export default function HomeScreen({ navigation }) {
             <Text className="text-2xl font-semibold mx-3 mt-3">
               New Arrivals
             </Text>
-            <View  className="flex-1 flex-row flex-wrap ">
+            <View className="flex-1 flex-row flex-wrap pl-1">
               {products.map((item, i) => (
                 <TouchableOpacity
-                className="w-48"
-                
-                 
+                  className="w-48"
                   onPress={() =>
                     navigation.navigate("ProductShow", {
                       id: item.id,
