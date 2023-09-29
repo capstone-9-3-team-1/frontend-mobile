@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { View, TextInput, TouchableOpacity, Image, Button } from "react-native";
+import { View, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import axios from "axios";
@@ -29,7 +29,10 @@ const Search = ({ navigation }) => {
   return (
     <SafeAreaView className="h-screen" > 
     <View className="flex flex-row items-center mx-2">
-    <Ionicons name="arrow-back" size={20}/> 
+      <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+      <Ionicons name="arrow-back" size={20}/> 
+      </TouchableOpacity>
+   
       <View className="h-10 mx-1 bg-white rounded-full p-2 shadow-md flex-grow">
         <View className="flex-1 flex-row">
           <Ionicons name="search" size={20} className="flex-1"/>
@@ -43,7 +46,7 @@ const Search = ({ navigation }) => {
         </View>
       </View>
       </View>  
-   
+       <ScrollView showsVerticalScrollIndicator={false}>
       <View className="flex-1 flex-row flex-wrap pl-1">
         {searchTerm
           ? result.map((item) => (
@@ -68,6 +71,7 @@ const Search = ({ navigation }) => {
             ))
           : null}
       </View>
+      </ScrollView>
     </SafeAreaView>
 
    
