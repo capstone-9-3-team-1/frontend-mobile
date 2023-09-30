@@ -1,34 +1,3 @@
-// import { FlatList, TouchableOpacity } from "react-native";
-// import ArticleCard from "./ArticleCard";
-
-// export default function Articles({articles}) {
-
-//   return (
-//     <FlatList
-//     data={articles}
-//     renderItem={({ item }) => (
-//       <TouchableOpacity
-//         // onPress={() =>
-//         //   navigation.navigate("CategoryShow", {
-//         //     id: item.id,
-//         //     image: item.imageUrl,
-//         //     name: item.name,
-//         //     description: item.description,
-//         //   })
-//         // }
-//         className="mx-2"
-//         // key={item.id}
-//       >
-//         <ArticleCard item={item} />
-//       </TouchableOpacity>
-//     )}
-//     horizontal={true}
-//     showsHorizontalScrollIndicator={false}
-//   />
-
-//   );
-// }
-
 import {
   FlatList,
   TouchableOpacity,
@@ -40,71 +9,63 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../../../../utils/constants";
 
-
-
-
 export default function Articles({ navigation }) {
-    const [articles, setArticles] = useState([]);
-    const [currentArtilce, setCurrentArticle] = useState(1);
-    const [isLoading, setIsLoading] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [currentArtilce, setCurrentArticle] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const getArticles = () => {
+    setIsLoading(true);
+    axios.get(`${API}/articles`).then((res) => {
+      setArticles([...articles, ...res.data]);
+    });
+  };
 
-    const getArticles = () => {
-        setIsLoading(true);
-        axios.get(`${API}/articles`)
-        .then(res => {
-            // setArticles(res.data)
-            setArticles([...articles, ...res.data]);
-            
-        })
-    }
+  const loadMoreItem = () => {
+    setCurrentArticle(currentArtilce + 1);
+  };
 
-    const loadMoreItem = () => {
-        setCurrentArticle(currentArtilce + 1)
-    }
+  useEffect(() => {
+    getArticles();
+  }, [currentArtilce]);
 
-    useEffect(()=>{
-        getArticles()
-    }, [currentArtilce])
+  const renderItem = ({ item }) => {
+    return (
+      <TouchableOpacity
+        className="flex-row px-1 py-3 "
+        onPress={() =>
+          navigation.navigate("ArticleShow", {
+            title: item.title,
+            imageUrl: item.imageUrl,
+            text: item.text,
+            link: item.link,
+          })
+        }
+        key={item.id}
+      >
+        <ArticleCard item={item} />
+      </TouchableOpacity>
+    );
+  };
 
-    const renderItem = ({item}) => {
-       
-        return (       
-                  <TouchableOpacity
-                   className="flex-row px-1 py-3 "
-                    onPress={() =>
-                      navigation.navigate("ArticleShow", {
-                        title: item.title,
-                        imageUrl: item.imageUrl,
-                        text: item.text,
-                        link: item.link,
-                      })
-                    }
-                    key={item.id}
-                  >
-                    <ArticleCard item={item} />
-                  </TouchableOpacity>  
-        )
-    }
-
-    const renderLoader = () => {
-        return(
-            isLoading ? <View className="text-black items-center justify-center">
-                <ActivityIndicator size="large" color="#aaa" />
-            </View> : null
-        );
-    }
-
+  const renderLoader = () => {
+    return isLoading ? (
+      <View className="text-black items-center justify-center">
+        <ActivityIndicator size="large" color="#aaa" />
+      </View>
+    ) : null;
+  };
 
   return (
-    <FlatList className="bg-red-300"
-    data={articles}
-    renderItem={renderItem}
-    keyExtractor={(item, i) => i}
-    onEndReached={loadMoreItem}
-    ListFooterComponent={renderLoader}
-    onEndReachedThreshold={0}
-    horizontal={true} 
-/>
+    <FlatList
+      className="bg-red-300"
+      data={articles}
+      renderItem={renderItem}
+      keyExtractor={(item, i) => i}
+      onEndReached={loadMoreItem}
+      ListFooterComponent={renderLoader}
+      onEndReachedThreshold={0}
+      horizontal={true}
+    />
   );
 }
