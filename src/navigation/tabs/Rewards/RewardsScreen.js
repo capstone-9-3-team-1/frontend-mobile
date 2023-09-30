@@ -52,8 +52,7 @@ export default function RewardsScreen({ navigation }) {
           </TouchableOpacity>
         </View>
 
-        {/* Top Categories */}
-        <Text className="text-2xl font-semibold mx-3"> Top Categories</Text>
+        {/* Tokens Ranges */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {array.map((num) => (
             <View key={num} className=" p-8 rounded-full m-2 bg-white"></View>

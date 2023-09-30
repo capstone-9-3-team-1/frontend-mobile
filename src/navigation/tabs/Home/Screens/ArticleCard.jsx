@@ -26,7 +26,7 @@ export default function ArticleCard({ item, width }) {
       source={{ uri: item.imageUrl }}
       resizeMode="cover"
       borderRadius={30}
-      className="h-48 w-80 opacity-90 hower:opacity-100"
+      className="h-48 w-80 opacity-80 hower:opacity-100 shadow-md"
     >
       <View className="flex-1 justify-end items-center ">
         <Text className="font-semibold text-lg text-white text-center leading-5 my-3">
