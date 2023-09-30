@@ -9,24 +9,19 @@ export default function CategoryShow({ route, navigation }) {
     description
   } = route.params;
   
-  console.log(name)
-  
   return (
     <SafeAreaView>
     <ScrollView>
-      <View className="m-10 flex h-screen items-center">
-          <Image
-            style={{
-              width: 350,
-              height: 400,
-            }}
-            source={{
-              uri: image,
-            }}
+      <View className="m-10 h-screen">
+        <View className="flex flex-row items-center text-left">
+        <Image
             resizeMode="contain"
-            className=""
+            className="h-12 w-12"
           /> 
         <Text className="text-slate-600 text-3xl p-5">{name}</Text> 
+
+        </View>
+          
         <Text>{description}</Text>
         </View>   
     </ScrollView>
