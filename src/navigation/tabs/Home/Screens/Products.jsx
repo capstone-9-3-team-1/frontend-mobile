@@ -1,15 +1,14 @@
-import { FlatList, TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import ProductCard from "./ProductCard";
 
 
 export default function Products({products, navigation}) {
 
   return (
-     <FlatList
-            className="w-screen flex-1 flex-row flex-wrap pl-1"
-            data={products}
-            renderItem={({ item }) => (
-              <TouchableOpacity
+     <View className="w-screen flex-1 flex-row flex-wrap pl-1">
+        {products?.map((item) => {
+            return (
+                <TouchableOpacity
                 className="w-48"
                 onPress={() =>
                   navigation.navigate("ProductShow", {
@@ -27,9 +26,10 @@ export default function Products({products, navigation}) {
               >
                 <ProductCard item={item} />
               </TouchableOpacity>
-            )}
-            vertical={true} // Enable horizontal scrolling
-            showsVerticalScrollIndicator={false} // Hide horizontal scroll indicator
-          /> 
+
+            )
+        })}
+              
+            </View>
   );
 }
