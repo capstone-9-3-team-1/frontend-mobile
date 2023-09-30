@@ -58,7 +58,6 @@ export default function Articles({ navigation }) {
 
   return (
     <FlatList
-      className="bg-red-300"
       data={articles}
       renderItem={renderItem}
       keyExtractor={(item, i) => i}
@@ -66,6 +65,7 @@ export default function Articles({ navigation }) {
       ListFooterComponent={renderLoader}
       onEndReachedThreshold={0}
       horizontal={true}
+      showsHorizontalScrollIndicator={false} 
     />
   );
 }

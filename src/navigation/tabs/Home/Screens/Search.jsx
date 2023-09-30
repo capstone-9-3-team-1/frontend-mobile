@@ -27,7 +27,7 @@ const Search = ({ navigation }) => {
   }, [searchTerm]);
 
   return (
-    <SafeAreaView className="h-screen" > 
+    <SafeAreaView className="bg-green-100 rounded-b-3xl" > 
     <View className="flex flex-row items-center mx-2">
       <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
       <Ionicons name="arrow-back" size={20}/> 
