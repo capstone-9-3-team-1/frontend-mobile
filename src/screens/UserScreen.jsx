@@ -7,7 +7,8 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { useAuth } from "@clerk/clerk-expo";
+
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import FAQScreen from "./FAQScreen";
 import FavoriteItemsScreen from "./FavoriteItemsScreen";
 import { useState } from "react";
@@ -42,6 +43,7 @@ const items = [
 
 export default function UserScreen({ navigation }) {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const { user } = useUser();
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? -1 : index);
@@ -54,7 +56,7 @@ export default function UserScreen({ navigation }) {
           <View className="rounded-full bg-white drop-shadow-lg">
             <Image
               source={{
-                uri: "https://media.licdn.com/dms/image/D4E03AQHG9HMxAQd-Rg/profile-displayphoto-shrink_400_400/0/1663609290324?e=1700697600&v=beta&t=29-An9v16nHW_EUNVAwCizVQ7DAhai-Mv8yBndT5C6U",
+                uri: user?.imageUrl,
               }}
               className="w-20 h-20 rounded-full"
             />
@@ -70,9 +72,7 @@ export default function UserScreen({ navigation }) {
                 navigation.goBack();
               }}
             >
-              <Text className="text-white text-base font-bold text-xl">
-                Back
-              </Text>
+              <Text className="text-white font-bold text-xl">Back</Text>
             </TouchableOpacity>
           </View>
         </View>
