@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { View, TextInput, TouchableOpacity, Image, Button } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import { View, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import axios from "axios";
@@ -10,12 +10,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Search = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [result, setResult] = useState([]);
+  const inputRef = useRef(null);
 
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   useEffect(() => {
     const getData = setTimeout(() => {
       axios.get(`${API}/search/products/${searchTerm}`).then((res) => {
-        console.log(res.data);
         setResult(res.data);
       });
     }, 1000);
@@ -24,11 +27,17 @@ const Search = ({ navigation }) => {
   }, [searchTerm]);
 
   return (
-    <View className="mb-5">
-      <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
+    <SafeAreaView className="bg-green-100 rounded-b-3xl" > 
+    <View className="flex flex-row items-center mx-2">
+      <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+      <Ionicons name="arrow-back" size={20}/> 
+      </TouchableOpacity>
+   
+      <View className="h-10 mx-1 bg-white rounded-full p-2 shadow-md flex-grow">
         <View className="flex-1 flex-row">
-          <Ionicons name="search" size={20} className="flex-1"></Ionicons>
+          <Ionicons name="search" size={20} className="flex-1"/>
           <TextInput
+            ref={inputRef}
             className="flex-3 px-2"
             placeholder="Search products ..."
             value={searchTerm}
@@ -36,29 +45,36 @@ const Search = ({ navigation }) => {
           />
         </View>
       </View>
-      {searchTerm
-        ? result.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              onPress={() =>
-                navigation.navigate("ProductShow", {
-                  id: item.id,
-                  image: item.imageUrl,
-                  name: item.name,
-                  spec: item.spec,
-                  category: item.category,
-                  business: item.business,
-                  description: item.description,
-                  price: item.price,
-                  tokenValue: item.tokenValue,
-                })
-              }
-            >
-              <ProductCard item={item} />
-            </TouchableOpacity>
-          ))
-        : null}
-    </View>
+      </View>  
+       <ScrollView showsVerticalScrollIndicator={false}>
+      <View className="flex-1 flex-row flex-wrap pl-1">
+        {searchTerm
+          ? result.map((item) => (
+              <TouchableOpacity
+                key={item.id}
+                onPress={() =>
+                  navigation.navigate("ProductShow", {
+                    id: item.id,
+                    image: item.imageUrl,
+                    name: item.name,
+                    spec: item.spec,
+                    category: item.category,
+                    business: item.business,
+                    description: item.description,
+                    price: item.price,
+                    tokenValue: item.tokenValue,
+                  })
+                }
+              >
+                <ProductCard item={item} />
+              </TouchableOpacity>
+            ))
+          : null}
+      </View>
+      </ScrollView>
+    </SafeAreaView>
+
+   
   );
 };
 
