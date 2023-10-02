@@ -10,8 +10,9 @@ import {
 import { useUser } from "@clerk/clerk-expo";
 
 import Rewards from "./screens/Rewards";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8];
+const tokensPriceRange = ["", "50", "70", "100", "300", "500+"];
 const products = [1, 2, 3, 4, 5, 6];
 
 const userName = "John Doe";
@@ -19,6 +20,10 @@ const userPoints = 100;
 // const pointsRedeemed = 50; // Assign a value to pointsRedeemed
 
 export default function RewardsScreen({ navigation }) {
+
+  function insertBreaksAtSpaces(inputString) {
+    return inputString.replace(/[ \-]/g, "\n");
+  }
   const { user } = useUser();
   return (
     <SafeAreaView className="flex items-start bg-slate-100 ">
@@ -54,12 +59,31 @@ export default function RewardsScreen({ navigation }) {
 
         {/* Tokens Ranges */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {array.map((num) => (
-            <View key={num} className=" p-8 rounded-full m-2 bg-white"></View>
+          {tokensPriceRange.map((num, i) => (
+            <>
+              <TouchableOpacity
+                key={i}
+                
+              >
+                {i === 0 ? (
+                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-xl items-center justify-center my-auto">
+                     <Ionicons name="search" size={20} />
+                  </View>
+                 
+                ) : (
+                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-xl items-center justify-center my-auto">
+                    <Text className="">{num}</Text>
+                  </View>
+                )}
+             
+              <Text className="text-center">{i === 0 ? null : insertBreaksAtSpaces("up to 100 tokens") }</Text>
+              </TouchableOpacity>
+            </>
           ))}
         </ScrollView>
-        {/* New Rewards */}
-        <Text className="text-2xl font-semibold">New Rewards</Text>
+        {/* Featured Rewards */}
+        <View className="my-3">
+        <Text className="text-2xl font-semibold pl-3">Featured Rewards</Text>
         <ScrollView horizontal>
           <View className="flex-row flex-wrap">
             {products.map((num) => (
@@ -70,7 +94,12 @@ export default function RewardsScreen({ navigation }) {
             ))}
           </View>
         </ScrollView>
-       <Rewards/>     
+
+        </View>
+
+        
+        
+        <Rewards />
       </ScrollView>
     </SafeAreaView>
   );

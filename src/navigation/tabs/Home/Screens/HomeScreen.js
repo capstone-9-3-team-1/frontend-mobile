@@ -111,7 +111,7 @@ export default function HomeScreen({ navigation }) {
                 );
               })}
             </ScrollView>
-            <View className="bg-green-100">
+        
                {/* Articles */}
             {articles.isLoading ? (
               <ActivityIndicator />
@@ -119,7 +119,7 @@ export default function HomeScreen({ navigation }) {
               <Articles navigation={navigation}/>
             )}
             {/* featured products- */}
-            <Text className="text-2xl font-semibold mx-3 mt-3">
+            <Text className="text-2xl font-semibold mx-auto mt-3">
               New Arrivals
             </Text>
             {products.isLoading ? (
@@ -128,7 +128,7 @@ export default function HomeScreen({ navigation }) {
               <Products products={products} navigation={navigation} />
             )}
               
-            </View>
+           
            
           </View>
         </ScrollView>
