@@ -24,8 +24,8 @@ function addBadge(item) {
 export default function ProductCard({ item }) {
 
   return (
-    <View className="w-48 h-fit m-2 border border-gray-200 rounded-2xl">
-      <View className="relative">
+    <View className="m-2 w-44 border border-gray-200 rounded-2xl" key={item.id}>
+      <View className=" relative bg-white rounded-t-2xl">
         <Image
           source={{
             uri: item.imageUrl,
@@ -35,8 +35,8 @@ export default function ProductCard({ item }) {
         />
         <View className="absolute bottom-1 right-1">{addBadge(item)}</View>
       </View>
-      <View className="p-3 bg-green-100 rounded-b-2xl ">
-        <Text className="font-semibold text-base">{item.name}</Text>
+      <View className="p-3 bg-[#f3fcf0] rounded-b-2xl ">
+        <Text className="font-semibold text-sm">{item.name}</Text>
         <Text className="">{item.business}</Text>
         <View className="flex-row gap-1">
           <Image

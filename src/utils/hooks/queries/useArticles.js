@@ -2,18 +2,18 @@ import { useQuery } from "react-query";
 import { API } from "../../constants";
 import axios from "axios";
 
-const useCategories = () => {
-    const fetchCategories = () =>
+const useArticles = () => {
+    const fetchArticles = () =>
       axios
-        .get(`${API}/categories`)
+        .get(`${API}/articles`)
         .then((res) => res.data);
   
     return useQuery({
-      queryKey: ["categories"],
-      queryFn: fetchCategories,
+      queryKey: ["articles"],
+      queryFn: fetchArticles,
     });
   };
   
-  export default useCategories;
+  export default useArticles;
 
 

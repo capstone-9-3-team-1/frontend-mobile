@@ -1,20 +1,15 @@
 import { ScrollView, SafeAreaView, View, Text, Image } from "react-native";
 import { Svg, Path } from "react-native-svg";
 
-export default function ProductShow({ route, navigation }) {
+export default function ArticleShow({ route, navigation }) {
   const {
-    id,
-    image,
-    name,
-    spec,
-    category,
-    business,
-    description,
-    price,
-    tokenValue,
+    title,
+    text,
+    imageUrl,
+    link,
   } = route.params;
   
-  console.log(spec)
+  
   return (
     <SafeAreaView>
       <ScrollView>
@@ -26,7 +21,7 @@ export default function ProductShow({ route, navigation }) {
                 height: 400,
               }}
               source={{
-                uri: image,
+                uri: imageUrl,
               }}
               resizeMode="contain"
               className="h-fit"
@@ -45,19 +40,18 @@ export default function ProductShow({ route, navigation }) {
           </View>
           <View className="flex-row my-6 ">
             <View className="self-start flex-1 space-y-1">
-              <Text className=" text-3xl font-semibold ">{name}</Text>
-              <Text className=" text-xl font-semibold ">{spec}</Text>
               <View className="flex-row gap-1">
                 <Image
                   className="h-8 w-8 drop-shadow-xl"
                   source={require("../../../../assets/AtaraCoin.png")}
                 />
-                <Text className="text-2xl font-medium">{tokenValue}</Text>
+                <Text className="text-2xl font-medium">{title}</Text>
+                <Text className="text-2xl font-medium">{link}</Text>
               </View>
               {/* need to add rating here  */}
             </View>
           </View>
-          <Text className="text-lg indent-8">{description}</Text>
+          <Text className="text-lg indent-8">{text}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
