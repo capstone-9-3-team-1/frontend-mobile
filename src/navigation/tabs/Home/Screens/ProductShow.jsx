@@ -14,7 +14,7 @@ export default function ProductShow({ route, navigation }) {
     tokenValue,
   } = route.params;
   
-  console.log(spec)
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -49,7 +49,7 @@ export default function ProductShow({ route, navigation }) {
               <Text className=" text-xl font-semibold ">{spec}</Text>
               <View className="flex-row gap-1">
                 <Image
-                  className="h-8 w-8 drop-shadow-xl"
+                  className="h-8 w-8 bg-white drop-shadow-xl"
                   source={require("../../../../assets/AtaraCoin.png")}
                 />
                 <Text className="text-2xl font-medium">{tokenValue}</Text>

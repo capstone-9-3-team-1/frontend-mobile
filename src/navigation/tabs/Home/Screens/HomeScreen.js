@@ -10,11 +10,8 @@ import {
   FlatList,
 } from "react-native";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
-import ProductCard from "./ProductCard";
 import { useUser } from "@clerk/clerk-expo";
-import Search from "./Search";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import ArticleCard from "./ArticleCard";
 import Articles from "./Articles";
 import Products from "./Products";
 
@@ -23,6 +20,7 @@ const articleBox = [1, 2, 3, 4];
 export default function HomeScreen({ navigation }) {
   const { isLoading, products, categories, articles } = useHomeData();
   const { user } = useUser();
+
 
   function insertBreaksAtSpaces(inputString) {
     return inputString.replace(/[ \-]/g, "\n");
@@ -40,7 +38,7 @@ export default function HomeScreen({ navigation }) {
             <View className="flex flex-row items-center">
               {/* logo */}
               <Image
-                className="h-10 flex-1 ml-[-40%] shadow-lg"
+                className="h-10 flex-1 ml-[-40%] bg-white shadow-lg"
                 source={{
                   uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
                 }}
@@ -48,7 +46,7 @@ export default function HomeScreen({ navigation }) {
               />
               {/* profile circle  */}
               <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-                <View className=" m-5 shadow-lg">
+                <View className=" m-5  bg-white shadow-lg">
                   <Image
                     source={{
                       uri: user?.imageUrl,
@@ -127,9 +125,6 @@ export default function HomeScreen({ navigation }) {
             ) : (
               <Products products={products} navigation={navigation} />
             )}
-              
-           
-           
           </View>
         </ScrollView>
       )}

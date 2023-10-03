@@ -42,7 +42,7 @@ export default function ArticleShow({ route, navigation }) {
             <View className="self-start flex-1 space-y-1">
               <View className="flex-row gap-1">
                 <Image
-                  className="h-8 w-8 drop-shadow-xl"
+                  className="h-8 w-8  bg-white drop-shadow-xl"
                   source={require("../../../../assets/AtaraCoin.png")}
                 />
                 <Text className="text-2xl font-medium">{title}</Text>

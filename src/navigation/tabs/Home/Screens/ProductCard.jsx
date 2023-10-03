@@ -40,7 +40,7 @@ export default function ProductCard({ item }) {
         <Text className="">{item.business}</Text>
         <View className="flex-row gap-1">
           <Image
-            className="h-4 w-4 drop-shadow-xl"
+            className="h-4 w-4  bg-white drop-shadow-xl"
             source={require("../../../../assets/AtaraCoin.png")}
           />
           <Text className="">{item.tokenValue}</Text>
