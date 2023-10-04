@@ -2,7 +2,6 @@ import {
   View,
   Image,
   Text,
-  TextInput,
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
@@ -10,9 +9,12 @@ import {
 import { useUser } from "@clerk/clerk-expo";
 import useRewards from "../../../utils/hooks/queries/useRewards";
 
-import Rewards from "./screens/FeaturedRewards";
+import FeaturedRewards from "./screens/FeaturedRewards";
+import Rewards from "./screens/Rewards"
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ActivityIndicator } from "react-native";
+import NotFeaturedRewards from "./screens/NotFeaturedRewards";
+
 
 const tokensPriceRange = ["", "50", "70", "100", "300", "500+"];
 const products = [1, 2, 3, 4, 5, 6];
@@ -99,18 +101,18 @@ export default function RewardsScreen({ navigation }) {
           ))}
         </ScrollView>
         {/* Featured Rewards */}
-        <View className="my-3">
+        <View className="my-3 bg-red-300">
           <Text className="text-2xl font-semibold pl-3">Featured Rewards</Text>
           <ScrollView horizontal>
             <View className="flex-row flex-wrap">
               {rewards.isLoading ? <ActivityIndicator/> :
-               <Rewards navigation={navigation}/>
+               <FeaturedRewards navigation={navigation}/>
               }
             </View>
           </ScrollView>
         </View>
-
-        {/* <Rewards /> */}
+      {/* Not Featured Rewards */}
+       <NotFeaturedRewards navigation={navigation}/>
       </ScrollView>
     </SafeAreaView>
   );
