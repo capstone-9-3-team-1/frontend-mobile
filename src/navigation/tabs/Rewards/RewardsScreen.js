@@ -110,7 +110,7 @@ export default function RewardsScreen({ navigation }) {
           </ScrollView>
         </View>
 
-        <Rewards />
+        {/* <Rewards /> */}
       </ScrollView>
     </SafeAreaView>
   );

@@ -14,7 +14,7 @@ import FavoriteItemsScreen from "./FavoriteItemsScreen";
 import { useState } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const userName = "John Doe";
+const userName = "Tina S.";
 const userPoints = 100;
 
 // Mock data
