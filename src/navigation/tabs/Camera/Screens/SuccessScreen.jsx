@@ -22,6 +22,10 @@ export default function SuccessScreen({ route, navigation }) {
     );
   };
 
+  if (!newRecieptIsLoading && data) {
+    console.log(data);
+  }
+
   return (
     <SafeAreaView>
       {newRecieptIsLoading ? (

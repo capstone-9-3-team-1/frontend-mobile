@@ -10,7 +10,6 @@ export default function useCreateReceipt() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${await getToken()}`,
         },
         body: JSON.stringify({ photo, userId }),
       });
