@@ -10,6 +10,7 @@ export default function Products({products, navigation}) {
             return (
                 <TouchableOpacity
                 className="w-48"
+                key={item.id}
                 onPress={() =>
                   navigation.navigate("ProductShow", {
                     id: item.id,

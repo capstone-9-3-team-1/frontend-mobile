@@ -24,6 +24,8 @@ export default function useHomeData() {
     error: articlesError,
   } = useArticles();
 
+
+
   let isLoading = isProductsLoading || isCategoriesLoading || isArticlesLoading;
   let isError = isProductsError || isCategoriesError || isArticlesError;
 
@@ -36,7 +38,7 @@ export default function useHomeData() {
     error: {
       productsError,
       categoriesError,
-      articlesError
+      articlesError,
     },
   };
 }
