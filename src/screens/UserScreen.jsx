@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  Button,
   Image,
   SafeAreaView,
   ScrollView,
@@ -118,7 +117,7 @@ export default function UserScreen({ navigation }) {
                     <Carousel
                       data={item.bodyText}
                       renderItem={({ item }) => (
-                        <View className="bg-light-blue-300 rounded-lg p-3 m-3 h-40 w-40">
+                        <View className="border bg-blue-300 rounded-lg p-3 m-3 h-40 w-40">
                           <Text className="text-xl font-semibold">{item.name}</Text>
                         </View>
                       )}

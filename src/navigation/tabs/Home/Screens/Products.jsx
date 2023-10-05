@@ -7,7 +7,7 @@ export default function Products({ products, navigation }) {
       {products?.map((item) => {
         return (
           <TouchableOpacity
-            className="w-48"
+            className="w-50 p-2"
             key={item.id}
             onPress={() =>
               navigation.navigate("ProductShow", {
