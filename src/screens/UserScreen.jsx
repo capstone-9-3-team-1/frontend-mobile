@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
-import { View, Text, Button, Image, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { useNavigation } from '@react-navigation/native';
 import Carousel from 'react-native-snap-carousel';
+import { FAQData } from './FAQ';
 
-const userName = "Tina S.";
+const userName = 'Tina S.';
 const userPoints = 100;
 
 const items = [
@@ -22,12 +31,17 @@ const items = [
   {
     id: 1,
     title: 'Purchase History',
-    bodyText: 'Woop woop',
+    bodyText: [
+      { id: 1, name: 'Purchase 1' },
+      { id: 2, name: 'Purchase 2' },
+      { id: 3, name: 'Purchase 3' },
+      { id: 4, name: 'Purchase 4' },
+    ],
   },
   {
     id: 2,
     title: 'FAQ (Frequently Asked Questions)',
-    bodyText: "I'm running out of words and sounds",
+    bodyText: FAQData,
   },
   {
     id: 3,
@@ -50,33 +64,33 @@ export default function UserScreen({ navigation }) {
     <SafeAreaView>
       <ScrollView>
         {/* User Profile Pic, Name, Points earned */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', margin: 15 }}>
-          <View style={{ borderRadius: 50, backgroundColor: 'white', padding: 5 }}>
+        <View className="flex items-center m-5">
+          <View className="rounded-full bg-white shadow-lg">
             <Image
               source={{
                 uri: user?.imageUrl,
               }}
-              style={{ width: 40, height: 40, borderRadius: 20 }}
+              className="w-20 h-20 rounded-full"
             />
           </View>
-          <View style={{ marginLeft: 10 }}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{userName}</Text>
-            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{userPoints} Points</Text>
+          <View className="ml-2">
+            <Text className="text-2xl font-semibold">{userName}</Text>
+            <Text className="text-lg font-semibold">{userPoints} Points</Text>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row-reverse' }}>
+          <View className="flex-1 flex-row-reverse">
             <TouchableOpacity
-              style={{ backgroundColor: 'green', padding: 10, borderRadius: 20 }}
+              className="bg-green-500 p-3 rounded-xl"
               onPress={() => {
                 navigation.goBack();
               }}
             >
-              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>Back</Text>
+              <Text className="text-white font-bold text-xl">Back</Text>
             </TouchableOpacity>
           </View>
         </View>
-
+  
         {/* Accordion List of stuff */}
-        <View style={{ borderWidth: 2, borderColor: 'pink', borderRadius: 10, margin: 10 }}>
+        <View className="border p-2 rounded-lg bg-pink-100">
           {items.map((item, index) => (
             <View key={index}>
               <TouchableOpacity
@@ -84,18 +98,12 @@ export default function UserScreen({ navigation }) {
                   toggleAccordion(index);
                 }}
               >
-                {/* Tabs */}
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    backgroundColor: 'lightgreen',
-                    borderRadius: 10,
-                    margin: 10,
-                  }}
-                >
-                  <Text style={{ fontSize: 20, fontWeight: 'bold', padding: 10 }}>{item.title}</Text>
-                  <View style={{ borderRadius: 50, backgroundColor: 'white', padding: 10 }}>
+                <View className="flex-row border rounded-lg m-3 justify-between bg-green-200">
+                  <Text className="text-2xl font-semibold p-5">
+                    {item.title}
+                  </Text>
+                  <View className="flex-grow justify-items-center" />
+                  <View className="rounded-full bg-white p-3 h-14">
                     <Ionicons
                       name={activeIndex === index ? 'ios-arrow-up' : 'ios-arrow-down'}
                       size={30}
@@ -105,48 +113,46 @@ export default function UserScreen({ navigation }) {
                 </View>
               </TouchableOpacity>
               {activeIndex === index && (
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
-                  {item.title === 'Your Favorites' && (
+                <View className="flex-row border rounded-lg m-3 justify-between">
+                  {item.title === 'Your Favorites' || item.title === 'Purchase History' ? (
                     <Carousel
                       data={item.bodyText}
                       renderItem={({ item }) => (
-                        <View
-                          style={{
-                            backgroundColor: 'lightblue',
-                            borderRadius: 10,
-                            padding: 10,
-                            margin: 10,
-                          }}
-                        >
-                          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.name}</Text>
+                        <View className="bg-light-blue-300 rounded-lg p-3 m-3 h-40 w-40">
+                          <Text className="text-xl font-semibold">{item.name}</Text>
                         </View>
                       )}
                       sliderWidth={300}
                       itemWidth={200}
-                      layout={'default'}
+                      layout="default"
                     />
-                  )}
-                  {item.title !== 'Your Favorites' && (
-                    <Text style={{ fontSize: 16, fontWeight: 'bold', padding: 10 }}>
-                      {item.bodyText}
-                    </Text>
+                  ) : item.title === 'FAQ (Frequently Asked Questions)' ? (
+                    <ScrollView>
+                      {item.bodyText.map((faq, faqIndex) => (
+                        <View key={faqIndex} className="border rounded-lg m-3 p-3 bg-light-blue-300">
+                        <Text className="text-xl font-semibold mb-2">{faq.question}</Text>
+                        <Text className="text-lg font-normal">{faq.answer}</Text>
+                      </View>                      
+                      ))}
+                    </ScrollView>
+                  ) : (
+                    <Text className="text-lg font-semibold p-5">{item.bodyText}</Text>
                   )}
                 </View>
               )}
             </View>
           ))}
         </View>
-
+  
         {/* Sign out */}
-        <View
-          style={{ borderRadius: 20, flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
+        <View className="flex items-center justify-center">
           <SignOut />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-}
+                  }
+  
 
 const SignOut = () => {
   const { isLoaded, signOut } = useAuth();
@@ -154,13 +160,9 @@ const SignOut = () => {
     return null;
   }
   return (
-    <View >
-      <Button
-        title="Sign Out"
-        onPress={() => {
-          signOut();
-        }}
-      />
-    </View>
+    <TouchableOpacity onPress={signOut} className="bg-blue-500 p-3 rounded-xl">
+      <Text className="text-white text-lg font-bold">Sign Out</Text>
+    </TouchableOpacity>
   );
 };
+
