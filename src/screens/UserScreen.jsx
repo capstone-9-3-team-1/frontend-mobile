@@ -1,101 +1,103 @@
-import {
-  View,
-  Text,
-  Button,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState } from 'react';
+import { View, Text, Button, Image, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useAuth, useUser } from '@clerk/clerk-expo';
+import { useNavigation } from '@react-navigation/native';
+import Carousel from 'react-native-snap-carousel';
 
-import { useAuth, useUser } from "@clerk/clerk-expo";
-import FAQScreen from "./FAQScreen";
-import FavoriteItemsScreen from "./FavoriteItemsScreen";
-import { useState } from "react";
-import Ionicons from "react-native-vector-icons/Ionicons";
-
-const userName = "John Doe";
+const userName = 'Tina S.';
 const userPoints = 100;
 
-// Mock data
 const items = [
   {
     id: 0,
-    title: "Your Favorites",
-    bodyText: "Blah blah blah",
+    title: 'Your Favorites',
+    bodyText: [
+      { id: 1, name: 'Favorite 1' },
+      { id: 2, name: 'Favorite 2' },
+      { id: 3, name: 'Favorite 3' },
+      { id: 4, name: 'Favorite 4' },
+    ],
   },
   {
     id: 1,
-    title: "Purchase History",
-    bodyText: "Woop woop",
+    title: 'Purchase History',
+    bodyText: 'Woop woop',
   },
   {
     id: 2,
-    title: "FAQ (Frequently Asked Questions)",
+    title: 'FAQ (Frequently Asked Questions)',
     bodyText: "I'm running out of words and sounds",
   },
   {
     id: 3,
-    title: "Help",
-    bodyText: "Welp you'll be alright... for now.",
+    title: 'Help',
+    bodyText:
+      'If you have any questions, encounter issues, or need assistance with the Atara app, our dedicated support team is just a message away. Feel free to contact us at **support@atara.org**, and we\'ll do our best to assist you promptly.',
   },
 ];
 
 export default function UserScreen({ navigation }) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const { user } = useUser();
+  const nav = useNavigation();
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? -1 : index);
   };
+
   return (
     <SafeAreaView>
       <ScrollView>
         {/* User Profile Pic, Name, Points earned */}
-        <View className="flex flex-row items-center m-5">
-          <View className="rounded-full bg-white drop-shadow-lg">
+        <View style={{ flexDirection: 'row', alignItems: 'center', margin: 15 }}>
+          <View style={{ borderRadius: 50, backgroundColor: 'white', padding: 5 }}>
             <Image
               source={{
                 uri: user?.imageUrl,
               }}
-              className="w-20 h-20 rounded-full"
+              style={{ width: 40, height: 40, borderRadius: 20 }}
             />
           </View>
-          <View className="ml-2">
-            <Text className="text-2xl font-semibold">{userName}</Text>
-            <Text className="text-lg font-semibold">{userPoints} Points</Text>
+          <View style={{ marginLeft: 10 }}>
+            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{userName}</Text>
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{userPoints} Points</Text>
           </View>
-          <View className="flex-1 flex-row-reverse">
+          <View style={{ flex: 1, flexDirection: 'row-reverse' }}>
             <TouchableOpacity
-              className="bg-green-500 p-3 rounded-xl"
+              style={{ backgroundColor: 'green', padding: 10, borderRadius: 20 }}
               onPress={() => {
                 navigation.goBack();
               }}
             >
-              <Text className="text-white font-bold text-xl">Back</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>Back</Text>
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Tabs for Favorites, History,and FAQ */}
-
         {/* Accordion List of stuff */}
-        <View className="border p-2 rounded-lg bg-pink-100">
+        <View style={{ borderWidth: 2, borderColor: 'pink', borderRadius: 10, margin: 10 }}>
           {items.map((item, index) => (
             <View key={index}>
-              <TouchableOpacity onPress={() => toggleAccordion(index)}>
-                <View className="flex-row border rounded-lg m-3 justify-between bg-green-200">
-                  <Text className="text-2xl font-semibold p-5">
-                    {item.title}
-                  </Text>
-                  <View className="flex-grow justify-items-center" />
-                  <View className="rounded-full bg-white p-3 h-14">
+              <TouchableOpacity
+                onPress={() => {
+                  toggleAccordion(index);
+                }}
+              >
+                {/* Tabs */}
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    backgroundColor: 'lightgreen',
+                    borderRadius: 10,
+                    margin: 10,
+                  }}
+                >
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', padding: 10 }}>{item.title}</Text>
+                  <View style={{ borderRadius: 50, backgroundColor: 'white', padding: 10 }}>
                     <Ionicons
-                      name={
-                        activeIndex === index
-                          ? "ios-arrow-up"
-                          : "ios-arrow-down"
-                      }
+                      name={activeIndex === index ? 'ios-arrow-up' : 'ios-arrow-down'}
                       size={30}
                       color="black"
                     />
@@ -103,10 +105,32 @@ export default function UserScreen({ navigation }) {
                 </View>
               </TouchableOpacity>
               {activeIndex === index && (
-                <View className="flex-row border rounded-lg m-3 justify-between">
-                  <Text className="text-lg font-semibold p-5">
-                    {item.bodyText}
-                  </Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', margin: 10 }}>
+                  {item.title === 'Your Favorites' && (
+                    <Carousel
+                      data={item.bodyText}
+                      renderItem={({ item }) => (
+                        <View
+                          style={{
+                            backgroundColor: 'lightblue',
+                            borderRadius: 10,
+                            padding: 10,
+                            margin: 10,
+                          }}
+                        >
+                          <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.name}</Text>
+                        </View>
+                      )}
+                      sliderWidth={300}
+                      itemWidth={200}
+                      layout={'default'}
+                    />
+                  )}
+                  {item.title !== 'Your Favorites' && (
+                    <Text style={{ fontSize: 16, fontWeight: 'bold', padding: 10 }}>
+                      {item.bodyText}
+                    </Text>
+                  )}
                 </View>
               )}
             </View>
@@ -115,7 +139,7 @@ export default function UserScreen({ navigation }) {
 
         {/* Sign out */}
         <View
-          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          style={{ borderRadius: 20, flex: 1, alignItems: "center", justifyContent: "center" }}
         >
           <SignOut />
         </View>
@@ -130,7 +154,7 @@ const SignOut = () => {
     return null;
   }
   return (
-    <View>
+    <View >
       <Button
         title="Sign Out"
         onPress={() => {
