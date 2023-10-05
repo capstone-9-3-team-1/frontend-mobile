@@ -45,6 +45,8 @@ export default function UserScreen({ navigation }) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const { user } = useUser();
 
+
+
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? -1 : index);
   };
@@ -53,13 +55,18 @@ export default function UserScreen({ navigation }) {
       <ScrollView>
         {/* User Profile Pic, Name, Points earned */}
         <View className="flex flex-row items-center m-5">
-          <View className="rounded-full bg-white drop-shadow-lg">
+          <View className="relative rounded-full bg-white drop-shadow-lg">
             <Image
               source={{
                 uri: user?.imageUrl,
               }}
               className="w-20 h-20 rounded-full"
             />
+            <TouchableOpacity 
+            onPress={() => navigation.navigate("UpdateAccount")}
+            className="h-9 w-9 items-center absolute bottom-0 right-0 bg-white rounded-full py-1 drop-shadow-xl">
+            <Ionicons name="create-outline" size={20} />
+            </TouchableOpacity>
           </View>
           <View className="ml-2">
             <Text className="text-2xl font-semibold">{userName}</Text>

@@ -10,7 +10,6 @@ import { useUser } from "@clerk/clerk-expo";
 import useRewards from "../../../utils/hooks/queries/useRewards";
 
 import FeaturedRewards from "./screens/FeaturedRewards";
-import Rewards from "./screens/Rewards"
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ActivityIndicator } from "react-native";
 import NotFeaturedRewards from "./screens/NotFeaturedRewards";
@@ -25,7 +24,7 @@ const userPoints = 100;
 
 export default function RewardsScreen({ navigation }) {
   const rewards = useRewards();
-  console.log(rewards.data)
+
 
   const insertNewlineAfterSecondSpace = (inputString) => {
     let spaceCount = 0;
@@ -46,6 +45,8 @@ export default function RewardsScreen({ navigation }) {
     return result;
   };
   const { user } = useUser();
+
+
   return (
     <SafeAreaView className="flex items-start bg-slate-100 ">
       <ScrollView showsVerticalScrollIndicator={false}>

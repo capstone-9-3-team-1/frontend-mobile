@@ -6,8 +6,6 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
-  TextInput,
-  FlatList,
 } from "react-native";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import { useUser } from "@clerk/clerk-expo";
@@ -15,7 +13,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Articles from "./Articles";
 import Products from "./Products";
 
-const articleBox = [1, 2, 3, 4];
 
 export default function HomeScreen({ navigation }) {
   const { isLoading, products, categories, articles } = useHomeData();
