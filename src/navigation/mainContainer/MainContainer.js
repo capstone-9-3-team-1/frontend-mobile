@@ -5,7 +5,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { SignedIn, SignedOut } from "@clerk/clerk-expo";
 
 // Screens
-import HomeScreen from "../tabs/Home/Screens/HomeScreen";
 import HomeRouter from "../tabs/Home/HomeRouter";
 import RewardsScreen from "../tabs/Rewards/RewardsScreen";
 import Welcome from "../mainContainer/screens/Welcome";

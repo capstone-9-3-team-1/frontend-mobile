@@ -10,11 +10,8 @@ import {
   FlatList,
 } from "react-native";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
-import ProductCard from "./ProductCard";
 import { useUser } from "@clerk/clerk-expo";
-import Search from "./Search";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import ArticleCard from "./ArticleCard";
 import Articles from "./Articles";
 import Products from "./Products";
 
@@ -40,7 +37,7 @@ export default function HomeScreen({ navigation }) {
             <View className="flex flex-row items-center">
               {/* logo */}
               <Image
-                className="h-10 flex-1 ml-[-40%] shadow-lg"
+                className="h-10 flex-1 ml-[-40%] bg-slate-100 shadow-lg"
                 source={{
                   uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
                 }}
@@ -48,7 +45,7 @@ export default function HomeScreen({ navigation }) {
               />
               {/* profile circle  */}
               <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-                <View className=" m-5 shadow-lg">
+                <View className=" m-5 rounded-full bg-slate-100 shadow-lg">
                   <Image
                     source={{
                       uri: user?.imageUrl,
@@ -97,7 +94,7 @@ export default function HomeScreen({ navigation }) {
                     key={item.id}
                   >
                     <View className="columns-1 mb-3 flex items-center justify-center">
-                      <View className="h-14 w-14 rounded-full m-3 drop-shadow-lg bg-white mb-1 ">
+                      <View className="h-14 w-14 rounded-full m-3 drop-shadow-lg bg-slate-100 mb-1 ">
                         <Image
                           source={{ uri: item.imageUrl }}
                           className="h-14 w-14 rounded-full justify-center"
@@ -111,15 +108,15 @@ export default function HomeScreen({ navigation }) {
                 );
               })}
             </ScrollView>
-            <View className="bg-green-100">
-               {/* Articles */}
+
+            {/* Articles */}
             {articles.isLoading ? (
               <ActivityIndicator />
             ) : (
-              <Articles navigation={navigation}/>
+              <Articles navigation={navigation} />
             )}
             {/* featured products- */}
-            <Text className="text-2xl font-semibold mx-3 mt-3">
+            <Text className="text-2xl font-semibold mx-auto mt-3">
               New Arrivals
             </Text>
             {products.isLoading ? (
@@ -127,9 +124,6 @@ export default function HomeScreen({ navigation }) {
             ) : (
               <Products products={products} navigation={navigation} />
             )}
-              
-            </View>
-           
           </View>
         </ScrollView>
       )}

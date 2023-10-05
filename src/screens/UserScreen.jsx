@@ -5,7 +5,7 @@ import { useAuth, useUser } from '@clerk/clerk-expo';
 import { useNavigation } from '@react-navigation/native';
 import Carousel from 'react-native-snap-carousel';
 
-const userName = 'Tina S.';
+const userName = "Tina S.";
 const userPoints = 100;
 
 const items = [

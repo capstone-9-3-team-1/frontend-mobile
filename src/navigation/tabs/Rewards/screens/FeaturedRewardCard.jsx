@@ -1,6 +1,7 @@
-import { View, Text, Imag, ImageBackground } from "react-native";
+import { View, Text, ImageBackground } from "react-native";
 
-export default function ArticleCard({ item }) {
+export default function FeaturedRewardCard({ item }) {
+    
   const insertNewlineAfterSecondSpace = (inputString) => {
     let spaceCount = 0;
     let result = "";
@@ -26,11 +27,11 @@ export default function ArticleCard({ item }) {
       source={{ uri: item.imageUrl }}
       resizeMode="cover"
       borderRadius={30}
-      className="h-48 w-80 opacity-80 hower:opacity-100  bg-slate-100 rounded-3xl shadow-md"
+      className="h-48 w-80 opacity-80 hower:opacity-100  bg-white shadow-md"
     >
       <View className="flex-1 justify-end items-center ">
-        <Text className="font-semibold text-lg text-white text-center leading-5 my-3">
-          {insertNewlineAfterSecondSpace(item.title)}
+        <Text className="font-semibold text-lg text-black text-center leading-5 my-3">
+          {insertNewlineAfterSecondSpace(item.name)}
         </Text>
       </View>
     </ImageBackground>
