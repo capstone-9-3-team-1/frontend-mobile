@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  SafeAreaView,
 } from "react-native";
 import ArticleCard from "./ArticleCard";
 import { useEffect, useState } from "react";
@@ -57,15 +58,17 @@ export default function Articles({ navigation }) {
   };
 
   return (
-    <FlatList
-      data={articles}
-      renderItem={renderItem}
-      keyExtractor={(item, i) => i}
-      onEndReached={loadMoreItem}
-      ListFooterComponent={renderLoader}
-      onEndReachedThreshold={0}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false} 
-    />
+    <SafeAreaView style={{ flex: 1 }}>
+      <FlatList
+        data={articles}
+        renderItem={renderItem}
+        keyExtractor={(item, i) => i}
+        onEndReached={loadMoreItem}
+        ListFooterComponent={renderLoader}
+        onEndReachedThreshold={0}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
+    </SafeAreaView>
   );
 }

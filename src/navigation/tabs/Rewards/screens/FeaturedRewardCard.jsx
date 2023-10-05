@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground } from "react-native";
 
-export default function RewardCard({ item }) {
+export default function FeaturedRewardCard({ item }) {
     
   const insertNewlineAfterSecondSpace = (inputString) => {
     let spaceCount = 0;

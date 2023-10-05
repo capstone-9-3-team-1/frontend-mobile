@@ -3,12 +3,14 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  SafeAreaView,
 } from "react-native";
-import RewardCard from "./RewardCard"
+import RewardCard from "./FeaturedRewardCard"
 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../../../../utils/constants";
+import FeaturedRewardCard from "./FeaturedRewardCard";
 
 
 export default function FeaturedRewards({ navigation }) {
@@ -18,7 +20,7 @@ export default function FeaturedRewards({ navigation }) {
 
   const getRewards = () => {
     setIsLoading(true);
-    axios.get(`${API}/rewards/not-featured`).then((res) => {
+    axios.get(`${API}/rewards/featured`).then((res) => {
       setRewards([...rewards, ...res.data]);
     });
   };
@@ -45,7 +47,7 @@ export default function FeaturedRewards({ navigation }) {
         // }
         key={item.id}
       >
-        <RewardCard item={item} />
+        <FeaturedRewardCard item={item} />
       </TouchableOpacity>
     );
   };
@@ -59,7 +61,8 @@ export default function FeaturedRewards({ navigation }) {
   };
 
   return (
-    <FlatList
+    <SafeAreaView style={{flex:1}}>
+       <FlatList
       data={rewards}
       renderItem={renderItem}
       keyExtractor={(item, i) => i}
@@ -69,5 +72,8 @@ export default function FeaturedRewards({ navigation }) {
       horizontal={true}
       showsHorizontalScrollIndicator={false}
     />
+    </SafeAreaView>
+
+   
   );
 }

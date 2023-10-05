@@ -21,7 +21,6 @@ export default function HomeScreen({ navigation }) {
   const { isLoading, products, categories, articles } = useHomeData();
   const { user } = useUser();
 
-
   function insertBreaksAtSpaces(inputString) {
     return inputString.replace(/[ \-]/g, "\n");
   }
@@ -38,7 +37,7 @@ export default function HomeScreen({ navigation }) {
             <View className="flex flex-row items-center">
               {/* logo */}
               <Image
-                className="h-10 flex-1 ml-[-40%] bg-white shadow-lg"
+                className="h-10 flex-1 ml-[-40%] bg-slate-100 shadow-lg"
                 source={{
                   uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
                 }}
@@ -46,7 +45,7 @@ export default function HomeScreen({ navigation }) {
               />
               {/* profile circle  */}
               <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-                <View className=" m-5  bg-white shadow-lg">
+                <View className=" m-5 rounded-full bg-slate-100 shadow-lg">
                   <Image
                     source={{
                       uri: user?.imageUrl,
@@ -95,7 +94,7 @@ export default function HomeScreen({ navigation }) {
                     key={item.id}
                   >
                     <View className="columns-1 mb-3 flex items-center justify-center">
-                      <View className="h-14 w-14 rounded-full m-3 drop-shadow-lg bg-white mb-1 ">
+                      <View className="h-14 w-14 rounded-full m-3 drop-shadow-lg bg-slate-100 mb-1 ">
                         <Image
                           source={{ uri: item.imageUrl }}
                           className="h-14 w-14 rounded-full justify-center"
@@ -109,12 +108,12 @@ export default function HomeScreen({ navigation }) {
                 );
               })}
             </ScrollView>
-        
-               {/* Articles */}
+
+            {/* Articles */}
             {articles.isLoading ? (
               <ActivityIndicator />
             ) : (
-              <Articles navigation={navigation}/>
+              <Articles navigation={navigation} />
             )}
             {/* featured products- */}
             <Text className="text-2xl font-semibold mx-auto mt-3">
