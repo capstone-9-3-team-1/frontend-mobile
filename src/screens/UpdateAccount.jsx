@@ -10,29 +10,13 @@ const UpdateAccount = ({ navigation }) => {
   const { user } = useUser();
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [imageUrl, setImageUrl] = useState(user.imageUrl);
-
-  console.log(user)
 
 
-  
-    // try {
-    //   // This is not working!
-    //   const params = { first_name: firstName, last_name: lastName }; 
-    //   console.log(params)
-    //   const result = user.update(params);
-    //   console.log("update user",result);
-    // //   const result = await clerkClient.users.updateUser(user.id, params);
-    // } catch (e) {
-    //   console.log("update user error");
-    //   console.error(e)
-    // }
     const onSaveUser = async () => {
    
         await user.update({
           firstName: firstName,
           lastName: lastName,
-          imageUrl: imageUrl
         });
       };
   
@@ -48,13 +32,6 @@ const UpdateAccount = ({ navigation }) => {
         <Text className="text-xl font-bold mx-auto TextInput-slate-700">
           Update Account
         </Text>
-        <TextInput
-          placeholder="Image"
-          value={imageUrl}
-          onChangeText={setImageUrl}
-          className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5 mx-4 my-5"
-        />
-
         <TextInput
           placeholder="First Name"
           value={firstName}
