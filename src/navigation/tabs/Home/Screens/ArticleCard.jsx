@@ -29,7 +29,7 @@ export default function ArticleCard({ item }) {
       className="h-48 w-80 opacity-80 hower:opacity-100  bg-slate-100 rounded-3xl shadow-md"
     >
       <View className="flex-1 justify-end items-center ">
-        <Text className="font-semibold text-lg text-white text-center leading-5 my-3">
+        <Text className="font-bold text-lg text-white text-center leading-5 my-3">
           {insertNewlineAfterSecondSpace(item.title)}
         </Text>
       </View>

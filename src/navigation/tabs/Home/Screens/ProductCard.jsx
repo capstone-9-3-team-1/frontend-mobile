@@ -24,7 +24,7 @@ function addBadge(item) {
 export default function ProductCard({ item }) {
 
   return (
-    <View className="m-2 w-44 border border-gray-200 rounded-2xl" key={item.id}>
+    <View className="mx-3 w-[99%] border border-gray-200 rounded-2xl" key={item.id}>
       <View className=" relative bg-white rounded-t-2xl">
         <Image
           source={{
