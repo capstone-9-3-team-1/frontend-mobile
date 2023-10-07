@@ -29,7 +29,7 @@ export default function ProductShow({ route, navigation }) {
     const updatedProduct = {
       favorite: liked,
     };
-    axios.put(`${API}/products/${id}`,updatedProduct);
+    axios.put(`${API}/products/${id}`, updatedProduct);
   };
 
   useEffect(() => {
@@ -41,22 +41,15 @@ export default function ProductShow({ route, navigation }) {
   return (
     <SafeAreaView>
       <ScrollView>
-      <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-              <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
-                <View className="flex-1 flex-row items-center">
-                  <Ionicons
-                    name="search"
-                    size={20}
-                    className="flex-1"
-                  ></Ionicons>
-                  <Text className="px-2 text-slate-300">
-                    Search products ...
-                  </Text>
-                </View> 
-              </View>
-            </TouchableOpacity>
-        <View className="mx-10 flex h-screen items-center">
-        
+        <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+          <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
+            <View className="flex-1 flex-row items-center">
+              <Ionicons name="search" size={20} className="flex-1"></Ionicons>
+              <Text className="px-2 text-slate-300">Search products ...</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <View className="mx-5 flex h-screen items-center">
           <View className=" mx-10 relative bg-white w-screen h-[40%] rounded-3xl mt-[5%]">
             <Image
               style={{
@@ -115,17 +108,21 @@ export default function ProductShow({ route, navigation }) {
               {/* need to add rating here  */}
             </View>
           </View>
-          <Text className="text-base text-slate-700 mt-[-10px]">
+          <Text className="text-base text-slate-700 mt-[-10px] mb-3">
             {description}
           </Text>
+
           <TouchableOpacity
-            className="bg-green-500 p-2 rounded-lg"
+            className="border border-slate-300 p-2 rounded-full  w-full my-2 flex-row  justify-between"
             onPress={() => {
               // Route for the Rewards History
             }}
           >
-            <Text className="text-white text-sm">Your Rewards</Text>
-          </TouchableOpacity>     
+            <View>
+              <Text>Amazon</Text>
+            </View>
+            <Text className="text-white text-sm">{price}</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>

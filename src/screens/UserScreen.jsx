@@ -64,15 +64,13 @@ export default function UserScreen({ navigation }) {
         <View className="flex items-center m-5">
           <View className="relative rounded-full bg-white shadow-lg">
             <Image
-              source={{
-                uri: user?.imageUrl,
-              }}
+              source={require("../assets/TinaProfileImage.png")}
               className="w-20 h-20 rounded-full"
             />
             <TouchableOpacity 
             onPress={() => navigation.navigate("UpdateAccount")}
-            className="h-9 w-9 items-center absolute bottom-0 right-0 bg-white rounded-full py-1 drop-shadow-xl">
-            <Ionicons name="create-outline" size={20} />
+            className="h-7 w-7 items-center absolute bottom-[-7] right-0  bg-white flex justify-center rounded-full py-1 drop-shadow-xl">
+            <Ionicons name="create-outline" size={20}  color="grey" />
             </TouchableOpacity>
           </View>
           <View className="ml-2">

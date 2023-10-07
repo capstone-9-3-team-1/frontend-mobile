@@ -27,7 +27,7 @@ const Search = ({ navigation }) => {
   }, [searchTerm]);
 
   return (
-    <SafeAreaView className="bg-green-100 rounded-b-3xl" > 
+    <SafeAreaView className="w-screen" > 
     <View className="flex flex-row items-center mx-2">
       <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
       <Ionicons name="arrow-back" size={20}/> 
@@ -47,11 +47,12 @@ const Search = ({ navigation }) => {
       </View>
       </View>  
        <ScrollView showsVerticalScrollIndicator={false}>
-      <View className="flex-1 flex-row flex-wrap pl-1">
+      <View className="flex-row flex-wrap gap-2">
         {searchTerm
           ? result.map((item) => (
               <TouchableOpacity
                 key={item.id}
+                className="w-48"
                 onPress={() =>
                   navigation.navigate("ProductShow", {
                     id: item.id,

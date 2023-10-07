@@ -21,21 +21,27 @@ function addBadge(item) {
   
 }
 
+//color bg-[#f3fcf0]
+
 export default function ProductCard({ item }) {
 
   return (
-    <View className="mx-3 w-[99%] border border-gray-200 rounded-2xl" key={item.id}>
-      <View className=" relative bg-white rounded-t-2xl">
+    <View className="mx-3 my-1" key={item.id}>
+      <View className="h-48 w-48 bg-[#f4ffef] border-[1.5px] border-slate-100 items-center justify-center rounded-md">
+      <View className="relative bg-white w-44 h-44 ">
         <Image
           source={{
             uri: item.imageUrl,
           }}
-          className="rounded-t-lg h-48"
+          className="rounded-t-lg h-40"
           resizeMode="contain"
         />
         <View className="absolute bottom-1 right-1">{addBadge(item)}</View>
       </View>
-      <View className="p-3 bg-[#f3fcf0] rounded-b-2xl ">
+
+      </View>
+     
+      <View className="p-3  rounded-b-2xl ">
         <Text className="font-semibold text-sm">{item.name}</Text>
         <Text>by <Text className="text-green-800">{item.business}</Text></Text>
         <View className="flex-row gap-1">
