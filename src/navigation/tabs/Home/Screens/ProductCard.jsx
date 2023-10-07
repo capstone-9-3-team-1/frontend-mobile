@@ -37,7 +37,7 @@ export default function ProductCard({ item }) {
       </View>
       <View className="p-3 bg-[#f3fcf0] rounded-b-2xl ">
         <Text className="font-semibold text-sm">{item.name}</Text>
-        <Text className="">{item.business}</Text>
+        <Text>by <Text className="text-green-800">{item.business}</Text></Text>
         <View className="flex-row gap-1">
           <Image
             className="h-4 w-4  bg-white drop-shadow-xl"

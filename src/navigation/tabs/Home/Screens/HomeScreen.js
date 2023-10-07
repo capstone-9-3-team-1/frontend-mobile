@@ -113,7 +113,7 @@ export default function HomeScreen({ navigation }) {
               <Articles navigation={navigation} />
             )}
             {/* featured products- */}
-            <Text className="text-2xl font-semibold mx-auto mt-3">
+            <Text className="text-2xl font-semibold text-left  m-3">
               New Arrivals
             </Text>
             {products.isLoading ? (

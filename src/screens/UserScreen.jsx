@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useAuth, useUser } from '@clerk/clerk-expo';
-import { useNavigation } from '@react-navigation/native';
-import Carousel from 'react-native-snap-carousel';
 import { FAQData } from './FAQ';
 
 const userName = 'Tina S.';
@@ -116,34 +114,7 @@ export default function UserScreen({ navigation }) {
                   </View>
                 </View>
               </TouchableOpacity>
-              {activeIndex === index && (
-                <View className="flex-row border rounded-lg m-3 justify-between">
-                  {item.title === 'Your Favorites' || item.title === 'Purchase History' ? (
-                    <Carousel
-                      data={item.bodyText}
-                      renderItem={({ item }) => (
-                        <View className="bg-light-blue-300 rounded-lg p-3 m-3 h-40 w-40">
-                          <Text className="text-xl font-semibold">{item.name}</Text>
-                        </View>
-                      )}
-                      sliderWidth={300}
-                      itemWidth={200}
-                      layout="default"
-                    />
-                  ) : item.title === 'FAQ (Frequently Asked Questions)' ? (
-                    <ScrollView>
-                      {item.bodyText.map((faq, faqIndex) => (
-                        <View key={faqIndex} className="border rounded-lg m-3 p-3 bg-light-blue-300">
-                        <Text className="text-xl font-semibold mb-2">{faq.question}</Text>
-                        <Text className="text-lg font-normal">{faq.answer}</Text>
-                      </View>                      
-                      ))}
-                    </ScrollView>
-                  ) : (
-                    <Text className="text-lg font-semibold p-5">{item.bodyText}</Text>
-                  )}
-                </View>
-              )}
+            
             </View>
           ))}
         </View>
