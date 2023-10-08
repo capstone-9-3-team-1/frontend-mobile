@@ -33,7 +33,7 @@ export default function Articles({ navigation }) {
   const renderItem = ({ item }) => {
     return (
       <TouchableOpacity
-        className="flex-row px-1 py-3 "
+        className=" px-1 py-3 "
         onPress={() =>
           navigation.navigate("ArticleShow", {
             title: item.title,

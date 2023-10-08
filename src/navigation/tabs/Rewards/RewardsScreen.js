@@ -54,12 +54,12 @@ export default function RewardsScreen({ navigation }) {
         <View className="flex flex-row items-center m-5">
           <View className="rounded-full  bg-white drop-shadow-lg">
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
               <Image
-                source={{
-                  uri: user?.imageUrl,
-                }}
-                className="w-8 h-8 rounded-full"
+                source={require("../../../assets/TinaProfileImage.png")}
+                className="w-12 h-12 rounded-full"
               />
+              </View>
             </TouchableOpacity>
           </View>
           <View className="ml-2">
@@ -102,7 +102,7 @@ export default function RewardsScreen({ navigation }) {
           ))}
         </ScrollView>
         {/* Featured Rewards */}
-        <View className="my-3 bg-red-300">
+        <View className="my-3">
           <Text className="text-2xl font-semibold pl-3">Featured Rewards</Text>
           <ScrollView horizontal>
             <View className="flex-row flex-wrap">

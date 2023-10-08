@@ -45,7 +45,7 @@ export default function HomeScreen({ navigation }) {
                onPress={() => navigation.navigate("Profile")}
                className="mx-5 my-3"
               >
-                <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] shadow-lg">
+                <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
                   <Image
                    source={require("../../../../assets/TinaProfileImage.png")}
                     className="w-12 h-12 rounded-full"
