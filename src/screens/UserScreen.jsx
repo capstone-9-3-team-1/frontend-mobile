@@ -90,7 +90,7 @@ export default function UserScreen({ navigation }) {
         </View>
   
         {/* Accordion List of stuff */}
-        <View className="border p-2 rounded-lg bg-pink-100">
+        {/* <View className="border p-2 rounded-lg bg-pink-100">
           {items.map((item, index) => (
             <View key={index}>
               <TouchableOpacity
@@ -115,7 +115,7 @@ export default function UserScreen({ navigation }) {
             
             </View>
           ))}
-        </View>
+        </View> */}
   
         {/* Sign out */}
         <View className="flex items-center justify-center">

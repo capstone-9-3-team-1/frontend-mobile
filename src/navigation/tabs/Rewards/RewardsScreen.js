@@ -69,8 +69,8 @@ export default function RewardsScreen({ navigation }) {
           </View>
           <View className="ml-2">
            
-            <View className="flex-row gap-1 bg-green-100 rounded-full px-2">
-              <Text className="text-bold text-lg">{balance}</Text>
+            <View className="flex-row gap-1 bg-green-100 text-slate-700 rounded-full px-2 py-1">
+              <Text className="font-bold text-lg">{balance}</Text>
               <Image
                 className="h-6 w-6"
                 source={require("../../../assets/AtaraCoin.png")}
@@ -100,12 +100,12 @@ export default function RewardsScreen({ navigation }) {
                     <Ionicons name="search" size={20} />
                   </View>
                 ) : (
-                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-xl items-center justify-center my-auto">
+                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-3xl items-center justify-center my-auto">
                     <Text className="">{num}</Text>
                   </View>
                 )}
 
-                <Text className="text-center">
+                <Text className="text-center text-sm mt-1">
                   {i === 0
                     ? null
                     : insertNewlineAfterSecondSpace("up to 100 tokens")}
