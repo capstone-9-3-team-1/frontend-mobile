@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  Button,
   Image,
   SafeAreaView,
   ScrollView,
@@ -10,7 +9,13 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useAuth, useUser } from '@clerk/clerk-expo';
+import { useNavigation } from '@react-navigation/native';
+
 import { FAQData } from './FAQ';
+import useProducts from '../utils/hooks/queries/useProducts';
+import axios from "axios";
+import { API } from '../utils/constants';
+import { useEffect } from 'react';
 
 const userName = 'Tina S.';
 const userPoints = 100;
@@ -51,7 +56,20 @@ const items = [
 
 export default function UserScreen({ navigation }) {
   const [activeIndex, setActiveIndex] = useState(-1);
+  const [fave, setFave] = useState([]);
+
   const { user } = useUser();
+
+  
+  const getFave = () => {
+    axios.get(`${API}/products`).then((res) => {
+      setFave(res.data);
+      console.log(fave)
+    });
+  };
+  useEffect(() => {
+    getFave();
+  }, []);
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? -1 : index);
@@ -112,7 +130,24 @@ export default function UserScreen({ navigation }) {
                   </View>
                 </View>
               </TouchableOpacity>
-            
+
+              {activeIndex === index && (
+                <View className="flex-row border rounded-lg m-3 justify-between">
+                  {item.title === 'Your Favorites' || item.title === 'Purchase History' ? (
+                   <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    {fave.map((item) => 
+                    <View className="border h-40 w-40 p-3 m-3" key={item.id}>
+                      {item.favorite}
+                    </View>)}
+                   </ScrollView>
+                 
+                    
+                  ) : (
+                    <Text className="text-lg font-semibold p-5">{item.bodyText}</Text>
+                  )}
+                </View>
+              )}
+
             </View>
           ))}
         </View>
