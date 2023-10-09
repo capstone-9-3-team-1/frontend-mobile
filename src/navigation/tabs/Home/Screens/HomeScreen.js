@@ -31,10 +31,10 @@ export default function HomeScreen({ navigation }) {
           <View className="">
             {isLoading ? <></> : <></>}
             {/*  header: logo and profile circle  */}
-            <View className="flex flex-row items-center">
+            <View className="flex flex-row items-center mb-3">
               {/* logo */}
               <Image
-                className="h-10 flex-1 ml-[-40%] shadow-lg"
+                className="h-10 flex-1 ml-[-30%] shadow-lg"
                 source={{
                   uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
                 }}
@@ -43,8 +43,9 @@ export default function HomeScreen({ navigation }) {
               {/* profile circle  */}
               <TouchableOpacity
                onPress={() => navigation.navigate("Profile")}
-               className="mx-5 my-3"
+               className="mr-6 mt-5 flex-row items-center"
               >
+                <Text className="text-2xl font-semibold mx-2 text-slate-700">{user?.firstName}</Text>
                 <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
                   <Image
                    source={require("../../../../assets/TinaProfileImage.png")}
