@@ -18,32 +18,46 @@ import { View, Text, Image } from "react-native";
 //         className="h-12 w-12"
 //       />
 //     );
-  
+
 // }
 
 export default function NotFeaturedRewardCard({ item }) {
 
+  const  addNewLineAfterThirdWord = (inputString) => {
+    const words = inputString.split(' ');
+    if (words.length >= 3) {
+      words.splice(3, 0, '\n'); 
+      return words.join(' ');
+    }
+    return inputString;
+  }
+  
   return (
-    <View className="m-2 w-44 border border-gray-200 rounded-2xl" key={item.id}>
-      <View className=" relative bg-white rounded-t-2xl">
+    <View
+      className="mx-4 my-[5px] h-40 bg-white  flex flex-wrap rounded-md drop-shadow-xl border-[1px] border-green-100"
+      key={item.id}
+    >
+      <View className="w-36 my-auto ml-2 bg-white drop-shadow-xl">
         <Image
           source={{
             uri: item.imageUrl,
           }}
-          className="rounded-t-lg h-48"
+          className="h-36"
           resizeMode="contain"
         />
-        {/* <View className="absolute bottom-1 right-1">{addBadge(item)}</View> */}
       </View>
-      <View className="p-3 bg-[#f3fcf0] rounded-b-2xl ">
-        <Text className="font-semibold text-sm">{item.name}</Text>
-        <View className="flex-row gap-1">
-          <Image
-            className="h-4 w-4  bg-white drop-shadow-xl"
-            source={require("../../../../assets/AtaraCoin.png")}
-          />
-          <Text className="">{item.tokensAmount}</Text>
-        </View>
+      <View className="ml-3 my-auto h-fit">
+        <Text className="font-bold text-green-800 ">{item.business}</Text>    
+          <Text className="text-bold text-slate-800 text-lg my-1">
+            {addNewLineAfterThirdWord(item.name)}
+          </Text>
+          <View className="flex-row gap-1">
+            <Image
+              className="h-6 w-6  bg-white drop-shadow-xl"
+              source={require("../../../../assets/AtaraCoin.png")}
+            />
+            <Text className="text-bold text-lg">{item.tokensAmount}</Text>
+          </View>
       </View>
     </View>
   );

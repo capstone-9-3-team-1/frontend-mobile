@@ -24,18 +24,23 @@ export default function SignUpScreen({ navigation }) {
     }
 
     try {
-      await signUp.create({
-        emailAddress,
+      let signUpResult = await signUp.create({
+        email_address: emailAddress,
         password,
+        "first_name":"",
+        "last_name":""
       });
 
+      console.log("signupresult", signUpResult)
+//qihectorzhong@pursuit.org
+//20231005@a
       // send the email.
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
       // change the UI to our pending section.
       setPendingVerification(true);
     } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
+      console.error(err);
     }
   };
 
@@ -49,10 +54,20 @@ export default function SignUpScreen({ navigation }) {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
         code,
       });
+      console.log("complete", completeSignUp)
 
       await setActive({ session: completeSignUp.createdSessionId });
+      if (completeSignUp.status !== "complete") {
+        /*  investigate the response, to see if there was an error
+         or if the user needs to complete more steps.*/
+        console.log(JSON.stringify(completeSignUp, null, 2));
+      }
+      if (completeSignUp.status === "complete") {
+        await setActive({ session: completeSignUp.createdSessionId })
+        // router.push("/");
+      }
     } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
+      console.error(err);
     }
   };
 

@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useAuth, useUser } from '@clerk/clerk-expo';
-import { useNavigation } from '@react-navigation/native';
-import Carousel from 'react-native-snap-carousel';
 import { FAQData } from './FAQ';
 
 const userName = 'Tina S.';
@@ -54,7 +52,6 @@ const items = [
 export default function UserScreen({ navigation }) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const { user } = useUser();
-  const nav = useNavigation();
 
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? -1 : index);
@@ -65,13 +62,16 @@ export default function UserScreen({ navigation }) {
       <ScrollView>
         {/* User Profile Pic, Name, Points earned */}
         <View className="flex items-center m-5">
-          <View className="rounded-full bg-white shadow-lg">
+          <View className="relative rounded-full bg-white shadow-lg">
             <Image
-              source={{
-                uri: user?.imageUrl,
-              }}
+              source={require("../assets/TinaProfileImage.png")}
               className="w-20 h-20 rounded-full"
             />
+            <TouchableOpacity 
+            onPress={() => navigation.navigate("UpdateAccount")}
+            className="h-7 w-7 items-center absolute bottom-[-7] right-0  bg-white flex justify-center rounded-full py-1 drop-shadow-xl">
+            <Ionicons name="create-outline" size={20}  color="grey" />
+            </TouchableOpacity>
           </View>
           <View className="ml-2">
             <Text className="text-2xl font-semibold">{userName}</Text>
@@ -112,34 +112,7 @@ export default function UserScreen({ navigation }) {
                   </View>
                 </View>
               </TouchableOpacity>
-              {activeIndex === index && (
-                <View className="flex-row border rounded-lg m-3 justify-between">
-                  {item.title === 'Your Favorites' || item.title === 'Purchase History' ? (
-                    <Carousel
-                      data={item.bodyText}
-                      renderItem={({ item }) => (
-                        <View className="bg-light-blue-300 rounded-lg p-3 m-3 h-40 w-40">
-                          <Text className="text-xl font-semibold">{item.name}</Text>
-                        </View>
-                      )}
-                      sliderWidth={300}
-                      itemWidth={200}
-                      layout="default"
-                    />
-                  ) : item.title === 'FAQ (Frequently Asked Questions)' ? (
-                    <ScrollView>
-                      {item.bodyText.map((faq, faqIndex) => (
-                        <View key={faqIndex} className="border rounded-lg m-3 p-3 bg-light-blue-300">
-                        <Text className="text-xl font-semibold mb-2">{faq.question}</Text>
-                        <Text className="text-lg font-normal">{faq.answer}</Text>
-                      </View>                      
-                      ))}
-                    </ScrollView>
-                  ) : (
-                    <Text className="text-lg font-semibold p-5">{item.bodyText}</Text>
-                  )}
-                </View>
-              )}
+            
             </View>
           ))}
         </View>

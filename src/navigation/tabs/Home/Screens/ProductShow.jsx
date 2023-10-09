@@ -1,7 +1,18 @@
-import { ScrollView, SafeAreaView, View, Text, Image } from "react-native";
-import { Svg, Path } from "react-native-svg";
+import { useState, useEffect } from "react";
+import {
+  ScrollView,
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import axios from "axios";
+import { API } from "../../../../utils/constants";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function ProductShow({ route, navigation }) {
+  const [liked, setLiked] = useState(false);
   const {
     id,
     image,
@@ -13,51 +24,105 @@ export default function ProductShow({ route, navigation }) {
     price,
     tokenValue,
   } = route.params;
-  
+
+  const toggleFavorite = () => {
+    const updatedProduct = {
+      favorite: liked,
+    };
+    axios.put(`${API}/products/${id}`, updatedProduct);
+  };
+
+  useEffect(() => {
+    toggleFavorite();
+  }, [liked]);
+
+  console.log(liked);
 
   return (
     <SafeAreaView>
       <ScrollView>
-        <View className="m-10 flex h-screen items-center">
-          <View className="relative">
+        <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+          <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
+            <View className="flex-1 flex-row items-center">
+              <Ionicons name="search" size={20} className="flex-1"></Ionicons>
+              <Text className="px-2 text-slate-300">Search products ...</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <View className="mx-5 flex h-screen items-center">
+          <View className=" mx-10 relative bg-white w-screen h-[40%] rounded-3xl mt-[5%]">
             <Image
               style={{
-                width: 350,
-                height: 400,
+                width: 300,
+                height: 300,
               }}
               source={{
                 uri: image,
               }}
               resizeMode="contain"
-              className="h-fit"
+              className="h-fit mx-auto my-auto"
             />
-            <View className="absolute bottom-0 right-0">
-              <Svg
-                width="64"
-                height="64"
-                uri="http://www.w3.org/2000/svg"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-              >
-                <Path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" />
-              </Svg>
+            <TouchableOpacity
+              className="absolute bottom-5 right-6"
+              onPress={() => setLiked(!liked)}
+            >
+              {liked ? (
+                <Image
+                  className="h-10 w-10"
+                  source={require("../../../../assets/faves/red-heart.png")}
+                />
+              ) : (
+                <Image
+                  className="h-10 w-10"
+                  source={require("../../../../assets/faves/grey-heart.png")}
+                />
+              )}
+            </TouchableOpacity>
+            <View className="flex flex-col gap-4 flex-shrink-0 w-1/2 bottom-2">
+              <View className="flex-row gap-3">
+                <Text className="text-slate-400 text-[10px]">●</Text>
+                <Text className="text-slate-300 text-[10px]">●</Text>
+                <Text className="text-slate-300 text-[10px]">●</Text>
+                <Text className="text-slate-300 text-[10px]">●</Text>
+              </View>
             </View>
           </View>
+
           <View className="flex-row my-6 ">
             <View className="self-start flex-1 space-y-1">
-              <Text className=" text-3xl font-semibold ">{name}</Text>
-              <Text className=" text-xl font-semibold ">{spec}</Text>
+              <Text className="text-2xl font-semibold text-slate-700">
+                {name}
+              </Text>
+              <Text className="text-lg font-semibold text-green-700">
+                {spec}
+              </Text>
               <View className="flex-row gap-1">
                 <Image
-                  className="h-8 w-8 bg-white drop-shadow-xl"
+                  className="h-7 w-7 drop-shadow-xl"
                   source={require("../../../../assets/AtaraCoin.png")}
                 />
-                <Text className="text-2xl font-medium">{tokenValue}</Text>
+                <Text className="text-lg font-medium text-slate-700">
+                  {tokenValue}
+                </Text>
               </View>
               {/* need to add rating here  */}
             </View>
           </View>
-          <Text className="text-lg indent-8">{description}</Text>
+          <Text className="text-base text-slate-700 mt-[-10px] mb-3">
+            {description}
+          </Text>
+
+          <TouchableOpacity
+            className="border border-slate-300 p-2 rounded-full  w-full my-2 flex-row  justify-between"
+            onPress={() => {
+              // Route for the Rewards History
+            }}
+          >
+            <View>
+              <Text>Amazon</Text>
+            </View>
+            <Text className="text-white text-sm">{price}</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
