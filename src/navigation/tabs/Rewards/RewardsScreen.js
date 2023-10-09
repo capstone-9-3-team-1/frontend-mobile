@@ -10,27 +10,32 @@ import { useUser } from "@clerk/clerk-expo";
 import useRewards from "../../../utils/hooks/queries/useRewards";
 
 import FeaturedRewards from "./screens/FeaturedRewards";
-import Rewards from "./screens/Rewards"
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { ActivityIndicator } from "react-native";
 import NotFeaturedRewards from "./screens/NotFeaturedRewards";
-
+import { API } from "../../../utils/constants";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const tokensPriceRange = ["", "50", "70", "100", "300", "500+"];
 const products = [1, 2, 3, 4, 5, 6];
 
-const userName = "John Doe";
-const userPoints = 100;
-// const pointsRedeemed = 50; // Assign a value to pointsRedeemed
-
 export default function RewardsScreen({ navigation }) {
+  const [balance, setBalance] = useState(0)
+
   const rewards = useRewards();
-  console.log(rewards.data)
+  const { user } = useUser();
+
+  useEffect(() => {
+    axios.get(`${API}/userTokensBalance/${user.firstName}`).then((res) => {
+      setBalance(res.data.tokensBalance)
+    })
+
+  })
 
   const insertNewlineAfterSecondSpace = (inputString) => {
     let spaceCount = 0;
     let result = "";
-
     for (let i = 0; i < inputString.length; i++) {
       if (inputString[i] === " ") {
         spaceCount++;
@@ -45,7 +50,8 @@ export default function RewardsScreen({ navigation }) {
     }
     return result;
   };
-  const { user } = useUser();
+
+
   return (
     <SafeAreaView className="flex items-start bg-slate-100 ">
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -53,17 +59,23 @@ export default function RewardsScreen({ navigation }) {
         <View className="flex flex-row items-center m-5">
           <View className="rounded-full  bg-white drop-shadow-lg">
             <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-              <Image
-                source={{
-                  uri: user?.imageUrl,
-                }}
-                className="w-8 h-8 rounded-full"
-              />
+              <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
+                <Image
+                  source={require("../../../assets/TinaProfileImage.png")}
+                  className="w-12 h-12 rounded-full"
+                />
+              </View>
             </TouchableOpacity>
           </View>
           <View className="ml-2">
-            <Text className="text-2xl font-semibold">{user?.firstName}</Text>
-            <Text className="text-lg font-semibold">{userPoints} Points</Text>
+           
+            <View className="flex-row gap-1 bg-green-100 rounded-full px-2">
+              <Text className="text-bold text-lg">{balance}</Text>
+              <Image
+                className="h-6 w-6"
+                source={require("../../../assets/AtaraCoin.png")}
+              />
+            </View>
           </View>
 
           {/* Redeemed Rewards History Button */}
@@ -94,25 +106,29 @@ export default function RewardsScreen({ navigation }) {
                 )}
 
                 <Text className="text-center">
-                  {i === 0 ? null : insertNewlineAfterSecondSpace("up to 100 tokens")}
+                  {i === 0
+                    ? null
+                    : insertNewlineAfterSecondSpace("up to 100 tokens")}
                 </Text>
               </TouchableOpacity>
             </>
           ))}
         </ScrollView>
         {/* Featured Rewards */}
-        <View className="my-3 bg-red-300">
+        <View className="my-3">
           <Text className="text-2xl font-semibold pl-3">Featured Rewards</Text>
           <ScrollView horizontal>
             <View className="flex-row flex-wrap">
-              {rewards.isLoading ? <ActivityIndicator/> :
-               <FeaturedRewards navigation={navigation}/>
-              }
+              {rewards.isLoading ? (
+                <ActivityIndicator className="flex-1 justify-center items-center" />
+              ) : (
+                <FeaturedRewards navigation={navigation} />
+              )}
             </View>
           </ScrollView>
         </View>
-      {/* Not Featured Rewards */}
-       <NotFeaturedRewards navigation={navigation}/>
+        {/* Not Featured Rewards */}
+        <NotFeaturedRewards navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
   );

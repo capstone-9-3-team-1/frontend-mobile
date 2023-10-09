@@ -80,13 +80,16 @@ export default function UserScreen({ navigation }) {
       <ScrollView>
         {/* User Profile Pic, Name, Points earned */}
         <View className="flex items-center m-5">
-          <View className="rounded-full bg-white shadow-lg">
+          <View className="relative rounded-full bg-white shadow-lg">
             <Image
-              source={{
-                uri: user?.imageUrl,
-              }}
+              source={require("../assets/TinaProfileImage.png")}
               className="w-20 h-20 rounded-full"
             />
+            <TouchableOpacity 
+            onPress={() => navigation.navigate("UpdateAccount")}
+            className="h-7 w-7 items-center absolute bottom-[-7] right-0  bg-white flex justify-center rounded-full py-1 drop-shadow-xl">
+            <Ionicons name="create-outline" size={20}  color="grey" />
+            </TouchableOpacity>
           </View>
           <View className="ml-2">
             <Text className="text-2xl font-semibold">{userName}</Text>
@@ -130,16 +133,27 @@ export default function UserScreen({ navigation }) {
               {activeIndex === index && (
                 <View className="flex-row border rounded-lg m-3 justify-between">
                   {item.title === 'Your Favorites' || item.title === 'Purchase History' ? (
-                   <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {fave.map((item) => 
-                    <View className="border h-40 w-40 p-3 m-3" key={item.id}>
-                      {item.favorite}
-                    </View>)}
-                   </ScrollView>
-                 
-                    
+                    <Carousel
+                      data={item.bodyText}
+                      renderItem={({ item }) => (
+                        <View className="bg-light-blue-300 rounded-lg p-3 m-3 h-40 w-40">
+                          <Text className="text-xl font-semibold">{item.name}</Text>
+                        </View>
+                      )}
+                      sliderWidth={300}
+                      itemWidth={200}
+                      layout="default"
+                    />
+                  ) : item.title === 'FAQ (Frequently Asked Questions)' ? (
+                    <ScrollView>
+                      {item.bodyText.map((faq, faqIndex) => (
+                        <View key={faqIndex} className="border rounded-lg m-3 p-3 bg-light-blue-300">
+                        <Text className="text-xl font-semibold mb-2">{faq.question}</Text>
+                        <Text className="text-lg font-normal">{faq.answer}</Text>
+                      </View>                      
+                      ))}
+                    </ScrollView>
                   ) : (
-                    
                     <Text className="text-lg font-semibold p-5">{item.bodyText}</Text>
                   )}
                 </View>

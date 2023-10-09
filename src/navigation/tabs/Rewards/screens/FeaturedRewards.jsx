@@ -10,6 +10,7 @@ import RewardCard from "./FeaturedRewardCard"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../../../../utils/constants";
+
 import FeaturedRewardCard from "./FeaturedRewardCard";
 
 
@@ -24,6 +25,7 @@ export default function FeaturedRewards({ navigation }) {
       setRewards([...rewards, ...res.data]);
     });
   };
+
 
   const loadMoreItem = () => {
     setCurrentReward(currentReward + 1);

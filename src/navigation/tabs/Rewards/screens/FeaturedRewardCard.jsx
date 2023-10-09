@@ -25,7 +25,7 @@ export default function FeaturedRewardCard({ item }) {
     <ImageBackground
       key={item.id}
       source={{ uri: item.imageUrl }}
-      resizeMode="cover"
+      resizeMode="contain"
       borderRadius={30}
       className="h-48 w-80 opacity-80 hower:opacity-100  bg-white shadow-md"
     >

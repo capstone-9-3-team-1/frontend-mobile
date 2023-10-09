@@ -6,8 +6,6 @@ import {
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
-  TextInput,
-  FlatList,
 } from "react-native";
 import useHomeData from "../../../../utils/hooks/queries/useHomeData";
 import { useUser } from "@clerk/clerk-expo";
@@ -15,7 +13,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Articles from "./Articles";
 import Products from "./Products";
 
-const articleBox = [1, 2, 3, 4];
 
 export default function HomeScreen({ navigation }) {
   const { isLoading, products, categories, articles } = useHomeData();
@@ -26,7 +23,7 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
-    <SafeAreaView className="bg-slate-100 flex h-full justify-center items-center w-full">
+    <SafeAreaView className="bg-white flex h-full justify-center items-center w-full">
       {isLoading ? (
         <ActivityIndicator size="large" />
       ) : (
@@ -34,22 +31,24 @@ export default function HomeScreen({ navigation }) {
           <View className="">
             {isLoading ? <></> : <></>}
             {/*  header: logo and profile circle  */}
-            <View className="flex flex-row items-center">
+            <View className="flex flex-row items-center mb-3">
               {/* logo */}
               <Image
-                className="h-10 flex-1 ml-[-40%] bg-slate-100 shadow-lg"
+                className="h-10 flex-1 ml-[-30%] shadow-lg"
                 source={{
                   uri: "https://storage.googleapis.com/atara_images/atara_logo.png",
                 }}
                 resizeMode="contain"
               />
               {/* profile circle  */}
-              <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-                <View className=" m-5 rounded-full bg-slate-100 shadow-lg">
+              <TouchableOpacity
+               onPress={() => navigation.navigate("Profile")}
+               className="mr-6 mt-5 flex-row items-center"
+              >
+                <Text className="text-2xl font-semibold mx-2 text-slate-700">{user?.firstName}</Text>
+                <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
                   <Image
-                    source={{
-                      uri: user?.imageUrl,
-                    }}
+                   source={require("../../../../assets/TinaProfileImage.png")}
                     className="w-12 h-12 rounded-full"
                   />
                 </View>
@@ -57,14 +56,14 @@ export default function HomeScreen({ navigation }) {
             </View>
             {/* Search simulation  */}
             <TouchableOpacity onPress={() => navigation.navigate("Search")}>
-              <View className="h-10 mx-3 bg-white rounded-full p-2 shadow-md">
+              <View className="h-10 mx-3 bg-gray-200 rounded-full p-2 shadow-md">
                 <View className="flex-1 flex-row items-center">
                   <Ionicons
                     name="search"
                     size={20}
                     className="flex-1"
                   ></Ionicons>
-                  <Text className="px-2 text-slate-300">
+                  <Text className="px-2 text-slate-500">
                     Search products ...
                   </Text>
                 </View>
@@ -72,9 +71,9 @@ export default function HomeScreen({ navigation }) {
             </TouchableOpacity>
             {/* categories */}
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <Text className="my-auto ml-3 mr-3 ">
+              <Text className="my-auto ml-3 mr-3 text-sm">
                 Search by{"\n"}
-                <Text className="font-bold text-base text-slate-700">
+                <Text className="font-bold text-sm text-slate-700">
                   Category
                 </Text>
               </Text>
@@ -94,10 +93,10 @@ export default function HomeScreen({ navigation }) {
                     key={item.id}
                   >
                     <View className="columns-1 mb-3 flex items-center justify-center">
-                      <View className="h-14 w-14 rounded-full m-3 drop-shadow-lg bg-slate-100 mb-1 ">
+                      <View className="h-11 w-11 rounded-full m-3 drop-shadow-lg bg-slate-100 mb-1 ">
                         <Image
                           source={{ uri: item.imageUrl }}
-                          className="h-14 w-14 rounded-full justify-center"
+                          className="h-11 w-11 rounded-full justify-center"
                         />
                       </View>
                       <Text className="text-slate-500 text-center font-semibold text-xs px-auto">
@@ -116,7 +115,7 @@ export default function HomeScreen({ navigation }) {
               <Articles navigation={navigation} />
             )}
             {/* featured products- */}
-            <Text className="text-2xl font-semibold mx-auto mt-3">
+            <Text className="text-2xl text-slate-700 font-semibold text-left mt-3 ml-4">
               New Arrivals
             </Text>
             {products.isLoading ? (
