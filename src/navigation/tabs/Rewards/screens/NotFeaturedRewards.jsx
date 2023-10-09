@@ -51,11 +51,11 @@ export default function NotFeaturedRewards({ navigation }) {
 
 
     return (
-        <View className="w-screen flex-1 flex-row flex-wrap pl-1">
+        <View className="w-screen  pl-1">
           {rewards?.map((item) => {
             return (
               <TouchableOpacity
-                className="w-48"
+                className="w-full"
                 key={item.id}
                 // onPress={() =>
                 //   navigation.navigate("RewardShow", {

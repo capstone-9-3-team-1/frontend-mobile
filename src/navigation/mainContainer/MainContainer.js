@@ -12,6 +12,7 @@ import SignUpScreen from "../mainContainer/screens/SignUpScreen";
 import SignInScreen from "../mainContainer/screens/SignInScreen";
 import CameraRouter from "../tabs/Camera/CameraRouter";
 import UserScreen from "../../screens/UserScreen";
+import UpdateAccount from "../../screens/UpdateAccount";
 
 export default function MainContainer() {
   const Stack = createNativeStackNavigator();
@@ -57,6 +58,8 @@ const AppNavigator = ({ stack }) => {
       >
         <Stack.Screen name="Tabs" component={TabNav} />
         <Stack.Screen name="Profile" component={UserScreen} />
+        <Stack.Screen name="UpdateAccount" component={UpdateAccount} />
+
       </Stack.Navigator>
     </>
   );

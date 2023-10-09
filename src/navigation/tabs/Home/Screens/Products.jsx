@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 
 export default function Products({ products, navigation }) {
   return (
-    <View className="w-screen flex-1 flex-row flex-wrap pl-1">
+    <View className="flex-row flex-wrap gap-3">
       {products?.map((item) => {
         return (
           <TouchableOpacity

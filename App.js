@@ -6,6 +6,11 @@ import MainContainer from "./src/navigation/mainContainer/MainContainer";
 import { getItemAsync, setItemAsync } from "expo-secure-store";
 import { QueryClient, QueryClientProvider } from "react-query";
 
+// import { LogBox } from 'react-native';
+// LogBox.ignoreAllLogs();//Ignore all log notifications
+
+// use at Demo 
+
 const tokenCache = {
   async getToken(key) {
     try {

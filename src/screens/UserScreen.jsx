@@ -10,6 +10,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { useNavigation } from '@react-navigation/native';
+
 import { FAQData } from './FAQ';
 import useProducts from '../utils/hooks/queries/useProducts';
 import axios from "axios";
@@ -58,7 +59,6 @@ export default function UserScreen({ navigation }) {
   const [fave, setFave] = useState([]);
 
   const { user } = useUser();
-  const nav = useNavigation();
 
   
   const getFave = () => {
@@ -80,13 +80,16 @@ export default function UserScreen({ navigation }) {
       <ScrollView>
         {/* User Profile Pic, Name, Points earned */}
         <View className="flex items-center m-5">
-          <View className="rounded-full bg-white shadow-lg">
+          <View className="relative rounded-full bg-white shadow-lg">
             <Image
-              source={{
-                uri: user?.imageUrl,
-              }}
+              source={require("../assets/TinaProfileImage.png")}
               className="w-20 h-20 rounded-full"
             />
+            <TouchableOpacity 
+            onPress={() => navigation.navigate("UpdateAccount")}
+            className="h-7 w-7 items-center absolute bottom-[-7] right-0  bg-white flex justify-center rounded-full py-1 drop-shadow-xl">
+            <Ionicons name="create-outline" size={20}  color="grey" />
+            </TouchableOpacity>
           </View>
           <View className="ml-2">
             <Text className="text-2xl font-semibold">{userName}</Text>
@@ -127,6 +130,7 @@ export default function UserScreen({ navigation }) {
                   </View>
                 </View>
               </TouchableOpacity>
+
               {activeIndex === index && (
                 <View className="flex-row border rounded-lg m-3 justify-between">
                   {item.title === 'Your Favorites' || item.title === 'Purchase History' ? (
@@ -143,6 +147,7 @@ export default function UserScreen({ navigation }) {
                   )}
                 </View>
               )}
+
             </View>
           ))}
         </View>

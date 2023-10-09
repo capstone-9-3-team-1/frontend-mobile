@@ -16,8 +16,8 @@ export default function CameraScreen({ navigation }) {
 
   const takePic = async () => {
     const newPhoto = await cameraRef.current.takePictureAsync({
-      quality: 1,
-      exif: false,
+      quality: 1, // highest quality 
+      exif: false, 
       base64: true,
     });
     setPhoto(`data:image/jpg;base64,${newPhoto.base64}`);
