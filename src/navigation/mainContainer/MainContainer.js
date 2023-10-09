@@ -86,7 +86,7 @@ const TabNav = () => {
       tabBarIcon: ({ color, size }) => {
         return (
           <View className=" w-20 h-20 bg-white flex justify-center items-center rounded-full shadow-md">
-            <Ionicons name={"camera"} size={size * 1.5} color={color} />
+            <Ionicons name={"receipt"} size={size * 1.5} color={"#00D062"} />
           </View>
         );
       },
@@ -106,7 +106,7 @@ const TabNav = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarLabelPosition: "below-icon",
-        tabBarActiveTintColor: "green",
+        tabBarActiveTintColor: "#295622",
         tabBarInactiveTintColor: "grey",
         tabBarLabelStyle: {
           fontSize: 11,
