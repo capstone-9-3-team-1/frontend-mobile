@@ -139,6 +139,7 @@ export default function UserScreen({ navigation }) {
                  
                     
                   ) : (
+                    
                     <Text className="text-lg font-semibold p-5">{item.bodyText}</Text>
                   )}
                 </View>
