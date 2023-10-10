@@ -20,6 +20,8 @@ export default function Products({ products, navigation }) {
                 description: item.description,
                 price: item.price,
                 tokenValue: item.tokenValue,
+                favorite: item.favorite,
+                shopLink: item.shopLink
               })
             }
           >

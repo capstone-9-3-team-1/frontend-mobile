@@ -51,12 +51,12 @@ export default function NotFeaturedRewardCard({ item }) {
           <Text className="text-bold text-slate-800 text-lg my-1">
             {addNewLineAfterThirdWord(item.name)}
           </Text>
-          <View className="flex-row gap-1">
+          <View className="flex-row gap-1 ">
             <Image
-              className="h-6 w-6  bg-white drop-shadow-xl"
+              className="h-5 w-5  bg-white drop-shadow-xl"
               source={require("../../../../assets/AtaraCoin.png")}
             />
-            <Text className="text-bold text-lg">{item.tokensAmount}</Text>
+            <Text className="text-bold text-md pt-0.5">{item.tokensAmount}</Text>
           </View>
       </View>
     </View>
