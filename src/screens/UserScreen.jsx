@@ -14,7 +14,7 @@ import axios from "axios";
 import { API } from "../utils/constants";
 import { useEffect } from "react";
 
-const userName = "Tina S.";
+const userName = "Tina T.";
 
 const items = [
   {
@@ -48,12 +48,11 @@ const items = [
   },
 ];
 
-export default function UserScreen({ route, navigation }) {
+export default function UserScreen({ navigation }) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [fave, setFave] = useState([]);
-  const { balance } = route.params;
 
-  const { user } = useUser();
+  //const { user } = useUser();
 
   // useEffect(() => {
   //   axios.get(`${API}/userTokensBalance/${user.firstName}`).then((res) => {
@@ -133,13 +132,13 @@ export default function UserScreen({ route, navigation }) {
             </TouchableOpacity>
           </View>
           <View className="ml-2">
-            <Text className="text-2xl font-semibold">{user.firstName}</Text>
+            <Text className="text-2xl font-semibold">{userName}</Text>
             <View className="flex-row gap-1  bg-green-100 text-slate-700 rounded-full px-1.5 py-[4px]">
               <Image
                 className="h-5 w-5"
                 source={require("../assets/AtaraCoin.png")}
               />
-              <Text className="text-bold text-md pt-0.5">{balance}</Text>
+              <Text className="text-bold text-md pt-0.5">30</Text>
             </View>
           </View>
         </View>
@@ -206,11 +205,15 @@ export default function UserScreen({ route, navigation }) {
                 </ScrollView>
               )}
 
-              {/* Purchase History */}
-              {activeIndex === index && item.title === "Purchase History" && (
+              {/* Rewards History */}
+              {activeIndex === index && item.title === "Rewards History" && (
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                  <View className="border h-40 w-40 p-3 m-3"></View>
-                  {/* Render purchase history items here */}
+                  {item.bodyText.map(item =>
+                    <View className="border h-40 w-40 p-3 m-3">
+                    <Text>{item.name}</Text>
+                   </View> )}
+                  
+                  
                 </ScrollView>
               )}
 

@@ -34,9 +34,9 @@ export default function CategoryShow({ route, navigation }) {
   return (
     <SafeAreaView>
     <ScrollView>
-      <View className="mx-4"
+      <View className="mr-4"
       key={id}>
-        <View className="flex flex-row items-center text-left">
+        <View className="flex flex-row items-center text-center px-auto mx-auto">
         <Image
         source={{
           uri: image
@@ -49,7 +49,9 @@ export default function CategoryShow({ route, navigation }) {
         </View>
           
         <Text className="px-6 text-base">{description}</Text>
+        <View className="items-center justify-center px-auto mx-auto">
         <Products products={categorizedProducts} navigation={navigation}/>
+        </View>
         </View>   
        
     </ScrollView>
