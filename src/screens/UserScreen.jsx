@@ -62,14 +62,14 @@ export default function UserScreen({ route, navigation }) {
 
   // })
 
-  const  addNewLineAfterThirdWord = (inputString) => {
-    const words = inputString.split(' ');
+  const addNewLineAfterThirdWord = (inputString) => {
+    const words = inputString.split(" ");
     if (words.length >= 3) {
-      words.splice(3, 0, '\n'); 
-      return words.join(' ');
+      words.splice(3, 0, "\n");
+      return words.join(" ");
     }
     return inputString;
-  }
+  };
 
   const getFave = () => {
     axios.get(`${API}/products`).then((res) => {
@@ -85,14 +85,26 @@ export default function UserScreen({ route, navigation }) {
   };
 
   const addIcon = (title) => {
-    if(title === "Your Favorites"){
-      return <View className="flex justify-center items-center ml-3"><Ionicons name="bookmark" size={20} color="pink" /></View>
-    } else if (title === "Rewards History"){
-      return <View className="flex justify-center items-center ml-3"><Ionicons name="gift" size={20} color="#a2daff"/></View>
+    if (title === "Your Favorites") {
+      return (
+        <View className="flex justify-center items-center ml-3">
+          <Ionicons name="bookmark" size={20} color="pink" />
+        </View>
+      );
+    } else if (title === "Rewards History") {
+      return (
+        <View className="flex justify-center items-center ml-3">
+          <Ionicons name="gift" size={20} color="#a2daff" />
+        </View>
+      );
     } else if (title === "Help") {
-       return <View className="flex justify-center items-center ml-3"><Ionicons name="help-circle-outline" size={20} color="#a2daff"/></View>
-    } 
-  }
+      return (
+        <View className="flex justify-center items-center ml-3">
+          <Ionicons name="help-circle-outline" size={20} color="#a2daff" />
+        </View>
+      );
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -143,21 +155,16 @@ export default function UserScreen({ route, navigation }) {
               >
                 <View className="flex-row border border-slate-300 rounded-lg m-1.5 justify-between bg-white shadow-lg">
                   <View className="flex flex-row">
-                  {addIcon(item.title)}
-                  <Text className="text-xl p-5">
-                    {item.title}
-                  </Text>
-
+                    {addIcon(item.title)}
+                    <Text className="text-xl p-5">{item.title}</Text>
                   </View>
-                 
-                  <View className="bg-blue-300" />
+                  <View className="flex justify-center items-center" />
                   <Ionicons
-                    className=""
                     name={
                       activeIndex === index ? "ios-arrow-up" : "ios-arrow-down"
                     }
                     size={20}
-                    color="black"
+                    color="grey"
                   />
                 </View>
               </TouchableOpacity>
@@ -182,7 +189,7 @@ export default function UserScreen({ route, navigation }) {
                           {item.business}
                         </Text>
                         <Text className="text-bold text-slate-800 text-md my-1">
-                         {addNewLineAfterThirdWord(item.name)}
+                          {addNewLineAfterThirdWord(item.name)}
                         </Text>
                         <View className="flex-row gap-1 ">
                           <Image
@@ -255,10 +262,7 @@ const SignOut = () => {
     return null;
   }
   return (
-    <TouchableOpacity
-      onPress={signOut}
-      className=""
-    >
+    <TouchableOpacity onPress={signOut} className="">
       <Text className="text-lg text-blue-400">Sign Out</Text>
     </TouchableOpacity>
   );
