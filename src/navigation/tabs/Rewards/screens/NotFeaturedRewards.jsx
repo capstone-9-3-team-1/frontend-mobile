@@ -51,7 +51,7 @@ export default function NotFeaturedRewards({ navigation }) {
 
 
     return (
-        <View className="w-screen  pl-1">
+        <View className="w-screen pl-1">
           {rewards?.map((item) => {
             return (
               <TouchableOpacity
