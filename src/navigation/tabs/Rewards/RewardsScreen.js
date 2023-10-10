@@ -30,8 +30,7 @@ export default function RewardsScreen({ navigation }) {
     axios.get(`${API}/userTokensBalance/${user.firstName}`).then((res) => {
       setBalance(res.data.tokensBalance)
     })
-
-  })
+  },[])
 
   const insertNewlineAfterSecondSpace = (inputString) => {
     let spaceCount = 0;
@@ -58,7 +57,7 @@ export default function RewardsScreen({ navigation }) {
         {/* User Circle, Name, and Points */}
         <View className="flex flex-row items-center m-5">
           <View className="rounded-full  bg-white drop-shadow-lg">
-            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile", { balance: balance })}>
               <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
                 <Image
                   source={require("../../../assets/TinaProfileImage.png")}
@@ -69,10 +68,10 @@ export default function RewardsScreen({ navigation }) {
           </View>
           <View className="ml-2">
            
-            <View className="flex-row gap-1 bg-green-100 rounded-full px-2">
-              <Text className="text-bold text-lg">{balance}</Text>
+            <View className="flex-row gap-1 bg-green-100 text-slate-700 rounded-full px-1.5 py-1">
+              <Text className="font-bold text-sm">{balance}</Text>
               <Image
-                className="h-6 w-6"
+                className="h-5 w-5"
                 source={require("../../../assets/AtaraCoin.png")}
               />
             </View>
@@ -96,16 +95,16 @@ export default function RewardsScreen({ navigation }) {
             <>
               <TouchableOpacity key={i}>
                 {i === 0 ? (
-                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-xl items-center justify-center my-auto">
+                  <View className="w-11 h-11 mx-3 bg-[white] rounded-full  shadow-xl items-center justify-center my-auto">
                     <Ionicons name="search" size={20} />
                   </View>
                 ) : (
-                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-xl items-center justify-center my-auto">
-                    <Text className="">{num}</Text>
+                  <View className="w-11 h-11 mx-3 bg-[#a2daff] rounded-full  shadow-3xl items-center justify-center my-auto">
+                    <Text className="text-white">{num}</Text>
                   </View>
                 )}
 
-                <Text className="text-center">
+                <Text className="text-center text-sm mt-1">
                   {i === 0
                     ? null
                     : insertNewlineAfterSecondSpace("up to 100 tokens")}

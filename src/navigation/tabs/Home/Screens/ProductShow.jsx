@@ -6,24 +6,30 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import axios from "axios";
 import { API } from "../../../../utils/constants";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import OpenURLButton from "./OpenUrlButton";
 
 export default function ProductShow({ route, navigation }) {
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(favorite);
   const {
     id,
     image,
     name,
     spec,
+    favorite,
     category,
     business,
     description,
+    shopLink,
     price,
     tokenValue,
   } = route.params;
+
+  
 
   const toggleFavorite = () => {
     const updatedProduct = {
@@ -35,8 +41,7 @@ export default function ProductShow({ route, navigation }) {
   useEffect(() => {
     toggleFavorite();
   }, [liked]);
-
-  console.log(liked);
+ 
 
   return (
     <SafeAreaView>
@@ -66,7 +71,7 @@ export default function ProductShow({ route, navigation }) {
               className="absolute bottom-5 right-6"
               onPress={() => setLiked(!liked)}
             >
-              {liked ? (
+              {favorite ? (
                 <Image
                   className="h-10 w-10"
                   source={require("../../../../assets/faves/red-heart.png")}
@@ -111,18 +116,20 @@ export default function ProductShow({ route, navigation }) {
           <Text className="text-base text-slate-700 mt-[-10px] mb-3">
             {description}
           </Text>
+          <View className="border border-green-300 p-2 w-full my-2  justify-center bg-[#cff9c2]">
+          <OpenURLButton url={shopLink}>
+            Buy Now
+          </OpenURLButton>
 
-          <TouchableOpacity
+          </View>
+         
+
+          {/* <TouchableOpacity
             className="border border-slate-300 p-2 rounded-full  w-full my-2 flex-row  justify-between"
-            onPress={() => {
-              // Route for the Rewards History
-            }}
+            onPress={handlePress}
           >
-            <View>
-              <Text>Amazon</Text>
-            </View>
-            <Text className="text-white text-sm">{price}</Text>
-          </TouchableOpacity>
+            <Text>Buy now</Text>
+          </TouchableOpacity> */}
         </View>
       </ScrollView>
     </SafeAreaView>

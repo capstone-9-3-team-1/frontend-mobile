@@ -86,6 +86,7 @@ export default function HomeScreen({ navigation }) {
                         id: item.id,
                         image: item.imageUrl,
                         name: item.name,
+                        shortName: item.shortName,
                         description: item.description,
                       })
                     }

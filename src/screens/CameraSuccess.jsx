@@ -54,14 +54,14 @@ export default function ReceiptSummaryPage({ navigateFn }) {
         </TouchableOpacity>
 
         {/* FAQ Button */}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           className="bg-green-500 p-2 rounded-lg "
           onPress={() => {
             // Route for the FAQ page
           }}
         >
           <Text className="text-white text-sm"> FAQ</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </SafeAreaView>
   );
