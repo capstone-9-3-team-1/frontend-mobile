@@ -152,10 +152,10 @@ return (
                 >
                   {fave.map((item) => (
                     <View
-                      className="border w-40 p-3 m-3 bg-white"
+                      className="border w-40 p-3 m-3 bg-red-300 rounded-full"
                       key={item.id}
                     >
-                      <Image source={{uri: item.imageUrl}} className= "border h-40 p-1 m-1 " 
+                      <Image source={{uri: item.imageUrl}} className= "border h-40 p-1 m-1 rounded-full bg-white" 
                       resizeMode="contain"/>
                       
                       
@@ -171,7 +171,7 @@ return (
                   horizontal
                   showsHorizontalScrollIndicator={false}
                 >
-                  <View className="border h-40 w-40 p-3 m-3">
+                  <View className="border rounded- h-40 w-40 p-3 m-3">
 
                   </View>
                   {/* Render purchase history items here */}

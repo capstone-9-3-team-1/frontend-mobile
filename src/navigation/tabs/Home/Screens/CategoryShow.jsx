@@ -14,7 +14,7 @@ export default function CategoryShow({ route, navigation }) {
     <ScrollView>
       <View className="m-10 h-screen">
         <View className="flex flex-row items-center text-left">
-        <Image
+        <Image 
             resizeMode="contain"
             className="h-12 w-12"
           /> 
