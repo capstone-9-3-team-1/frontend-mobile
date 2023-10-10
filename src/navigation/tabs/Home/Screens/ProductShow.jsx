@@ -71,7 +71,7 @@ export default function ProductShow({ route, navigation }) {
               className="absolute bottom-5 right-6"
               onPress={() => setLiked(!liked)}
             >
-              {favorite ? (
+              {liked ? (
                 <Image
                   className="h-10 w-10"
                   source={require("../../../../assets/faves/red-heart.png")}
