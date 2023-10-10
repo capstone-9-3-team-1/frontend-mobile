@@ -96,12 +96,12 @@ export default function RewardsScreen({ navigation }) {
             <>
               <TouchableOpacity key={i}>
                 {i === 0 ? (
-                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-xl items-center justify-center my-auto">
+                  <View className="w-11 h-11 mx-3 bg-[white] rounded-full  shadow-xl items-center justify-center my-auto">
                     <Ionicons name="search" size={20} />
                   </View>
                 ) : (
-                  <View className="w-11 h-11 mx-3 bg-white rounded-full  shadow-3xl items-center justify-center my-auto">
-                    <Text className="">{num}</Text>
+                  <View className="w-11 h-11 mx-3 bg-[#a2daff] rounded-full  shadow-3xl items-center justify-center my-auto">
+                    <Text className="text-white">{num}</Text>
                   </View>
                 )}
 

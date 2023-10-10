@@ -116,8 +116,8 @@ export default function ProductShow({ route, navigation }) {
           <Text className="text-base text-slate-700 mt-[-10px] mb-3">
             {description}
           </Text>
-          <View className="border border-slate-300 p-2 rounded-full  w-full my-2  justify-center">
-          <OpenURLButton url={shopLink} >
+          <View className="border border-green-300 p-2 w-full my-2  justify-center bg-[#cff9c2]">
+          <OpenURLButton url={shopLink}>
             Buy Now
           </OpenURLButton>
 

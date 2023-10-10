@@ -106,7 +106,7 @@ const TabNav = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarLabelPosition: "below-icon",
-        tabBarActiveTintColor: "#295622",
+        tabBarActiveTintColor: "#a2daff",
         tabBarInactiveTintColor: "grey",
         tabBarLabelStyle: {
           fontSize: 11,
