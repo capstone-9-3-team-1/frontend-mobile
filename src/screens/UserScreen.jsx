@@ -210,7 +210,7 @@ export default function UserScreen({ route, navigation }) {
               {activeIndex === index && item.title === "Purchase History" && (
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   <View className="border h-40 w-40 p-3 m-3"></View>
-                  {/* Render purchase history items here */}
+                  <Image source={require('../assets/ReceiptPic.jpeg')} />
                 </ScrollView>
               )}
 
