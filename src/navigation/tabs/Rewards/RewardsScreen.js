@@ -57,7 +57,7 @@ export default function RewardsScreen({ navigation }) {
         {/* User Circle, Name, and Points */}
         <View className="flex flex-row items-center m-5">
           <View className="rounded-full  bg-white drop-shadow-lg">
-            <TouchableOpacity onPress={() => navigation.navigate("Profile", { balance: balance })}>
+            <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
               <View className="w-14 h-14 flex justify-center items-center  rounded-full bg-[#cff9c2] border-[2px] border-green-200 shadow-lg">
                 <Image
                   source={require("../../../assets/TinaProfileImage.png")}
@@ -69,7 +69,7 @@ export default function RewardsScreen({ navigation }) {
           <View className="ml-2">
            
             <View className="flex-row gap-1 bg-green-100 text-slate-700 rounded-full px-1.5 py-1">
-              <Text className="font-bold text-sm">{balance}</Text>
+              <Text className="font-bold text-sm">30</Text>
               <Image
                 className="h-5 w-5"
                 source={require("../../../assets/AtaraCoin.png")}

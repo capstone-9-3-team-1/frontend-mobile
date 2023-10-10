@@ -7,10 +7,10 @@ import {
   Pressable,
   Image,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
+import * as ExpoDocumentPicker from "expo-document-picker";
 import { useState, useEffect } from "react";
-import {manipulateAsync} from "expo-image-manipulator";
+import { manipulateAsync } from "expo-image-manipulator";
 
 export default function ReceiptUploadScreen({ navigation }) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -38,20 +38,26 @@ export default function ReceiptUploadScreen({ navigation }) {
   }, []);
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    // let result = await ImagePicker.launchImageLibraryAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   aspect: [4, 3],
+    //   quality: 1,
+    // })
+    let result = await ExpoDocumentPicker.getDocumentAsync();
 
-    const compressedResult = await manipulateAsync(result.uri, [], {compress: 0.4, base64: true})
-    let imageUri = compressedResult
-      ? `data:image/jpg;base64,${compressedResult.base64}`
-      : null;
-  
-    if (!compressedResult.canceled) {
-      setSelectedImage(imageUri);
+    if (!result.canceled) {
+      // const compressedResult = await manipulateAsync(result.uri, [], {compress: 0.4, base64: true})
+      let imageUri = result.assets[0].uri || null;
+      const imageResponse = await fetch(imageUri);
+      const imageBlob = await imageResponse.blob();
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setSelectedImage(reader.result);
+      };
+
+      reader.readAsDataURL(imageBlob);
     }
   };
 
@@ -64,7 +70,9 @@ export default function ReceiptUploadScreen({ navigation }) {
       {selectedImage && (
         <Pressable
           className="items-center bg-green-500 text-white min-w-[150] px-5 py-3 rounded-md"
-          onPress={() => navigation.navigate("Success", { photo: selectedImage })}
+          onPress={() =>
+            navigation.navigate("Success", { photo: selectedImage })
+          }
         >
           <Text className="text-white">Submit</Text>
         </Pressable>
